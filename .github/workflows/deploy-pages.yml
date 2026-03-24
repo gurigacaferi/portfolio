@@ -1,8 +1,11 @@
+# Pages + private repo + GitHub Free (personal) is not supported — the deploy step returns 404.
+# Use a public repo, GitHub Pro, or host elsewhere (e.g. Vercel) and keep the repo private.
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read

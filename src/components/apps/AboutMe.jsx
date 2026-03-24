@@ -179,7 +179,7 @@ export default function AboutMe() {
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 18 }}>
                     {[
                       { label: "Projects",         value: "6",  Icon: StatIconFolder   },
-                      { label: "Years Coding",      value: "4+", Icon: StatIconCode     },
+                      { label: "Years Coding",      value: "3+", Icon: StatIconCode     },
                       { label: "Internships",       value: "1",  Icon: StatIconBuilding },
                       { label: "Spoken Languages",  value: "2",  Icon: StatIconGlobe   }
                     ].map(s => (

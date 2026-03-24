@@ -1,8 +1,49 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, Component } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { DesktopProvider } from "./context/DesktopContext";
+import Desktop from "./components/Desktop";
 
-const Desktop = lazy(() => import("./components/Desktop"));
+/* ── Error boundary: shows a visible message instead of blank screen ─── */
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div
+          style={{
+            position: "fixed", inset: 0, background: "#0a0a1a",
+            color: "#e8e8ed", fontFamily: "monospace",
+            display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center",
+            padding: 32, gap: 16, textAlign: "center"
+          }}
+        >
+          <span style={{ fontSize: 40 }}>⚠</span>
+          <p style={{ fontSize: 16, fontWeight: 600 }}>Something went wrong</p>
+          <pre style={{ fontSize: 11, opacity: 0.5, maxWidth: 520, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+            {this.state.error?.message}
+          </pre>
+          <button
+            onClick={() => window.location.reload()}
+            style={{
+              marginTop: 8, padding: "8px 20px", borderRadius: 8, border: "none",
+              background: "#0071e3", color: "#fff", fontSize: 14, cursor: "pointer"
+            }}
+          >
+            Reload
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function BootScreen({ onDone }) {
   const reduceMotion = useReducedMotion();
@@ -154,45 +195,28 @@ export default function App() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <AnimatePresence mode="wait">
-      {phase === "boot" && (
-        <BootScreen key="boot" onDone={() => setPhase("login")} />
-      )}
-      {phase === "login" && (
-        <LoginScreen key="login" onLogin={() => setPhase("desktop")} />
-      )}
-      {phase === "desktop" && (
-        <motion.div
-          key="desktop"
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-          style={{ width: "100vw", height: "100vh", background: "#000" }}
-        >
-          <DesktopProvider>
-            <Suspense
-              fallback={(
-                <div
-                  style={{
-                    position: "fixed",
-                    inset: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "#000",
-                    color: "rgba(255,255,255,0.5)",
-                    fontSize: 15
-                  }}
-                >
-                  Loading…
-                </div>
-              )}
-            >
+    <ErrorBoundary>
+      <AnimatePresence mode="wait">
+        {phase === "boot" && (
+          <BootScreen key="boot" onDone={() => setPhase("login")} />
+        )}
+        {phase === "login" && (
+          <LoginScreen key="login" onLogin={() => setPhase("desktop")} />
+        )}
+        {phase === "desktop" && (
+          <motion.div
+            key="desktop"
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ width: "100vw", height: "100vh", background: "#000" }}
+          >
+            <DesktopProvider>
               <Desktop />
-            </Suspense>
-          </DesktopProvider>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            </DesktopProvider>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </ErrorBoundary>
   );
 }

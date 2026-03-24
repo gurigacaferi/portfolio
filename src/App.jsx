@@ -209,7 +209,7 @@ export default function App() {
             initial={reduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ width: "100vw", height: "100vh", background: "#000" }}
+            style={{ width: "100%", minHeight: "100dvh", background: "#000" }}
           >
             <DesktopProvider>
               <Desktop />

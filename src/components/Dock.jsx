@@ -3,11 +3,14 @@ import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from
 import { useDesktop } from "../context/DesktopContext";
 import { dockApps } from "../configs/portfolio";
 import { AppIconById } from "./DockIcons";
+import { useCoarsePointer, useIsMobileLayout } from "../hooks/useMediaQuery";
 
-const BASE_SIZE = 52;
-const MAX_SIZE = 80;
+const BASE_DESKTOP = 52;
+const BASE_MOBILE = 56;
+const MAX_DESKTOP = 80;
+const MAX_MOBILE = 72;
 
-function DockItem({ app, mouseX }) {
+function DockItem({ app, mouseX, baseSize, maxSize }) {
   const ref = useRef(null);
   const { openApp, openApps, minimizedApps } = useDesktop();
 
@@ -16,7 +19,7 @@ function DockItem({ app, mouseX }) {
     return val - bounds.x - bounds.width / 2;
   });
 
-  const rawScale = useTransform(distance, [-120, 0, 120], [1, MAX_SIZE / BASE_SIZE, 1]);
+  const rawScale = useTransform(distance, [-120, 0, 120], [1, maxSize / baseSize, 1]);
   const scale = useSpring(rawScale, { stiffness: 300, damping: 28, mass: 0.5 });
 
   const isOpen = openApps[app.id] && !minimizedApps[app.id];
@@ -33,8 +36,8 @@ function DockItem({ app, mouseX }) {
     <div className="dock-item-wrapper" ref={ref}>
       <motion.button
         style={{
-          width: BASE_SIZE,
-          height: BASE_SIZE,
+          width: baseSize,
+          height: baseSize,
           scale,
           background: "none",
           border: "none",
@@ -56,7 +59,7 @@ function DockItem({ app, mouseX }) {
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
         >
-          <AppIconById id={app.icon || app.id} size={BASE_SIZE} />
+          <AppIconById id={app.icon || app.id} size={baseSize} />
         </motion.div>
       </motion.button>
       <AnimatePresence>
@@ -88,15 +91,23 @@ function DockTooltip({ label }) {
 
 export default function Dock() {
   const mouseX = useMotionValue(Infinity);
+  const coarse = useCoarsePointer();
+  const mobile = useIsMobileLayout();
+  const baseSize = mobile ? BASE_MOBILE : BASE_DESKTOP;
+  const maxSize = mobile ? MAX_MOBILE : MAX_DESKTOP;
 
   return (
     <div
       className="dock-container"
-      onMouseMove={(e) => mouseX.set(e.clientX)}
-      onMouseLeave={() => mouseX.set(Infinity)}
+      onPointerMove={(e) => {
+        if (!coarse && e.pointerType === "mouse") mouseX.set(e.clientX);
+      }}
+      onPointerLeave={() => {
+        if (!coarse) mouseX.set(Infinity);
+      }}
     >
       {dockApps.map((app) => (
-        <DockItem key={app.id} app={app} mouseX={mouseX} />
+        <DockItem key={app.id} app={app} mouseX={mouseX} baseSize={baseSize} maxSize={maxSize} />
       ))}
     </div>
   );

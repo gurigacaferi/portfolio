@@ -64,6 +64,11 @@ export default function Spotlight() {
                 value={query}
                 onChange={e => setQuery(e.target.value)}
                 onKeyDown={onKey}
+                enterKeyHint="search"
+                inputMode="search"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck={false}
               />
             </div>
 
@@ -77,6 +82,7 @@ export default function Spotlight() {
                       className={`spotlight-result${i === activeIdx ? " active" : ""}`}
                       onClick={() => launch(app)}
                       onMouseEnter={() => setActiveIdx(i)}
+                      onPointerDown={() => setActiveIdx(i)}
                     >
                       <div style={{ width: 32, height: 32, borderRadius: 7, overflow: "hidden", flexShrink: 0, filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.2))" }}>
                         <AppIconById id={app.icon || app.id} size={32} />

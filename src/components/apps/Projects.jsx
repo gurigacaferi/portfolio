@@ -257,10 +257,11 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              className="projects-grid-mobile"
               style={{
                 height: "100%", overflowY: "auto", padding: "16px 18px",
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
                 gap: 12, alignContent: "start"
               }}
             >

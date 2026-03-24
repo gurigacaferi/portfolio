@@ -111,7 +111,7 @@ export default function AboutMe() {
   const [active, setActive] = useState("overview");
 
   return (
-    <div style={{ display: "flex", height: "100%", overflow: "hidden", background: "var(--mac-window-bg)" }}>
+    <div className="mac-app-split" style={{ display: "flex", height: "100%", overflow: "hidden", background: "var(--mac-window-bg)" }}>
 
       {/* ── Sidebar ── */}
       <div className="mac-sidebar">

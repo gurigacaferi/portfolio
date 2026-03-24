@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDesktop } from "../context/DesktopContext";
 import { user } from "../configs/portfolio";
+import { useIsMobileLayout } from "../hooks/useMediaQuery";
 
 function Clock() {
   const [time, setTime] = useState(new Date());
@@ -40,10 +41,10 @@ function WifiConnectMenu({ onClose, openApp, triggerRef }) {
     const onKey = (e) => {
       if (e.key === "Escape") onClose();
     };
-    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("pointerdown", onDoc, true);
     document.addEventListener("keydown", onKey);
     return () => {
-      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("pointerdown", onDoc, true);
       document.removeEventListener("keydown", onKey);
     };
   }, [onClose, triggerRef]);
@@ -317,11 +318,49 @@ function AppleMenu({ onClose }) {
   );
 }
 
+const NAV_ITEMS = [
+  { label: "File", id: "about" },
+  { label: "Projects", id: "projects" },
+  { label: "Terminal", id: "terminal" },
+  { label: "Resume", id: "resume" },
+  { label: "Contact", id: "contact" }
+];
+
 export default function TopBar() {
   const { openApp, setSpotlight } = useDesktop();
+  const isMobile = useIsMobileLayout();
   const [showAppleMenu, setShowAppleMenu] = useState(false);
   const [showWifiMenu, setShowWifiMenu] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const wifiBtnRef = useRef(null);
+  const appleWrapRef = useRef(null);
+  const mobileNavRef = useRef(null);
+  const mobileMenuBtnRef = useRef(null);
+
+  useEffect(() => {
+    if (!isMobile) setMobileNavOpen(false);
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (!showAppleMenu) return undefined;
+    const onDoc = (e) => {
+      if (appleWrapRef.current?.contains(e.target)) return;
+      setShowAppleMenu(false);
+    };
+    document.addEventListener("pointerdown", onDoc, true);
+    return () => document.removeEventListener("pointerdown", onDoc, true);
+  }, [showAppleMenu]);
+
+  useEffect(() => {
+    if (!mobileNavOpen) return undefined;
+    const onDoc = (e) => {
+      if (mobileMenuBtnRef.current?.contains(e.target)) return;
+      if (mobileNavRef.current?.contains(e.target)) return;
+      setMobileNavOpen(false);
+    };
+    document.addEventListener("pointerdown", onDoc, true);
+    return () => document.removeEventListener("pointerdown", onDoc, true);
+  }, [mobileNavOpen]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -336,8 +375,9 @@ export default function TopBar() {
 
   return (
     <div className="topbar">
-      <div className="topbar-left" style={{ position: "relative" }}>
+      <div className="topbar-left" ref={appleWrapRef} style={{ position: "relative" }}>
         <button
+          type="button"
           className="topbar-apple topbar-item"
           onClick={() => setShowAppleMenu(v => !v)}
           style={{ background: "none", border: "none", color: "white", cursor: "pointer" }}
@@ -348,25 +388,62 @@ export default function TopBar() {
           {showAppleMenu && <AppleMenu onClose={() => setShowAppleMenu(false)} />}
         </AnimatePresence>
 
-        <span className="topbar-item" style={{ fontWeight: 700 }}>Guri Gacaferi</span>
-        {[
-          { label: "File", id: "about" },
-          { label: "Projects", id: "projects" },
-          { label: "Terminal", id: "terminal" },
-          { label: "Resume", id: "resume" },
-          { label: "Contact", id: "contact" }
-        ].map(item => (
-          <span
-            key={item.id}
-            className="topbar-item"
-            onClick={() => openApp(item.id)}
-          >
-            {item.label}
-          </span>
-        ))}
+        <button
+          ref={mobileMenuBtnRef}
+          type="button"
+          className="topbar-mobile-menu-btn"
+          aria-expanded={mobileNavOpen}
+          aria-label="Apps menu"
+          onClick={() => setMobileNavOpen((v) => !v)}
+        >
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
+            <path d="M1 2h16M1 7h16M1 12h16" />
+          </svg>
+        </button>
+
+        <span className="topbar-item topbar-name-short" style={{ fontWeight: 700 }}>
+          Guri Gacaferi
+        </span>
+
+        <div className="topbar-nav-desktop">
+          {NAV_ITEMS.map((item) => (
+            <span key={item.id} className="topbar-item" onClick={() => openApp(item.id)} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && openApp(item.id)}>
+              {item.label}
+            </span>
+          ))}
+        </div>
+
+        <AnimatePresence>
+          {mobileNavOpen && (
+            <motion.div
+              ref={mobileNavRef}
+              role="menu"
+              aria-label="Apps"
+              className="topbar-mobile-sheet"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.15 }}
+            >
+              {NAV_ITEMS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="menuitem"
+                  onClick={() => {
+                    openApp(item.id);
+                    setMobileNavOpen(false);
+                  }}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="topbar-right">
+      <div className={`topbar-right${isMobile ? " topbar-clock-compact" : ""}`}>
         <span className="topbar-item" onClick={() => setSpotlight(s => !s)} title="Spotlight (⌘Space)">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="white" opacity="0.85">
             <circle cx="6" cy="6" r="4.5" stroke="white" strokeWidth="1.5" fill="none" opacity="0.85"/>
@@ -403,7 +480,7 @@ export default function TopBar() {
             )}
           </AnimatePresence>
         </div>
-        <BatteryStatus />
+        {!isMobile && <BatteryStatus />}
         <ControlCenterIcon onClick={() => {}} />
         <Clock />
       </div>

@@ -68,7 +68,7 @@ const APP_CONFIG = [
 
 export default function Desktop() {
   return (
-    <div style={{ width: "100vw", height: "100vh", position: "relative", overflow: "hidden" }}>
+    <div className="desktop-root" style={{ position: "relative", overflow: "hidden" }}>
       {/* Wallpaper */}
       <div className="wallpaper" />
 

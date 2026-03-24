@@ -1,19 +1,28 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import TopBar from "./TopBar";
 import Dock from "./Dock";
 import Spotlight from "./Spotlight";
 import Window from "./Window";
-import AboutMe from "./apps/AboutMe";
-import Projects from "./apps/Projects";
-import Terminal from "./apps/Terminal";
-import Resume from "./apps/Resume";
-import Contact from "./apps/Contact";
+
+const AboutMe = lazy(() => import("./apps/AboutMe"));
+const Projects = lazy(() => import("./apps/Projects"));
+const Terminal = lazy(() => import("./apps/Terminal"));
+const Resume = lazy(() => import("./apps/Resume"));
+const Contact = lazy(() => import("./apps/Contact"));
+
+function WindowContentFallback() {
+  return (
+    <div style={{ padding: 20, fontSize: 13, color: "var(--mac-text-2)" }}>
+      Loading…
+    </div>
+  );
+}
 
 const APP_CONFIG = [
   {
     id: "about",
     title: "About — Guri Gacaferi",
-    component: <AboutMe />,
+    Component: AboutMe,
     defaultSize: { width: 760, height: 520 },
     defaultPosition: { x: 40, y: 44 },
     minWidth: 540,
@@ -22,7 +31,7 @@ const APP_CONFIG = [
   {
     id: "projects",
     title: "Projects",
-    component: <Projects />,
+    Component: Projects,
     defaultSize: { width: 860, height: 560 },
     defaultPosition: { x: 100, y: 64 },
     minWidth: 480,
@@ -31,7 +40,7 @@ const APP_CONFIG = [
   {
     id: "terminal",
     title: "Terminal — zsh",
-    component: <Terminal />,
+    Component: Terminal,
     defaultSize: { width: 640, height: 400 },
     defaultPosition: { x: 220, y: 100 },
     minWidth: 400,
@@ -40,7 +49,7 @@ const APP_CONFIG = [
   {
     id: "resume",
     title: "Resume — Guri Gacaferi",
-    component: <Resume />,
+    Component: Resume,
     defaultSize: { width: 700, height: 540 },
     defaultPosition: { x: 160, y: 84 },
     minWidth: 440,
@@ -49,14 +58,13 @@ const APP_CONFIG = [
   {
     id: "contact",
     title: "Mail — Contact Me",
-    component: <Contact />,
+    Component: Contact,
     defaultSize: { width: 560, height: 500 },
     defaultPosition: { x: 240, y: 80 },
     minWidth: 380,
     minHeight: 320
   }
 ];
-
 
 export default function Desktop() {
   return (
@@ -85,20 +93,25 @@ export default function Desktop() {
       {/* Top bar */}
       <TopBar />
 
-      {/* App windows */}
-      {APP_CONFIG.map((app) => (
-        <Window
-          key={app.id}
-          id={app.id}
-          title={app.title}
-          defaultPosition={app.defaultPosition}
-          defaultSize={app.defaultSize}
-          minWidth={app.minWidth}
-          minHeight={app.minHeight}
-        >
-          {app.component}
-        </Window>
-      ))}
+      {/* App windows — lazy chunks so react-pdf etc. never load until a window opens (fixes Safari / iOS) */}
+      {APP_CONFIG.map((app) => {
+        const C = app.Component;
+        return (
+          <Window
+            key={app.id}
+            id={app.id}
+            title={app.title}
+            defaultPosition={app.defaultPosition}
+            defaultSize={app.defaultSize}
+            minWidth={app.minWidth}
+            minHeight={app.minHeight}
+          >
+            <Suspense fallback={<WindowContentFallback />}>
+              <C />
+            </Suspense>
+          </Window>
+        );
+      })}
 
       {/* Dock */}
       <Dock />

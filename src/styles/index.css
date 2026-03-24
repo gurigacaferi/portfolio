@@ -48,6 +48,8 @@ html, body, #root {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
+  /* Faster taps on iOS; avoids some WebKit quirks with double-tap zoom blocking UI */
+  touch-action: manipulation;
 }
 
 /* ─── Wallpaper ─────────────────────────────────────────────────────────── */

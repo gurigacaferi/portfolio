@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { DesktopProvider } from "./context/DesktopContext";
-import Desktop from "./components/Desktop";
+
+const Desktop = lazy(() => import("./components/Desktop"));
 
 function BootScreen({ onDone }) {
   const reduceMotion = useReducedMotion();
@@ -169,7 +170,26 @@ export default function App() {
           style={{ width: "100vw", height: "100vh", background: "#000" }}
         >
           <DesktopProvider>
-            <Desktop />
+            <Suspense
+              fallback={(
+                <div
+                  style={{
+                    position: "fixed",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#000",
+                    color: "rgba(255,255,255,0.5)",
+                    fontSize: 15
+                  }}
+                >
+                  Loading…
+                </div>
+              )}
+            >
+              <Desktop />
+            </Suspense>
           </DesktopProvider>
         </motion.div>
       )}

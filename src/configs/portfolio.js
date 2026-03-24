@@ -3,7 +3,8 @@
  * Example: put `public/resume/cv.pdf` → "/resume/cv.pdf"
  * Leave null to show the built-in HTML resume in the Notes window.
  */
-export const resumePdfUrl = `/resume/${encodeURIComponent("Resume - Guri Gacaferi.pdf")}`;
+const base = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
+export const resumePdfUrl = `${base}/resume/${encodeURIComponent("Resume - Guri Gacaferi.pdf")}`;
 
 export const user = {
   name: "Guri Gacaferi",

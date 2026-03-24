@@ -2,7 +2,7 @@
   "name": "playground-macos",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ggacaferi.github.io/macos-portfolio-private",
+  "homepage": "https://gurigacaferi.github.io/macos-portfolio-private",
   "scripts": {
     "dev": "craco start",
     "build": "craco build",

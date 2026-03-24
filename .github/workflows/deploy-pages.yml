@@ -1,5 +1,3 @@
-# Pages + private repo + GitHub Free (personal) is not supported — the deploy step returns 404.
-# Use a public repo, GitHub Pro, or host elsewhere (e.g. Vercel) and keep the repo private.
 name: Deploy to GitHub Pages
 
 on:
@@ -12,15 +10,19 @@ permissions:
   pages: write
   id-token: write
 
+# Let in-flight deploys finish (GitHub Pages starter recommendation).
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - uses: actions/setup-node@v4
         with:
@@ -43,6 +45,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4

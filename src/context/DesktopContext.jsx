@@ -23,7 +23,7 @@ export function DesktopProvider({ children }) {
   const [minimizedApps, setMinimizedApps] = useState({});
   const [maximizedApps, setMaximizedApps] = useState({});
   const [zIndexMap, setZIndexMap] = useState({});
-  const [topZ, setTopZ] = useState(10);
+  const [, setTopZ] = useState(10);
   const [dark, setDark] = useState(true);
   const [spotlight, setSpotlight] = useState(false);
 

@@ -189,15 +189,17 @@ export const workExperience = [
   },
   {
     company: "Balkan Natural Adventure",
-    role: "Bookkeeper",
+    role: "Finance automation technician",
     period: "Jun 2022 – Feb 2026",
     location: "Remote, Flexible",
     bullets: [
-      "Led the company's transition from Excel-based bookkeeping to QuickBooks Online, designing clear workflows for future bookkeepers.",
+      "Led the company's transition from Excel-based bookkeeping to QuickBooks Online, designing clear, scalable workflows for future bookkeepers.",
       "Managed bills, invoices, and bank integrations end-to-end.",
-      "Trained staff in January 2026 on QuickBooks usage and completed a full handover by the end of February 2026."
+      "Built custom scripts and tools to automate repetitive financial processes, reducing manual workload and improving operational efficiency.",
+      "Leveraged AI to analyse staff performance data, delivering actionable insights to support management decision-making.",
+      "Trained staff in January 2026 on QuickBooks usage and completed a full handover by end of February 2026."
     ],
-    tags: ["QuickBooks Online", "Bookkeeping", "Finance", "Training"]
+    tags: ["QuickBooks Online", "Automation", "Finance", "AI"]
   }
 ];
 
@@ -262,9 +264,9 @@ teaching assistant (intro to oop) — uye campus
   oct 2024 – feb 2025 · prishtina
   labs · 1-on-1 tutoring · java
 
-bookkeeper — balkan natural adventure
+finance automation technician — balkan natural adventure
   jun 2022 – feb 2026 · remote
-  excel → qbo · training · handover`,
+  excel → qbo · automation · ai insights · training · handover`,
 
   skills: `languages:   javascript · typescript · python · java · php · sql
 frontend:    react · ejs · scss/css · tailwind · processing (java)

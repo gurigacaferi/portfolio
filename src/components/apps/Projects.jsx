@@ -202,7 +202,7 @@ function ProjectDetail({ project, onBack }) {
                 style={{ fontSize: 12.5, textDecoration: "none" }}
                 onClick={e => e.stopPropagation()}
               >
-                Live demo
+                {project.linkLabel || "Live demo"}
               </a>
             )}
           </div>

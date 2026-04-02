@@ -160,6 +160,70 @@ export const projects = [
     link: null,
     github: "https://github.com/ggacaferi/software-development",
     featured: false
+  },
+  {
+    id: 7,
+    title: "Movie Data Analysis",
+    subtitle: "Jupyter Notebooks & ROI Pipeline",
+    description: "A Jupyter-centric workflow on a movie dataset (movies.csv) with a companion column reference (movies_variables.txt). The project cleans and prepares data, engineers a return-on-investment metric, splits subsets by genre and decade, and visualises how output and performance evolve across time — with corrected mean/median summaries for genre–decade cells.",
+    highlights: [
+      "fix_missing_values.ipynb inspects the dataset and handles missing entries so later analyses stay consistent",
+      "separate_by_genre_decade.ipynb partitions the data by genre and release decade into dedicated output folders",
+      "movies_by_decade_visualization.ipynb plots statistics (e.g. counts, average ratings) by decade to surface long-term trends",
+      "Genre–decade result folders include corrected mean and median pipelines for fairer comparisons across cells",
+      "compute_roi.py computes ROI (e.g. (revenue − budget) / budget) and writes movies_roi.csv for profitability analysis",
+      "movies_roi.csv feeds follow-on analysis of which genres or decades are most profitable"
+    ],
+    tags: ["Python", "Jupyter", "Pandas", "Data Cleaning", "Visualization", "Feature Engineering"],
+    color: "#14b8a6",
+    year: "2025",
+    solo: true,
+    link: null,
+    github: "https://github.com/ggacaferi/datascience",
+    featured: false
+  },
+  {
+    id: 8,
+    title: "Victorian Block Signaling",
+    subtitle: "Promela Model · SPIN Verification",
+    description: "A Promela (Process Meta-Language) model for verification with the SPIN model checker, simulating a Victorian-style three-box railway block system: track sections are protected so only one train occupies a given block at a time. The model was developed as a corrected solution for a university coursework assignment (CCS2420), focusing on communication protocols between physical signals and human-operated signal boxes.",
+    highlights: [
+      "Three signal boxes (A, B, C): entry, intermediate hand-off, and exit — operators run the block protocol using bell signals and mechanical instruments",
+      "Signal processes represent the physical track: they detect approaching trains, coordinate with the local box, and only then clear signal aspects for passage",
+      "Bell lines use synchronous channels for codes such as CALL_ATTEN and IS_CLEAR; instrument dials track line state (e.g. LC, LR, TL)",
+      "LTL verification: safety — at most one train in block AB or BC at any time; liveness — a train entering AB eventually progresses to BC",
+      "No global channels: every channel is passed as a process parameter, following good Promela modeling practice",
+      "Protocol flow: approach detection → bell request to the next box → clearance and instrument updates → signal clear → train movement → reset for the next train"
+    ],
+    tags: ["Promela", "SPIN", "LTL", "Formal Verification", "Concurrency", "Model Checking"],
+    color: "#78716c",
+    year: "2024",
+    solo: true,
+    link: null,
+    github: null,
+    featured: false
+  },
+  {
+    id: 9,
+    title: "Portfolio for CCS2600 AIT",
+    subtitle: "Artificial Intelligence Techniques — Lab Portfolio",
+    description: "A compiled lab portfolio for CCS2600: Artificial Intelligence Techniques (Spring 2025), produced by a four-student team. The document spans five lab modules — from classical search and CSPs to knowledge representation and modern NLU/ML — plus appendices with code listings, peer evaluations, and self-reflections.",
+    highlights: [
+      "Lab 1 — Problem definition and uninformed search: Water Colouring, Water Jars, and Maze problems; DFS, BFS, and iterative deepening compared",
+      "Lab 2 — Informed (heuristic) search: N-Puzzle, hill-climbing, and A*; cross-language A* comparisons (Python, JavaScript, Prolog)",
+      "Lab 3 — Constraint satisfaction and game playing: cryptarithmetic, magic squares, and Minimax with alpha–beta pruning (e.g. checkers)",
+      "Lab 4 — Knowledge representation: semantic networks, frames, IF–THEN rules, fuzzy logic, and inductive vs deductive reasoning with AI tooling",
+      "Lab 5 — NLU, LLMs, and machine learning: syntax trees, LLM impact on NLP, and the ID3 algorithm for classification",
+      "Team: CSY23088, CSY23109, CSY23085, CSY23057 — appendices include code, peer reviews, and reflections"
+    ],
+    tags: ["Python", "Prolog", "JavaScript", "AI", "Search", "Machine Learning"],
+    color: "#a855f7",
+    year: "2025",
+    solo: false,
+    link: "https://docs.google.com/document/d/19G-Wj0o-4ElbLr6SgYYqp-ApzqaqNPHiPAvIY2bdl6k/edit?usp=sharing",
+    linkLabel: "View Google Doc",
+    github: null,
+    featured: false
   }
 ];
 
@@ -238,14 +302,18 @@ drwxr-xr-x  invent/               (zend → laravel migration)
 drwxr-xr-x  os-simulator/         (educational os visualiser, processing/java)
 drwxr-xr-x  misinformation-sim/   (agent-based swarm evolution model)
 drwxr-xr-x  internlink/           (node · express · ejs internship portal)
-drwxr-xr-x  battlesnake-bot/      (node · express · jest · github actions · railway)`,
+drwxr-xr-x  battlesnake-bot/      (node · express · jest · github actions · railway)
+drwxr-xr-x  movie-data-analysis/  (jupyter · movies · roi · genre & decade exploration)
+drwxr-xr-x  railway-block-signaling/  (promela · spin · ltl · victorian block system)
+drwxr-xr-x  ccs2600-ait-portfolio/   (ai techniques · labs · spring 2025)`,
 
   repos: `public repos (team / coursework):
   os-simulator/     github.com/egrabanica/Operating-system
   internlink/       github.com/aabazii/InternLink
   battlesnake-bot/  github.com/ggacaferi/software-development
+  movie-analysis/   github.com/ggacaferi/datascience
 
-  fatural, invent, misinformation-sim — not linked here (private or local).`,
+  fatural, invent, misinformation-sim, railway-block-signaling — not linked here (private or local).`,
 
   education: `bsc artificial intelligence & data science
   university of york europe campus

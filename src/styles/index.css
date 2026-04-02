@@ -403,6 +403,15 @@ textarea {
   border-radius: 6px; white-space: nowrap; pointer-events: none;
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.22s cubic-bezier(0.2, 0.85, 0.25, 1),
+    transform 0.26s cubic-bezier(0.2, 0.85, 0.25, 1);
+}
+.dock-item-wrapper:hover .dock-label {
+  opacity: 1;
+  transform: translateY(0);
 }
 .dock-dot {
   width: 4px; height: 4px; border-radius: 50%;

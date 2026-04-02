@@ -19,8 +19,19 @@ function DockItem({ app, mouseX, baseSize, maxSize }) {
     return val - bounds.x - bounds.width / 2;
   });
 
-  const rawScale = useTransform(distance, [-120, 0, 120], [1, maxSize / baseSize, 1]);
-  const scale = useSpring(rawScale, { stiffness: 300, damping: 28, mass: 0.5 });
+  const peakScale = maxSize / baseSize;
+  const influencePx = 135;
+  const rawScale = useTransform(distance, (d) => {
+    if (!Number.isFinite(d)) return 1;
+    const t = Math.min(1, Math.abs(d) / influencePx);
+    const falloff = 1 - t * t;
+    return 1 + (peakScale - 1) * falloff;
+  });
+  const scale = useSpring(rawScale, {
+    stiffness: 140,
+    damping: 22,
+    mass: 0.55
+  });
 
   const isOpen = openApps[app.id] && !minimizedApps[app.id];
 
@@ -34,34 +45,40 @@ function DockItem({ app, mouseX, baseSize, maxSize }) {
 
   return (
     <div className="dock-item-wrapper" ref={ref}>
-      <motion.button
+      <motion.div
         style={{
-          width: baseSize,
-          height: baseSize,
           scale,
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          padding: 0,
           transformOrigin: "bottom center",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative"
+          width: baseSize,
+          height: baseSize
         }}
-        whileTap={{ scale: 0.88 }}
-        onClick={handleClick}
-        title={app.subtitle || app.title}
       >
-        <DockTooltip label={app.subtitle || app.title} />
-        <motion.div
-          style={{ width: "100%", height: "100%", borderRadius: 12, overflow: "hidden" }}
-          whileHover={{ y: -6 }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        <motion.button
+          type="button"
+          whileTap={{ scale: 0.93 }}
+          transition={{ type: "spring", stiffness: 420, damping: 32 }}
+          style={{
+            width: "100%",
+            height: "100%",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            borderRadius: 12
+          }}
+          onClick={handleClick}
+          title={app.subtitle || app.title}
         >
-          <AppIconById id={app.icon || app.id} size={baseSize} />
-        </motion.div>
-      </motion.button>
+          <DockTooltip label={app.subtitle || app.title} />
+          <div style={{ width: "100%", height: "100%", borderRadius: 12, overflow: "hidden" }}>
+            <AppIconById id={app.icon || app.id} size={baseSize} />
+          </div>
+        </motion.button>
+      </motion.div>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -77,16 +94,7 @@ function DockItem({ app, mouseX, baseSize, maxSize }) {
 }
 
 function DockTooltip({ label }) {
-  return (
-    <motion.div
-      className="dock-label"
-      initial={{ opacity: 0, y: 4 }}
-      whileHover={{ opacity: 1, y: 0 }}
-      style={{ opacity: 0 }}
-    >
-      {label}
-    </motion.div>
-  );
+  return <div className="dock-label">{label}</div>;
 }
 
 export default function Dock() {

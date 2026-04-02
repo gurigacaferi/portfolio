@@ -21,7 +21,8 @@ function ProjectCard({ project, onClick }) {
         borderRadius: 10, padding: "14px 16px",
         cursor: "pointer",
         backdropFilter: "blur(10px)",
-        transition: "box-shadow 0.18s"
+        transition: "box-shadow 0.18s",
+        overflow: "hidden"
       }}
     >
       <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
@@ -63,17 +64,38 @@ function ProjectCard({ project, onClick }) {
         {project.subtitle}
       </p>
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "3px 4px", marginTop: "auto" }}>
+      <div style={{
+        display: "flex",
+        flexWrap: "nowrap",
+        alignItems: "center",
+        gap: 4,
+        marginTop: "auto",
+        minWidth: 0,
+        width: "100%",
+        overflow: "hidden"
+      }}>
         {project.tags.slice(0, 3).map(tag => (
-          <span key={tag} style={{
-            display: "inline-block", padding: "2px 7px", borderRadius: 4,
-            fontSize: 10, fontWeight: 500,
-            background: "rgba(0,0,0,0.05)", color: "var(--mac-text-2)",
-            border: "1px solid rgba(0,0,0,0.08)"
-          }}>{tag}</span>
+          <span
+            key={tag}
+            title={tag}
+            style={{
+              flex: "1 1 0",
+              minWidth: 0,
+              padding: "2px 6px", borderRadius: 4,
+              fontSize: 10, fontWeight: 500,
+              background: "rgba(0,0,0,0.05)", color: "var(--mac-text-2)",
+              border: "1px solid rgba(0,0,0,0.08)",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap"
+            }}
+          >{tag}</span>
         ))}
         {project.tags.length > 3 && (
-          <span style={{ fontSize: 10, color: "var(--mac-text-3)", padding: "2px 0" }}>+{project.tags.length - 3}</span>
+          <span style={{
+            fontSize: 10, color: "var(--mac-text-3)", padding: "2px 0",
+            flexShrink: 0, whiteSpace: "nowrap"
+          }}>+{project.tags.length - 3}</span>
         )}
       </div>
     </motion.div>

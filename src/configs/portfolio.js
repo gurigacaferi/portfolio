@@ -289,7 +289,7 @@ status:   open to opportunities`,
   help: `available commands:
   whoami      — who am i
   ls          — list projects (finder-style)
-  repos       — public github links for team projects
+  repos       — github repos + other public project links
   education   — academic background
   work        — work experience
   skills      — technical skills
@@ -307,13 +307,17 @@ drwxr-xr-x  movie-data-analysis/  (jupyter · movies · roi · genre & decade ex
 drwxr-xr-x  railway-block-signaling/  (promela · spin · ltl · victorian block system)
 drwxr-xr-x  ccs2600-ait-portfolio/   (ai techniques · labs · spring 2025)`,
 
-  repos: `public repos (team / coursework):
+  repos: `public github (team / coursework):
   os-simulator/     github.com/egrabanica/Operating-system
   internlink/       github.com/aabazii/InternLink
   battlesnake-bot/  github.com/ggacaferi/software-development
   movie-analysis/   github.com/ggacaferi/datascience
 
-  fatural, invent, misinformation-sim, railway-block-signaling — not linked here (private or local).`,
+  public elsewhere (open from Projects window):
+  misinformation-sim  p5.js web editor sketch
+  ccs2600-ait/        google doc lab portfolio
+
+  private / local only: fatural, invent, railway-block-signaling`,
 
   education: `bsc artificial intelligence & data science
   university of york europe campus

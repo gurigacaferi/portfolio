@@ -162,7 +162,7 @@ function ProjectDetail({ project, onBack }) {
           </div>
         </div>
 
-        {(project.github || project.link) ? (
+        {(project.github || project.link || project.p5js) ? (
           <div style={{
             display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10,
             padding: "12px 14px", borderRadius: 8,
@@ -179,6 +179,18 @@ function ProjectDetail({ project, onBack }) {
                 onClick={e => e.stopPropagation()}
               >
                 View on GitHub
+              </a>
+            )}
+            {project.p5js && (
+              <a
+                href={project.p5js}
+                target="_blank"
+                rel="noreferrer"
+                className="mac-btn"
+                style={{ fontSize: 12.5, textDecoration: "none" }}
+                onClick={e => e.stopPropagation()}
+              >
+                View on p5.js
               </a>
             )}
             {project.link && (

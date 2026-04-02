@@ -178,9 +178,9 @@ export default function AboutMe() {
 
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 18 }}>
                     {[
-                      { label: "Projects",         value: "6",  Icon: StatIconFolder   },
+                      { label: "Projects",         value: "9",  Icon: StatIconFolder   },
                       { label: "Years Coding",      value: "3+", Icon: StatIconCode     },
-                      { label: "Internships",       value: "1",  Icon: StatIconBuilding },
+                      { label: "Internships",       value: "2",  Icon: StatIconBuilding },
                       { label: "Spoken Languages",  value: "2",  Icon: StatIconGlobe   }
                     ].map(s => (
                       <motion.div key={s.label} whileHover={{ scale: 1.02 }} className="mac-stat">
@@ -272,7 +272,7 @@ export default function AboutMe() {
                   <h2 style={{ fontSize: 17, fontWeight: 700, color: "var(--mac-text)", marginBottom: 18, letterSpacing: "-0.3px" }}>Languages</h2>
                   {[
                     { name: "Albanian", level: "Native",  pct: 100, color: "#34c759" },
-                    { name: "English",  level: "Fluent",  pct: 95,  color: "var(--mac-accent)" }
+                    { name: "English",  level: "Fluent",  pct: 100, color: "var(--mac-accent)" }
                   ].map((lang, i) => (
                     <motion.div key={lang.name} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }} style={{ marginBottom: 12 }}>
                       <Card>

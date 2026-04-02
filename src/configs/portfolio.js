@@ -110,7 +110,7 @@ export const projects = [
       "Agents accumulate fitness scores through interactions and reproduce with mutation",
       "Modular architecture allows each evolution mechanism to be toggled independently for comparison"
     ],
-    tags: ["Python", "Simulation", "Agent-Based", "Game Theory", "Evolutionary AI"],
+    tags: ["JavaScript", "Simulation", "Agent-Based", "Game Theory", "Evolutionary AI"],
     color: "#ec4899",
     year: "2025",
     solo: false,

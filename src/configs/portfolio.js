@@ -177,7 +177,7 @@ export const projects = [
     tags: ["Python", "Jupyter", "Pandas", "Data Cleaning", "Visualization", "Feature Engineering"],
     color: "#14b8a6",
     year: "2025",
-    solo: true,
+    solo: false,
     link: null,
     github: "https://github.com/ggacaferi/datascience",
     featured: false
@@ -198,7 +198,7 @@ export const projects = [
     tags: ["Promela", "SPIN", "LTL", "Formal Verification", "Concurrency", "Model Checking"],
     color: "#78716c",
     year: "2024",
-    solo: true,
+    solo: false,
     link: null,
     github: null,
     featured: false

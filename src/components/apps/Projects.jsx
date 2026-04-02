@@ -11,6 +11,10 @@ function ProjectCard({ project, onClick }) {
       whileHover={{ y: -2, boxShadow: "0 6px 20px rgba(0,0,0,0.09)" }}
       onClick={onClick}
       style={{
+        height: "100%",
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
         background: "rgba(255,255,255,0.75)",
         border: "1px solid rgba(0,0,0,0.08)",
         borderLeft: `3px solid ${project.color}`,
@@ -20,7 +24,7 @@ function ProjectCard({ project, onClick }) {
         transition: "box-shadow 0.18s"
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
         <div style={{
           width: 36, height: 36, borderRadius: 8, flexShrink: 0,
           background: "rgba(0,0,0,0.05)",
@@ -30,8 +34,13 @@ function ProjectCard({ project, onClick }) {
           {project.title[0]}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <p style={{ fontSize: 13.5, fontWeight: 600, color: "var(--mac-text)", marginBottom: 1 }}>{project.title}</p>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <p style={{
+            fontSize: 13.5, fontWeight: 600, color: "var(--mac-text)", marginBottom: 1,
+            display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+            overflow: "hidden", lineHeight: 1.35,
+            minHeight: "2.7em"
+          }}>{project.title}</p>
+          <div style={{ display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
             <p style={{ fontSize: 11, color: "var(--mac-text-3)" }}>{project.year}</p>
             <span style={{
               fontSize: 9, fontWeight: 600, letterSpacing: 0.3, padding: "1px 5px",
@@ -45,11 +54,16 @@ function ProjectCard({ project, onClick }) {
         </div>
       </div>
 
-      <p style={{ fontSize: 11.5, color: "var(--mac-text-2)", marginBottom: 10, lineHeight: 1.5 }}>
+      <p style={{
+        fontSize: 11.5, color: "var(--mac-text-2)", marginBottom: 10, lineHeight: 1.5,
+        display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+        overflow: "hidden", flexShrink: 0,
+        minHeight: "3em"
+      }}>
         {project.subtitle}
       </p>
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "3px 4px" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "3px 4px", marginTop: "auto" }}>
         {project.tags.slice(0, 3).map(tag => (
           <span key={tag} style={{
             display: "inline-block", padding: "2px 7px", borderRadius: 4,
@@ -278,7 +292,13 @@ export default function Projects() {
               }}
             >
               {filtered.map((project, i) => (
-                <motion.div key={project.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.04 }}
+                  style={{ height: "100%", minHeight: 0 }}
+                >
                   <ProjectCard project={project} onClick={() => setSelected(project)} />
                 </motion.div>
               ))}

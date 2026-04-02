@@ -205,7 +205,7 @@ export const projects = [
   },
   {
     id: 9,
-    title: "Portfolio for CCS2600 AIT",
+    title: "Portfolio for Artificial Intelligence Techniques",
     subtitle: "Artificial Intelligence Techniques — Lab Portfolio",
     description: "A compiled lab portfolio for CCS2600: Artificial Intelligence Techniques (Spring 2025), produced by a four-student team. The document spans five lab modules — from classical search and CSPs to knowledge representation and modern NLU/ML — plus appendices with code listings, peer evaluations, and self-reflections.",
     highlights: [

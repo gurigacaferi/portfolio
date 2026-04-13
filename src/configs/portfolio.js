@@ -116,7 +116,7 @@ export const projects = [
     solo: false,
     link: null,
     github: null,
-    p5js: "https://editor.p5js.org/gurigacaferi/sketches/IPD4rg72v",
+    p5js: "https://editor.p5js.org/gurigacaferi/full/IPD4rg72v",
     featured: false
   },
   {

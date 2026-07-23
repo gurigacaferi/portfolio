@@ -316,16 +316,13 @@ function ProjectDetail({ project, onBack }) {
   );
 }
 
-const FILTERS = ["Featured", "All", "Coursework"];
+const FILTERS = ["Featured", "All"];
 
 export default function Projects() {
   const [filter,   setFilter]   = useState("Featured");
   const [selected, setSelected] = useState(null);
 
-  const filtered =
-    filter === "Featured" ? projects.filter(p => p.featured) :
-    filter === "Coursework" ? projects.filter(p => p.category === "coursework") :
-    projects;
+  const filtered = filter === "Featured" ? projects.filter(p => p.featured) : projects;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden", background: "var(--mac-window-bg)" }}>

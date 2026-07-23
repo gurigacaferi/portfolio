@@ -5,7 +5,7 @@ A single-page portfolio that mimics a **macOS-style desktop**: menu bar, dock, d
 ## Features
 
 - **Desktop shell** — Top bar (clock, Wi‑Fi-style status, quick links), **Spotlight**-style search (⌘Space), and a **dock** with cursor magnification.
-- **Apps (windows)** — **Finder** (About Me), **Projects** (featured / all / coursework filters + detail), **Terminal** (custom commands, incl. `open <app>`, `hire`, `cat <project>.md`), **Notes** (resume: embedded PDF), **Mail** (contact + hire CTA).
+- **Apps (windows)** — **Finder** (About Me), **Projects** (featured / all filters + detail), **Terminal** (custom commands, incl. `open <app>`, `hire`, `cat <project>.md`), **Notes** (resume: embedded PDF), **Mail** (contact + hire CTA).
 - **Content-driven** — Bio, projects, work history, skills, dock apps, and terminal copy live in one config file for easy edits.
 - **Responsive** — Layout adapts for smaller screens and touch; heavy pieces (e.g. PDF viewer) load lazily when a window opens.
 - **Guided first impression** — About and Projects auto-open on landing, so visitors see substance immediately instead of an empty desktop.

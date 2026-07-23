@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import TopBar from "./TopBar";
 import Dock from "./Dock";
 import Spotlight from "./Spotlight";
@@ -79,22 +78,6 @@ function DesktopHero() {
   );
 }
 
-function AvailabilityPill() {
-  const reduceMotion = useReducedMotion();
-  return (
-    <motion.div
-      className="desktop-status-pill"
-      role="note"
-      initial={reduceMotion ? false : { opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : 0.55, ease: [0.25, 0.1, 0.25, 1] }}
-    >
-      <span className="status-dot" />
-      {user.lookingFor.pill}
-    </motion.div>
-  );
-}
-
 export default function Desktop() {
   const { openApp } = useDesktop();
   const isMobile = useIsMobileLayout();
@@ -113,7 +96,6 @@ export default function Desktop() {
       <div className="wallpaper" />
 
       <DesktopHero />
-      <AvailabilityPill />
 
       {/* Top bar */}
       <TopBar />

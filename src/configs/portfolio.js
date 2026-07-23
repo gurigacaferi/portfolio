@@ -6,6 +6,9 @@
 const base = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
 export const resumePdfUrl = `${base}/resume/${encodeURIComponent("Resume - Guri Gacaferi.pdf")}`;
 
+/** "Present day" for the Time Machine app — keep in sync with user.lookingFor / graduation year. */
+export const PRESENT_YEAR = 2026;
+
 export const user = {
   name: "Guri Gacaferi",
   title: "Software Engineer",
@@ -30,13 +33,15 @@ export const education = [
     institution: "University of York Europe Campus",
     degree: "BSc in Artificial Intelligence & Data Science",
     period: "Oct 2023 – Jun 2026",
-    note: "Coursework spans machine learning, data systems, operating systems theory, and software engineering."
+    note: "Coursework spans machine learning, data systems, operating systems theory, and software engineering.",
+    startYear: 2023
   },
   {
     institution: "Prishtina High School",
     degree: "High School Diploma",
     period: "Sep 2020 – Jun 2023",
-    note: "Graduated with distinction."
+    note: "Graduated with distinction.",
+    startYear: 2020
   }
 ];
 
@@ -259,7 +264,8 @@ export const workExperience = [
       "Leveraged AI to analyse staff performance data, delivering actionable insights to support management decision-making.",
       "Trained staff in January 2026 on QuickBooks usage and completed a full handover by end of February 2026."
     ],
-    tags: ["QuickBooks Online", "Automation", "Finance", "AI"]
+    tags: ["QuickBooks Online", "Automation", "Finance", "AI"],
+    startYear: 2022
   },
   {
     company: "Dynamic Spheres",
@@ -271,7 +277,8 @@ export const workExperience = [
       "Contributed to an enterprise-grade PHP/Laravel codebase following structured development workflows.",
       "Conducted independent research into legal and financial requirements to inform software design decisions."
     ],
-    tags: ["Laravel", "PHP", "ERP", "Full-Stack"]
+    tags: ["Laravel", "PHP", "ERP", "Full-Stack"],
+    startYear: 2025
   },
   {
     company: "University of York Europe Campus",
@@ -283,9 +290,19 @@ export const workExperience = [
       "Delivered one-on-one tutoring sessions to students who needed dedicated support, adapting explanations to different learning styles.",
       "Helped bridge the gap between lecture theory and practical coding exercises."
     ],
-    tags: ["Java", "OOP", "Teaching", "Mentoring"]
+    tags: ["Java", "OOP", "Teaching", "Mentoring"],
+    startYear: 2024
   }
 ];
+
+/** Year-by-year narrative for the Time Machine app — kept short and true to workExperience/education/projects. */
+export const timeline = {
+  2022: "Started at Balkan Natural Adventure, automating bookkeeping — my first taste of shipping real tools for real users.",
+  2023: "Began my BSc in Artificial Intelligence & Data Science at the University of York Europe Campus.",
+  2024: "Became a Teaching Assistant for Intro to OOP, and shipped the OS Simulator and Battlesnake Bot — first real CI/CD and systems work.",
+  2025: "Interned as a Full-Stack Developer at Dynamic Spheres, then built Fatural and led Invent's migration — my most production-grade year yet.",
+  2026: "Graduating from the University of York — open to full-time Software Engineer roles."
+};
 
 export const skills = {
   languages: ["JavaScript", "TypeScript", "Python", "Java", "PHP", "SQL"],
@@ -310,7 +327,7 @@ status:   open to full-time roles from jun 2026 · open to internships now`,
   hire / status   — availability, roles, best way to reach me
   ls              — list projects (finder-style)
   cat <name>.md   — read a short brief on any project (see ls)
-  open <app>      — open about · projects · terminal · resume · contact
+  open <app>      — open about · projects · terminal · code · fatural · timemachine · resume · contact
   open <link>     — open github · linkedin · whatsapp · email
   repos           — github repos + other public project links
   education       — academic background
@@ -318,6 +335,9 @@ status:   open to full-time roles from jun 2026 · open to internships now`,
   skills          — technical skills
   contact         — how to reach me
   languages       — spoken languages
+  deploy fatural  — run the fatural ci/cd pipeline
+  kubectl get pods — list fatural's microservices
+  spin -run block.pml — model-check the railway block protocol
   clear           — clear terminal`,
 
   hire: `available:     full-time from jun 2026 · internships now
@@ -382,7 +402,32 @@ english   — fluent`,
   contact: `email:     gurigacaferi@outlook.com
 whatsapp:  +383 45 666 796   →  wa.me/38345666796
 github:    github.com/gurigacaferi
-linkedin:  linkedin.com/in/guri-gacaferi-54947a359`
+linkedin:  linkedin.com/in/guri-gacaferi-54947a359`,
+
+  kubectl: `NAME                          READY   STATUS    RESTARTS   AGE
+fatural-api-gateway-7f9d      1/1     Running   0          21d
+fatural-ocr-worker-2c1a       1/1     Running   0          21d
+fatural-invoice-svc-9b3e      1/1     Running   0          21d
+fatural-qbo-sync-4e7f         1/1     Running   1          14d
+fatural-auth-service-1a8c     1/1     Running   0          21d
+fatural-mobile-pairing-6d2b   1/1     Running   0          9d
+
+6/6 pods healthy — microservices, async messaging, zero manual restarts today.`,
+
+  spin: `Spin Version 6.5.2 -- 1 January 2022
+Depth-limited search, depth reached 9412, errors found: 0
+
+State-vector 148 byte, depth reached 9412
+ 812394 states, stored
+1930221 states, matched
+2742615 transitions (= stored+matched)
+hash factor: 41.3 (best if >=100)
+
+ltl safety   : at most one train in block AB or BC — no counterexample found
+ltl liveness : train entering AB eventually reaches BC — no counterexample found
+
+pan: elapsed time 0.42 seconds
+No errors found — block-signaling protocol verified safe and live.`
 };
 
 /* `cat <slug>.md` in Terminal — short brief per project, incl. private-access note. */
@@ -444,6 +489,24 @@ export const dockApps = [
     title: "Terminal",
     subtitle: "Terminal",
     icon: "terminal"
+  },
+  {
+    id: "code",
+    title: "Code",
+    subtitle: "Fix the Bug",
+    icon: "code"
+  },
+  {
+    id: "fatural",
+    title: "Fatural",
+    subtitle: "Live Demo",
+    icon: "fatural"
+  },
+  {
+    id: "timemachine",
+    title: "Time Machine",
+    subtitle: "Then & Now",
+    icon: "timemachine"
   },
   {
     id: "resume",

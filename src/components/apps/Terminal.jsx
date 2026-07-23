@@ -6,7 +6,7 @@ import { useDesktop } from "../../context/DesktopContext";
 const PROMPT_HOST = `${user.name.toLowerCase().split(" ")[0]}@portfolio`;
 const PROMPT = `${PROMPT_HOST} % `;
 
-const APP_IDS = ["about", "projects", "terminal", "resume", "contact"];
+const APP_IDS = ["about", "projects", "terminal", "code", "fatural", "timemachine", "resume", "contact"];
 
 const WELCOME = `Last login: ${new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })} on ttys000
 
@@ -17,14 +17,33 @@ const WELCOME = `Last login: ${new Date().toLocaleDateString("en-US", { weekday:
  ╚██████╔╝╚██████╔╝██║  ██║██║
   ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝
 
-Type 'help' for available commands. Try 'hire' or 'open projects'.
+Type 'help' for available commands. Try 'hire', 'deploy fatural', or 'open projects'.
 `;
+
+/* Animated "green checks" CI log for `deploy fatural` — each line lands with its own delay. */
+const CI_SEQUENCE = [
+  { text: "Running CI pipeline for fatural…", delay: 150 },
+  { text: "  ✓ lint             (1.2s)", delay: 380 },
+  { text: "  ✓ unit tests        (2.8s)", delay: 420 },
+  { text: "  ✓ build             (4.1s)", delay: 480 },
+  { text: "  ✓ security scan     (1.6s)", delay: 380 },
+  { text: "Deploying to production…", delay: 320 },
+  { text: "  ✓ api-gateway       → healthy", delay: 260 },
+  { text: "  ✓ ocr-worker        → healthy", delay: 220 },
+  { text: "  ✓ invoice-service   → healthy", delay: 220 },
+  { text: "  ✓ qbo-sync          → healthy", delay: 260 },
+  { text: "✓ Deployed fatural to production — 0 downtime, 6/6 services healthy.", delay: 320 }
+];
+
+const RM_RF_PATTERN = /^(sudo\s+)?rm\s+-rf\s+\/\s*$/;
 
 function parseCommand(raw) {
   const cmd = raw.trim().toLowerCase();
   if (!cmd) return null;
   if (cmd === "clear") return "__clear__";
   if (cmd === "status") return terminalCommands.hire;
+  if (cmd === "kubectl get pods" || cmd === "kubectl get pods -n fatural") return terminalCommands.kubectl;
+  if (cmd === "spin -run block.pml" || cmd === "spin -run block.pml -a") return terminalCommands.spin;
   if (terminalCommands[cmd]) return terminalCommands[cmd];
   if (cmd === "ls" || cmd === "ls -la" || cmd === "ls -l") return terminalCommands.ls;
   if (cmd === "cat skills.txt" || cmd === "cat skills") return terminalCommands.skills;
@@ -75,14 +94,46 @@ export default function Terminal() {
       window.location.href = `mailto:${user.email}`;
       return `Opening mailto:${user.email} …`;
     }
-    return `open: ${target}: no handler (try: about, projects, terminal, resume, contact, github, linkedin, whatsapp, email)`;
+    return `open: ${target}: no handler (try: about, projects, terminal, code, fatural, timemachine, resume, contact, github, linkedin, whatsapp, email)`;
   };
 
-  const submit = (e) => {
-    e.preventDefault();
+  const pushCommand = (cmd, out) => {
+    setHistory(p => [
+      ...p,
+      { type: "input", text: cmd },
+      ...(out ? [{ type: "output", text: out }] : [])
+    ]);
+    setCmdHist(p => [cmd, ...p]); setHistIdx(-1); setInput("");
+  };
+
+  const runDeploySequence = (cmd) => {
+    setHistory(p => [...p, { type: "input", text: cmd }]);
+    setCmdHist(p => [cmd, ...p]); setHistIdx(-1); setInput("");
+    let delay = 0;
+    CI_SEQUENCE.forEach((line) => {
+      delay += line.delay;
+      setTimeout(() => {
+        setHistory(p => [...p, { type: "output", text: line.text }]);
+      }, delay);
+    });
+  };
+
+  const runCommand = () => {
     const cmd = input.trim();
     if (!cmd) return;
     const lower = cmd.toLowerCase();
+
+    // Easter egg: a "destructive" command is the trigger for Konami-style desktop glitch mode.
+    if (RM_RF_PATTERN.test(lower)) {
+      window.dispatchEvent(new Event("guri:glitch"));
+      pushCommand(cmd, "rm: it's dangerous to operate recursively on '/'\nrm: use --no-preserve-root to override this failsafe\n\n...just kidding. Nice try.");
+      return;
+    }
+
+    if (lower === "deploy fatural") {
+      runDeploySequence(cmd);
+      return;
+    }
 
     const out = lower.startsWith("open ")
       ? runOpen(cmd.slice(5).trim())
@@ -93,15 +144,11 @@ export default function Terminal() {
       setCmdHist(p => [cmd, ...p]); setHistIdx(-1);
       return;
     }
-    setHistory(p => [
-      ...p,
-      { type: "input", text: cmd },
-      ...(out ? [{ type: "output", text: out }] : [])
-    ]);
-    setCmdHist(p => [cmd, ...p]); setHistIdx(-1); setInput("");
+    pushCommand(cmd, out);
   };
 
   const onKey = (e) => {
+    if (e.key === "Enter")     { e.preventDefault(); runCommand(); }
     if (e.key === "ArrowUp")   { e.preventDefault(); const i = Math.min(histIdx + 1, cmdHist.length - 1); setHistIdx(i); setInput(cmdHist[i] || ""); }
     if (e.key === "ArrowDown") { e.preventDefault(); const i = Math.max(histIdx - 1, -1); setHistIdx(i); setInput(i === -1 ? "" : cmdHist[i]); }
     if (e.key === "l" && e.ctrlKey) { e.preventDefault(); setHistory([]); }
@@ -134,7 +181,7 @@ export default function Terminal() {
         </motion.div>
       ))}
 
-      <form onSubmit={submit} style={{ display: "flex", alignItems: "center" }}>
+      <form onSubmit={(e) => { e.preventDefault(); runCommand(); }} style={{ display: "flex", alignItems: "center" }}>
         <span className="terminal-prompt">{PROMPT}</span>
         <input
           ref={inputRef}

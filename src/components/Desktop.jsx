@@ -3,13 +3,17 @@ import TopBar from "./TopBar";
 import Dock from "./Dock";
 import Spotlight from "./Spotlight";
 import Window from "./Window";
+import GlitchOverlay from "./GlitchOverlay";
 import { useDesktop } from "../context/DesktopContext";
-import { dockApps, user } from "../configs/portfolio";
+import { dockApps, user, PRESENT_YEAR } from "../configs/portfolio";
 import { useIsMobileLayout } from "../hooks/useMediaQuery";
 
 const AboutMe = lazy(() => import("./apps/AboutMe"));
 const Projects = lazy(() => import("./apps/Projects"));
 const Terminal = lazy(() => import("./apps/Terminal"));
+const PairProgram = lazy(() => import("./apps/PairProgram"));
+const Fatural = lazy(() => import("./apps/Fatural"));
+const TimeMachine = lazy(() => import("./apps/TimeMachine"));
 const Resume = lazy(() => import("./apps/Resume"));
 const Contact = lazy(() => import("./apps/Contact"));
 
@@ -50,6 +54,33 @@ const APP_CONFIG = [
     minHeight: 280
   },
   {
+    id: "code",
+    title: "Code — Fix the Bug",
+    Component: PairProgram,
+    defaultSize: { width: 760, height: 560 },
+    defaultPosition: { x: 150, y: 56 },
+    minWidth: 540,
+    minHeight: 420
+  },
+  {
+    id: "fatural",
+    title: "Fatural — Live Demo",
+    Component: Fatural,
+    defaultSize: { width: 640, height: 540 },
+    defaultPosition: { x: 190, y: 84 },
+    minWidth: 420,
+    minHeight: 460
+  },
+  {
+    id: "timemachine",
+    title: "Time Machine",
+    Component: TimeMachine,
+    defaultSize: { width: 460, height: 500 },
+    defaultPosition: { x: 260, y: 100 },
+    minWidth: 380,
+    minHeight: 440
+  },
+  {
     id: "resume",
     title: "Resume — Guri Gacaferi",
     Component: Resume,
@@ -79,7 +110,7 @@ function DesktopHero() {
 }
 
 export default function Desktop() {
-  const { openApp } = useDesktop();
+  const { openApp, timeMachineYear } = useDesktop();
   const isMobile = useIsMobileLayout();
 
   useEffect(() => {
@@ -90,10 +121,18 @@ export default function Desktop() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Time Machine: the further back you travel, the more the wallpaper fades toward sepia.
+  const pastFactor = Math.min(1, Math.max(0, (PRESENT_YEAR - timeMachineYear) / (PRESENT_YEAR - 2022)));
+  const wallpaperFilter = pastFactor > 0
+    ? `sepia(${(pastFactor * 0.55).toFixed(2)}) saturate(${(1 - pastFactor * 0.3).toFixed(2)}) brightness(${(1 - pastFactor * 0.08).toFixed(2)})`
+    : "none";
+
   return (
     <div className="desktop-root" style={{ position: "relative", overflow: "hidden" }}>
       {/* Wallpaper */}
-      <div className="wallpaper" />
+      <div className="wallpaper" style={{ filter: wallpaperFilter }} />
+
+      <GlitchOverlay />
 
       <DesktopHero />
 

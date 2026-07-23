@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { user, skills, education, workExperience } from "../../configs/portfolio";
+import { user, skills, education, workExperience, PRESENT_YEAR } from "../../configs/portfolio";
+import { useDesktop } from "../../context/DesktopContext";
+
+function TimeBanner({ year, onReset }) {
+  if (year === PRESENT_YEAR) return null;
+  return (
+    <div className="time-banner">
+      <span>🕒 Viewing this page as of {year} — some entries haven&rsquo;t happened yet.</span>
+      <button type="button" onClick={onReset}>Return to present →</button>
+    </div>
+  );
+}
 
 /* ── SF-Symbols-style SVG icons ─────────────────────────────────────────── */
 const ic = (color = "currentColor") => ({ width: 16, height: 16, display: "block", flexShrink: 0, color });
@@ -109,6 +120,9 @@ const slide = {
 
 export default function AboutMe() {
   const [active, setActive] = useState("overview");
+  const { timeMachineYear, setTimeMachineYear } = useDesktop();
+  const visibleExperience = workExperience.filter(e => (e.startYear ?? 0) <= timeMachineYear);
+  const visibleEducation = education.filter(e => (e.startYear ?? 0) <= timeMachineYear);
 
   return (
     <div className="mac-app-split" style={{ display: "flex", height: "100%", overflow: "hidden", background: "var(--mac-window-bg)" }}>
@@ -163,6 +177,7 @@ export default function AboutMe() {
 
               {active === "overview" && (
                 <>
+                  <TimeBanner year={timeMachineYear} onReset={() => setTimeMachineYear(PRESENT_YEAR)} />
                   <div style={{ display: "flex", gap: 16, alignItems: "flex-start", marginBottom: 20 }}>
                     <Avatar />
                     <div>
@@ -180,8 +195,8 @@ export default function AboutMe() {
                     {[
                       { label: "Projects Shipped", value: "9",  Icon: StatIconFolder   },
                       { label: "Years Coding",      value: "3+", Icon: StatIconCode     },
-                      { label: "Real-World Roles",  value: String(workExperience.length), Icon: StatIconBuilding },
-                      { label: "Graduating",        value: "2026", Icon: StatIconCalendar }
+                      { label: "Real-World Roles",  value: String(visibleExperience.length), Icon: StatIconBuilding },
+                      { label: "Graduating",        value: String(PRESENT_YEAR), Icon: StatIconCalendar }
                     ].map(s => (
                       <motion.div key={s.label} whileHover={{ scale: 1.02 }} className="mac-stat">
                         <div style={{ marginBottom: 6, color: "var(--mac-accent)", opacity: 0.8 }}><s.Icon /></div>
@@ -201,13 +216,15 @@ export default function AboutMe() {
                     <p style={{ fontSize: 12, color: "var(--mac-text-3)" }}>{user.lookingFor.location}</p>
                   </Card>
 
-                  <Card style={{ background: "linear-gradient(135deg, rgba(0,113,227,0.06), rgba(99,102,241,0.05))", border: "1px solid rgba(0,113,227,0.14)" }}>
-                    <p style={{ fontSize: 11, fontWeight: 700, color: "var(--mac-accent)", textTransform: "uppercase", letterSpacing: 0.7, marginBottom: 6 }}>
-                      Education
-                    </p>
-                    <p style={{ fontSize: 14, fontWeight: 600, color: "var(--mac-text)", marginBottom: 2 }}>{education[0].degree}</p>
-                    <p style={{ fontSize: 12, color: "var(--mac-text-2)" }}>{education[0].institution} · {education[0].period}</p>
-                  </Card>
+                  {visibleEducation[0] && (
+                    <Card style={{ background: "linear-gradient(135deg, rgba(0,113,227,0.06), rgba(99,102,241,0.05))", border: "1px solid rgba(0,113,227,0.14)" }}>
+                      <p style={{ fontSize: 11, fontWeight: 700, color: "var(--mac-accent)", textTransform: "uppercase", letterSpacing: 0.7, marginBottom: 6 }}>
+                        Education
+                      </p>
+                      <p style={{ fontSize: 14, fontWeight: 600, color: "var(--mac-text)", marginBottom: 2 }}>{visibleEducation[0].degree}</p>
+                      <p style={{ fontSize: 12, color: "var(--mac-text-2)" }}>{visibleEducation[0].institution} · {visibleEducation[0].period}</p>
+                    </Card>
+                  )}
                 </>
               )}
 
@@ -224,7 +241,11 @@ export default function AboutMe() {
               {active === "experience" && (
                 <>
                   <h2 style={{ fontSize: 17, fontWeight: 700, color: "var(--mac-text)", marginBottom: 18, letterSpacing: "-0.3px" }}>Work Experience</h2>
-                  {workExperience.map((exp, i) => (
+                  <TimeBanner year={timeMachineYear} onReset={() => setTimeMachineYear(PRESENT_YEAR)} />
+                  {visibleExperience.length === 0 && (
+                    <Card><p style={{ fontSize: 12.5, color: "var(--mac-text-2)" }}>Nothing yet in {timeMachineYear} — still in high school. Slide forward to see it unfold.</p></Card>
+                  )}
+                  {visibleExperience.map((exp, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 8 }}
@@ -262,7 +283,8 @@ export default function AboutMe() {
               {active === "education" && (
                 <>
                   <h2 style={{ fontSize: 17, fontWeight: 700, color: "var(--mac-text)", marginBottom: 18, letterSpacing: "-0.3px" }}>Education</h2>
-                  {education.map((edu, i) => (
+                  <TimeBanner year={timeMachineYear} onReset={() => setTimeMachineYear(PRESENT_YEAR)} />
+                  {visibleEducation.map((edu, i) => (
                     <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} style={{ marginBottom: 12 }}>
                       <Card style={{ position: "relative" }}>
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>

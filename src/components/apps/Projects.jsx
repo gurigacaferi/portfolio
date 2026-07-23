@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects, user } from "../../configs/portfolio";
+import { projects, user, PRESENT_YEAR } from "../../configs/portfolio";
+import { useDesktop } from "../../context/DesktopContext";
+
+function TimeBanner({ year, onReset }) {
+  if (year === PRESENT_YEAR) return null;
+  return (
+    <div className="time-banner" style={{ margin: "12px 18px 0" }}>
+      <span>🕒 Viewing {year} — only what shipped by then is shown.</span>
+      <button type="button" onClick={onReset}>Return to present →</button>
+    </div>
+  );
+}
 
 function LockIcon({ color }) {
   return (
@@ -321,8 +332,10 @@ const FILTERS = ["Featured", "All"];
 export default function Projects() {
   const [filter,   setFilter]   = useState("Featured");
   const [selected, setSelected] = useState(null);
+  const { timeMachineYear, setTimeMachineYear } = useDesktop();
 
-  const filtered = filter === "Featured" ? projects.filter(p => p.featured) : projects;
+  const timeVisible = timeMachineYear === PRESENT_YEAR ? projects : projects.filter(p => Number(p.year) <= timeMachineYear);
+  const filtered = filter === "Featured" ? timeVisible.filter(p => p.featured) : timeVisible;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden", background: "var(--mac-window-bg)" }}>
@@ -348,7 +361,7 @@ export default function Projects() {
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, overflow: "hidden" }}>
+      <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}>
         <AnimatePresence mode="wait">
           {selected ? (
             <ProjectDetail key="detail" project={selected} onBack={() => setSelected(null)} />
@@ -358,25 +371,38 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="projects-grid-mobile"
-              style={{
-                height: "100%", overflowY: "auto", padding: "16px 18px",
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
-                gap: 12, alignContent: "start"
-              }}
+              style={{ height: "100%", overflowY: "auto", display: "flex", flexDirection: "column" }}
             >
-              {filtered.map((project, i) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.04 }}
-                  style={{ height: "100%", minHeight: 0 }}
+              <TimeBanner year={timeMachineYear} onReset={() => setTimeMachineYear(PRESENT_YEAR)} />
+              {filtered.length === 0 ? (
+                <div style={{ padding: "16px 18px" }}>
+                  <p style={{ fontSize: 13, color: "var(--mac-text-2)", lineHeight: 1.7 }}>
+                    Nothing shipped yet in {timeMachineYear} — that&rsquo;s next. Slide the Time Machine forward to watch it happen.
+                  </p>
+                </div>
+              ) : (
+                <div
+                  className="projects-grid-mobile"
+                  style={{
+                    padding: "16px 18px",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
+                    gap: 12, alignContent: "start"
+                  }}
                 >
-                  <ProjectCard project={project} onClick={() => setSelected(project)} />
-                </motion.div>
-              ))}
+                  {filtered.map((project, i) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.04 }}
+                      style={{ height: "100%", minHeight: 0 }}
+                    >
+                      <ProjectCard project={project} onClick={() => setSelected(project)} />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

@@ -175,6 +175,80 @@ export function ProjectsIcon() {
   );
 }
 
+/* Pair-programming — code editor squircle with angle-bracket glyph */
+export function CodeIcon() {
+  return (
+    <SQ>
+      <defs>
+        <linearGradient id="ci-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3b6fe0" />
+          <stop offset="100%" stopColor="#1a2f6b" />
+        </linearGradient>
+      </defs>
+      <rect width="60" height="60" rx="13" fill="url(#ci-bg)" />
+      <rect width="60" height="28" rx="13" fill="rgba(255,255,255,0.1)" />
+      {/* editor pane */}
+      <rect x="8" y="12" width="44" height="36" rx="5" fill="rgba(10,14,30,0.55)" />
+      {/* sidebar */}
+      <rect x="8" y="12" width="10" height="36" rx="5" fill="rgba(255,255,255,0.08)" />
+      <rect x="22" y="19" width="20" height="2.4" rx="1.2" fill="#8ab4ff" opacity="0.9" />
+      <rect x="22" y="25" width="26" height="2.4" rx="1.2" fill="#ffffff" opacity="0.55" />
+      <rect x="22" y="31" width="15" height="2.4" rx="1.2" fill="#7ee787" opacity="0.85" />
+      {/* angle brackets glyph */}
+      <path d="M25 39 L20 43.5 L25 48" stroke="white" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M35 39 L40 43.5 L35 48" stroke="white" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </SQ>
+  );
+}
+
+/* Fatural demo — receipt/scan glyph on the project's brand green */
+export function FaturalIcon() {
+  return (
+    <SQ>
+      <defs>
+        <linearGradient id="fa-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#34d399" />
+          <stop offset="100%" stopColor="#0d9268" />
+        </linearGradient>
+      </defs>
+      <rect width="60" height="60" rx="13" fill="url(#fa-bg)" />
+      <rect width="60" height="28" rx="13" fill="rgba(255,255,255,0.12)" />
+      {/* receipt */}
+      <path d="M17 8 h26 v40 l-4-3 -4 3 -4-3 -4 3 -4-3 -4 3 -4-3 -4 3 Z" fill="#fdfdfb" opacity="0.96" />
+      <line x1="22" y1="18" x2="39" y2="18" stroke="#bfe8cf" strokeWidth="1.6" />
+      <line x1="22" y1="24" x2="39" y2="24" stroke="#bfe8cf" strokeWidth="1.6" />
+      <line x1="22" y1="30" x2="34" y2="30" stroke="#bfe8cf" strokeWidth="1.6" />
+      {/* scan line */}
+      <rect x="15" y="34" width="30" height="3" rx="1.5" fill="#0d9268" opacity="0.85" />
+    </SQ>
+  );
+}
+
+/* Time Machine — clock face with a swirling orbit trail */
+export function TimeMachineIcon() {
+  return (
+    <SQ>
+      <defs>
+        <linearGradient id="tm-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#a78bfa" />
+          <stop offset="100%" stopColor="#5b21b6" />
+        </linearGradient>
+      </defs>
+      <rect width="60" height="60" rx="13" fill="url(#tm-bg)" />
+      <rect width="60" height="28" rx="13" fill="rgba(255,255,255,0.12)" />
+      {/* orbit trail */}
+      <path d="M12 38 A18 18 0 1 1 42 45" stroke="rgba(255,255,255,0.5)" strokeWidth="2" fill="none" strokeLinecap="round" strokeDasharray="3 4" />
+      <path d="M42 45 L37 44 L41 40" stroke="rgba(255,255,255,0.7)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      {/* clock face */}
+      <circle cx="30" cy="32" r="15" fill="#fdfdff" opacity="0.96" />
+      <circle cx="30" cy="32" r="15" fill="none" stroke="#5b21b6" strokeWidth="1.4" opacity="0.4" />
+      <line x1="30" y1="32" x2="30" y2="22" stroke="#5b21b6" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="30" y1="32" x2="37" y2="35" stroke="#5b21b6" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="30" cy="32" r="1.6" fill="#5b21b6" />
+    </SQ>
+  );
+}
+
 /* GitHub icon */
 export function GitHubIcon() {
   return (
@@ -206,7 +280,10 @@ export function AppIconById({ id, size = 52 }) {
     resume: NotesIcon,
     mail:   MailIcon,
     contact: MailIcon,
-    github: GitHubIcon
+    github: GitHubIcon,
+    code: CodeIcon,
+    fatural: FaturalIcon,
+    timemachine: TimeMachineIcon
   };
   const Icon = map[id] || FinderIcon;
   return (

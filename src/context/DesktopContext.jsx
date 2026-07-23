@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
+import { PRESENT_YEAR } from "../configs/portfolio";
 
 const DesktopContext = createContext(null);
 
@@ -9,6 +10,7 @@ export function DesktopProvider({ children }) {
   const [zIndexMap, setZIndexMap] = useState({});
   const [, setTopZ] = useState(10);
   const [spotlight, setSpotlight] = useState(false);
+  const [timeMachineYear, setTimeMachineYear] = useState(PRESENT_YEAR);
 
   const bringToFront = useCallback((id) => {
     setTopZ(z => {
@@ -50,7 +52,9 @@ export function DesktopProvider({ children }) {
       minimizeApp,
       toggleMaximize,
       bringToFront,
-      setSpotlight
+      setSpotlight,
+      timeMachineYear,
+      setTimeMachineYear
     }}>
       {children}
     </DesktopContext.Provider>

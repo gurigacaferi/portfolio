@@ -256,7 +256,7 @@ function AppleMenu({ onClose }) {
     null,
     { label: "View Source on GitHub", action: () => { window.open("https://github.com/gurigacaferi/portfolio", "_blank", "noopener"); onClose(); } },
     null,
-    { label: "Lock Screen", action: () => { onClose(); window.location.reload(); } }
+    { label: "Restart Portfolio", action: () => { onClose(); window.location.reload(); } }
   ];
   return (
     <motion.div

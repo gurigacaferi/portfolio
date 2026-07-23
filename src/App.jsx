@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { DesktopProvider } from "./context/DesktopContext";
 import Desktop from "./components/Desktop";
+import { user } from "./configs/portfolio";
 
 /* ── Error boundary: shows a visible message instead of blank screen ─── */
 class ErrorBoundary extends Component {
@@ -169,7 +170,8 @@ function LoginScreen({ onLogin }) {
       >
         <div className="mac-login-avatar">GG</div>
 
-        <div className="mac-login-name">Guri Gacaferi</div>
+        <div className="mac-login-name">{user.name}</div>
+        <div className="mac-login-role">{user.title} · Open to opportunities</div>
 
         <motion.button
           type="button"

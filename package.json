@@ -1,5 +1,5 @@
 {
-  "name": "playground-macos",
+  "name": "guri-gacaferi-portfolio",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://gurigacaferi.github.io/portfolio",
@@ -46,24 +46,12 @@
   },
   "dependencies": {
     "@craco/craco": "^7.0.0",
-    "@rooks/use-raf": "^4.11.2",
-    "date-fns": "2.29.3",
     "framer-motion": "^7.10.3",
-    "i18next": "^22.0.0",
-    "nightwind": "^1.1.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^12.0.0",
     "react-icons": "^4.8.0",
-    "react-markdown": "^8.0.7",
     "react-pdf": "^10.4.1",
-    "react-redux": "^8.1.0",
-    "react-rnd": "^10.3.8",
     "react-scripts": "5.0.1",
-    "react-syntax-highlighter": "^15.5.0",
-    "react-webcam": "5.2.3",
-    "redux": "^4.2.1",
-    "remark-gfm": "^3.0.1",
     "web-vitals": "^3.3.1"
   },
   "devDependencies": {

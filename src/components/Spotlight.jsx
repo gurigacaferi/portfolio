@@ -1,8 +1,41 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDesktop } from "../context/DesktopContext";
-import { dockApps } from "../configs/portfolio";
+import { dockApps, user, projects } from "../configs/portfolio";
 import { AppIconById } from "./DockIcons";
+
+const QUICK_ACTIONS = [
+  {
+    id: "action-hire",
+    title: "Email Guri",
+    subtitle: "Hiring? Send a message — I reply fast",
+    icon: "mail",
+    action: () => { window.location.href = `mailto:${user.email}`; }
+  },
+  {
+    id: "action-access-fatural",
+    title: "Request access — Fatural",
+    subtitle: "Private repo, available on request",
+    icon: "mail",
+    action: () => { window.location.href = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Fatural")}`; }
+  },
+  {
+    id: "action-access-invent",
+    title: "Request access — Invent",
+    subtitle: "Private repo, available on request",
+    icon: "mail",
+    action: () => { window.location.href = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Invent")}`; }
+  }
+];
+
+const PROJECT_ENTRIES = projects.map(p => ({
+  id: "projects",
+  title: p.title,
+  subtitle: `Project — ${p.subtitle}`,
+  icon: "projects"
+}));
+
+const ALL_ENTRIES = [...dockApps, ...PROJECT_ENTRIES, ...QUICK_ACTIONS];
 
 export default function Spotlight() {
   const { spotlight, setSpotlight, openApp } = useDesktop();
@@ -11,7 +44,7 @@ export default function Spotlight() {
   const inputRef = useRef(null);
 
   const results = query.trim()
-    ? dockApps.filter(a => (a.title + " " + (a.subtitle || "")).toLowerCase().includes(query.toLowerCase()))
+    ? ALL_ENTRIES.filter(a => (a.title + " " + (a.subtitle || "")).toLowerCase().includes(query.toLowerCase()))
     : dockApps;
 
   useEffect(() => {
@@ -22,7 +55,8 @@ export default function Spotlight() {
 
   const launch = (app) => {
     setSpotlight(false);
-    if (app.external) window.open(app.external, "_blank");
+    if (app.action) app.action();
+    else if (app.external) window.open(app.external, "_blank");
     else openApp(app.id);
   };
 
@@ -78,7 +112,7 @@ export default function Spotlight() {
                 <div style={{ padding: "6px 0 8px", maxHeight: 300, overflowY: "auto" }}>
                   {results.map((app, i) => (
                     <div
-                      key={app.id}
+                      key={`${app.id}-${app.title}-${i}`}
                       className={`spotlight-result${i === activeIdx ? " active" : ""}`}
                       onClick={() => launch(app)}
                       onMouseEnter={() => setActiveIdx(i)}

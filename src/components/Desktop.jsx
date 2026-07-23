@@ -1,8 +1,12 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import TopBar from "./TopBar";
 import Dock from "./Dock";
 import Spotlight from "./Spotlight";
 import Window from "./Window";
+import { useDesktop } from "../context/DesktopContext";
+import { dockApps, user } from "../configs/portfolio";
+import { useIsMobileLayout } from "../hooks/useMediaQuery";
 
 const AboutMe = lazy(() => import("./apps/AboutMe"));
 const Projects = lazy(() => import("./apps/Projects"));
@@ -33,7 +37,7 @@ const APP_CONFIG = [
     title: "Projects",
     Component: Projects,
     defaultSize: { width: 860, height: 560 },
-    defaultPosition: { x: 100, y: 64 },
+    defaultPosition: { x: 130, y: 78 },
     minWidth: 480,
     minHeight: 400
   },
@@ -66,29 +70,50 @@ const APP_CONFIG = [
   }
 ];
 
+function DesktopHero() {
+  return (
+    <div className="desktop-hero" aria-hidden="true">
+      <span className="desktop-hero-name">{user.name}</span>
+      <span className="desktop-hero-role">{user.title} — {user.subtitle.split(" · ")[0]}</span>
+    </div>
+  );
+}
+
+function AvailabilityPill() {
+  const reduceMotion = useReducedMotion();
+  return (
+    <motion.div
+      className="desktop-status-pill"
+      role="note"
+      initial={reduceMotion ? false : { opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      <span className="status-dot" />
+      {user.lookingFor.pill}
+    </motion.div>
+  );
+}
+
 export default function Desktop() {
+  const { openApp } = useDesktop();
+  const isMobile = useIsMobileLayout();
+
+  useEffect(() => {
+    const autoOpenIds = dockApps.filter(a => a.defaultOpen).map(a => a.id);
+    const ids = isMobile ? autoOpenIds.slice(0, 1) : autoOpenIds;
+    const timers = ids.map((id, i) => setTimeout(() => openApp(id), 250 + i * 280));
+    return () => timers.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="desktop-root" style={{ position: "relative", overflow: "hidden" }}>
       {/* Wallpaper */}
       <div className="wallpaper" />
 
-      {/* Wallpaper text */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 1,
-        display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center",
-        pointerEvents: "none", userSelect: "none"
-      }}>
-        <span style={{
-          fontSize: "clamp(28px, 5vw, 56px)",
-          fontWeight: 700,
-          letterSpacing: "-0.5px",
-          color: "rgba(255,255,255,0.18)",
-          textShadow: "0 2px 12px rgba(0,0,0,0.15)"
-        }}>
-          Guri — Portfolio
-        </span>
-      </div>
+      <DesktopHero />
+      <AvailabilityPill />
 
       {/* Top bar */}
       <TopBar />

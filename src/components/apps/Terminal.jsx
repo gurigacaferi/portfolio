@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { terminalCommands, user } from "../../configs/portfolio";
+import { terminalCommands, projectNotes, user } from "../../configs/portfolio";
+import { useDesktop } from "../../context/DesktopContext";
 
 const PROMPT_HOST = `${user.name.toLowerCase().split(" ")[0]}@portfolio`;
 const PROMPT = `${PROMPT_HOST} % `;
+
+const APP_IDS = ["about", "projects", "terminal", "resume", "contact"];
 
 const WELCOME = `Last login: ${new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })} on ttys000
 
@@ -14,33 +17,32 @@ const WELCOME = `Last login: ${new Date().toLocaleDateString("en-US", { weekday:
  ╚██████╔╝╚██████╔╝██║  ██║██║
   ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝
 
-Type 'help' for available commands.
+Type 'help' for available commands. Try 'hire' or 'open projects'.
 `;
 
 function parseCommand(raw) {
   const cmd = raw.trim().toLowerCase();
   if (!cmd) return null;
   if (cmd === "clear") return "__clear__";
+  if (cmd === "status") return terminalCommands.hire;
   if (terminalCommands[cmd]) return terminalCommands[cmd];
   if (cmd === "ls" || cmd === "ls -la" || cmd === "ls -l") return terminalCommands.ls;
   if (cmd === "cat skills.txt" || cmd === "cat skills") return terminalCommands.skills;
   if (cmd === "cat bio.txt") return terminalCommands.whoami;
   if (cmd === "cat contact.txt" || cmd === "cat contact") return terminalCommands.contact;
+  if (cmd.startsWith("cat ")) {
+    const slug = cmd.slice(4).trim().replace(/\/$/, "").replace(/\.md$/, "");
+    if (projectNotes[slug]) return projectNotes[slug];
+    return `cat: ${cmd.slice(4).trim()}: No such file or directory\nType 'ls' to see available projects.`;
+  }
   if (cmd === "pwd") return `/Users/${user.name.split(" ")[0].toLowerCase()}`;
   if (cmd === "date") return new Date().toString();
   if (cmd.startsWith("echo ")) return cmd.slice(5);
-  if (cmd.startsWith("open ")) {
-    const t = cmd.slice(5).trim().toLowerCase();
-    if (t === "github") return `Opening ${user.github.replace(/^https?:\/\//, "")} …`;
-    if (t === "linkedin") return `Opening ${user.linkedin.replace(/^https?:\/\//, "")} …`;
-    if (t === "whatsapp" || t === "wa") return `Opening wa.me/${user.whatsapp.replace(/\D/g, "")} …`;
-    if (t === "mail" || t === "email") return `Opening mailto:${user.email} …`;
-    return `open: ${cmd.slice(5).trim()}: no handler (try: github, linkedin, whatsapp, email)`;
-  }
   return `zsh: command not found: ${cmd.split(" ")[0]}\nType 'help' to see available commands.`;
 }
 
 export default function Terminal() {
+  const { openApp } = useDesktop();
   const [history, setHistory]     = useState([{ type: "welcome", text: WELCOME }]);
   const [input,   setInput]       = useState("");
   const [cmdHist, setCmdHist]     = useState([]);
@@ -50,11 +52,42 @@ export default function Terminal() {
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [history]);
 
+  const runOpen = (target) => {
+    const t = target.toLowerCase();
+    if (APP_IDS.includes(t)) {
+      openApp(t);
+      return `Opening ${t} …`;
+    }
+    if (t === "github") {
+      window.open(user.github, "_blank", "noopener");
+      return `Opening ${user.github.replace(/^https?:\/\//, "")} …`;
+    }
+    if (t === "linkedin") {
+      window.open(user.linkedin, "_blank", "noopener");
+      return `Opening ${user.linkedin.replace(/^https?:\/\//, "")} …`;
+    }
+    if (t === "whatsapp" || t === "wa") {
+      const num = user.whatsapp.replace(/\D/g, "");
+      window.open(`https://wa.me/${num}`, "_blank", "noopener");
+      return `Opening wa.me/${num} …`;
+    }
+    if (t === "mail" || t === "email") {
+      window.location.href = `mailto:${user.email}`;
+      return `Opening mailto:${user.email} …`;
+    }
+    return `open: ${target}: no handler (try: about, projects, terminal, resume, contact, github, linkedin, whatsapp, email)`;
+  };
+
   const submit = (e) => {
     e.preventDefault();
     const cmd = input.trim();
     if (!cmd) return;
-    const out = parseCommand(cmd);
+    const lower = cmd.toLowerCase();
+
+    const out = lower.startsWith("open ")
+      ? runOpen(cmd.slice(5).trim())
+      : parseCommand(cmd);
+
     if (out === "__clear__") {
       setHistory([]); setInput("");
       setCmdHist(p => [cmd, ...p]); setHistIdx(-1);

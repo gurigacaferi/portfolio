@@ -16,7 +16,7 @@ const ics = (color = "currentColor") => ({ width: 20, height: 20, display: "bloc
 function StatIconFolder()   { return <svg {...ics()} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M2 5.5A1.5 1.5 0 013.5 4h3.38l1.5 2H16.5A1.5 1.5 0 0118 7.5v7A1.5 1.5 0 0116.5 16h-13A1.5 1.5 0 012 14.5V5.5z"/></svg>; }
 function StatIconCode()     { return <svg {...ics()} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="6,7 2,10 6,13"/><polyline points="14,7 18,10 14,13"/><line x1="11" y1="5" x2="9" y2="15"/></svg>; }
 function StatIconBuilding() { return <svg {...ics()} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="14" height="14" rx="1.5"/><line x1="3" y1="8" x2="17" y2="8"/><line x1="10" y1="3" x2="10" y2="17"/></svg>; }
-function StatIconGlobe()    { return <svg {...ics()} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><circle cx="10" cy="10" r="8"/><ellipse cx="10" cy="10" rx="3.2" ry="8"/><line x1="2" y1="10" x2="18" y2="10"/><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="14" x2="17" y2="14"/></svg>; }
+function StatIconCalendar() { return <svg {...ics()} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="14" height="13" rx="2"/><line x1="3" y1="8" x2="17" y2="8"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="13" y1="2" x2="13" y2="6"/></svg>; }
 function StatIconPin()      { return <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ display:"block", flexShrink:0 }}><path d="M8 1.5a4.5 4.5 0 014.5 4.5c0 3.5-4.5 8.5-4.5 8.5S3.5 9.5 3.5 6A4.5 4.5 0 018 1.5z"/><circle cx="8" cy="6" r="1.5"/></svg>; }
 
 /* Actual brand logos */
@@ -178,10 +178,10 @@ export default function AboutMe() {
 
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 18 }}>
                     {[
-                      { label: "Projects",         value: "9",  Icon: StatIconFolder   },
+                      { label: "Projects Shipped", value: "9",  Icon: StatIconFolder   },
                       { label: "Years Coding",      value: "3+", Icon: StatIconCode     },
-                      { label: "Internships",       value: "2",  Icon: StatIconBuilding },
-                      { label: "Spoken Languages",  value: "2",  Icon: StatIconGlobe   }
+                      { label: "Real-World Roles",  value: String(workExperience.length), Icon: StatIconBuilding },
+                      { label: "Graduating",        value: "2026", Icon: StatIconCalendar }
                     ].map(s => (
                       <motion.div key={s.label} whileHover={{ scale: 1.02 }} className="mac-stat">
                         <div style={{ marginBottom: 6, color: "var(--mac-accent)", opacity: 0.8 }}><s.Icon /></div>
@@ -190,6 +190,16 @@ export default function AboutMe() {
                       </motion.div>
                     ))}
                   </div>
+
+                  <Card style={{ marginBottom: 12, background: "linear-gradient(135deg, rgba(52,199,89,0.10), rgba(0,113,227,0.05))", border: "1px solid rgba(52,199,89,0.24)" }}>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: "#1f9d47", textTransform: "uppercase", letterSpacing: 0.7, marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
+                      <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#30d158", boxShadow: "0 0 0 3px rgba(48,209,88,0.22)", display: "inline-block" }} />
+                      Open To
+                    </p>
+                    <p style={{ fontSize: 14, fontWeight: 600, color: "var(--mac-text)", marginBottom: 4 }}>{user.lookingFor.roles.join(" · ")}</p>
+                    <p style={{ fontSize: 12.5, color: "var(--mac-text-2)", marginBottom: 2 }}>{user.lookingFor.availability}</p>
+                    <p style={{ fontSize: 12, color: "var(--mac-text-3)" }}>{user.lookingFor.location}</p>
+                  </Card>
 
                   <Card style={{ background: "linear-gradient(135deg, rgba(0,113,227,0.06), rgba(99,102,241,0.05))", border: "1px solid rgba(0,113,227,0.14)" }}>
                     <p style={{ fontSize: 11, fontWeight: 700, color: "var(--mac-accent)", textTransform: "uppercase", letterSpacing: 0.7, marginBottom: 6 }}>

@@ -8,14 +8,21 @@ export const resumePdfUrl = `${base}/resume/${encodeURIComponent("Resume - Guri 
 
 export const user = {
   name: "Guri Gacaferi",
-  title: "BSc AI & Data Science Student · Full-Stack Developer",
+  title: "Software Engineer",
+  subtitle: "Full-stack & AI-assisted systems · BSc AI & Data Science, University of York (2026)",
   email: "gurigacaferi@outlook.com",
   github: "https://github.com/gurigacaferi",
   linkedin: "https://www.linkedin.com/in/guri-gacaferi-54947a359/",
   whatsapp: "+38345666796",
   avatar: null,
-  bio: "BSc AI & Data Science student at the University of York Europe Campus. I build full-stack web applications, simulate complex systems, and bring AI into practical tools — from invoice scanners to swarm-based misinformation models.",
-  location: "Prishtina, Kosovo"
+  bio: "I'm a software engineer who ships full-stack products end-to-end — microservice backends, third-party API integrations, and the UI people actually enjoy using. I've modernised legacy systems, built AI-assisted tooling, and automated real financial workflows for a live business. I care about systems that hold up in production, not just in a demo.",
+  location: "Prishtina, Kosovo",
+  lookingFor: {
+    roles: ["Full-Stack Engineer", "Backend Engineer", "Software Engineer (New Grad)"],
+    availability: "Open to full-time roles from Jun 2026 · open to internships now",
+    location: "Prishtina, Kosovo · open to remote & relocation",
+    pill: "Open to Software Engineer roles · available Jun 2026"
+  }
 };
 
 export const education = [
@@ -53,7 +60,8 @@ export const projects = [
     solo: true,
     link: null,
     github: null,
-    featured: true
+    featured: true,
+    outcome: "Approved invoices land directly in the client's QuickBooks ledger — zero manual re-entry, in real time from a phone camera."
   },
   {
     id: 2,
@@ -74,7 +82,8 @@ export const projects = [
     solo: false,
     link: null,
     github: null,
-    featured: true
+    featured: true,
+    outcome: "A safer, faster inventory system the client's own team could maintain — migrated with zero data loss and zero downtime."
   },
   {
     id: 3,
@@ -95,7 +104,8 @@ export const projects = [
     solo: false,
     link: null,
     github: "https://github.com/egrabanica/Operating-system",
-    featured: true
+    featured: true,
+    outcome: "Adopted as a visual teaching aid for explaining CPU scheduling and memory allocation step by step."
   },
   {
     id: 4,
@@ -117,7 +127,8 @@ export const projects = [
     link: null,
     github: null,
     p5js: "https://editor.p5js.org/gurigacaferi/full/IPD4rg72v",
-    featured: false
+    featured: false,
+    outcome: "A working testbed for comparing genetic, game-theoretic, and cultural explanations of belief spread."
   },
   {
     id: 5,
@@ -138,7 +149,8 @@ export const projects = [
     solo: false,
     link: null,
     github: "https://github.com/aabazii/InternLink",
-    featured: false
+    featured: false,
+    outcome: "A working application portal a student team could actually deploy and demo end-to-end."
   },
   {
     id: 6,
@@ -159,7 +171,8 @@ export const projects = [
     solo: false,
     link: null,
     github: "https://github.com/ggacaferi/software-development",
-    featured: false
+    featured: false,
+    outcome: "Fully automated pipeline — every merge to main tests, lints, and redeploys the bot with no manual steps."
   },
   {
     id: 7,
@@ -180,7 +193,9 @@ export const projects = [
     solo: false,
     link: null,
     github: "https://github.com/ggacaferi/datascience",
-    featured: false
+    featured: false,
+    category: "coursework",
+    outcome: "A cleaned, ROI-labelled dataset ready for genre and decade profitability analysis."
   },
   {
     id: 8,
@@ -201,7 +216,9 @@ export const projects = [
     solo: false,
     link: null,
     github: null,
-    featured: false
+    featured: false,
+    category: "coursework",
+    outcome: "Model-checked proof that the protocol can never allow two trains into the same block at once."
   },
   {
     id: 9,
@@ -223,7 +240,9 @@ export const projects = [
     link: "https://docs.google.com/document/d/19G-Wj0o-4ElbLr6SgYYqp-ApzqaqNPHiPAvIY2bdl6k/edit?usp=sharing",
     linkLabel: "View Google Doc",
     github: null,
-    featured: false
+    featured: false,
+    category: "coursework",
+    outcome: "A five-module lab record spanning search, CSPs, and NLU, delivered with a four-person team."
   }
 ];
 
@@ -282,20 +301,31 @@ export const languages = [
 
 export const terminalCommands = {
   whoami: `guri gacaferi
-role:     bsc ai & data science · full-stack developer
+role:     software engineer · full-stack & ai-assisted systems
 location: prishtina, kosovo
-status:   open to opportunities`,
+status:   open to full-time roles from jun 2026 · open to internships now`,
 
   help: `available commands:
-  whoami      — who am i
-  ls          — list projects (finder-style)
-  repos       — github repos + other public project links
-  education   — academic background
-  work        — work experience
-  skills      — technical skills
-  contact     — how to reach me
-  languages   — spoken languages
-  clear       — clear terminal`,
+  whoami          — who am i
+  hire / status   — availability, roles, best way to reach me
+  ls              — list projects (finder-style)
+  cat <name>.md   — read a short brief on any project (see ls)
+  open <app>      — open about · projects · terminal · resume · contact
+  open <link>     — open github · linkedin · whatsapp · email
+  repos           — github repos + other public project links
+  education       — academic background
+  work            — work experience
+  skills          — technical skills
+  contact         — how to reach me
+  languages       — spoken languages
+  clear           — clear terminal`,
+
+  hire: `available:     full-time from jun 2026 · internships now
+based in:      prishtina, kosovo — open to remote & relocation
+roles:         full-stack engineer · backend engineer · swe (new grad)
+best way in:   email or linkedin — i usually reply within a day
+  →  mailto:gurigacaferi@outlook.com
+  →  linkedin.com/in/guri-gacaferi-54947a359`,
 
   ls: `drwxr-xr-x  fatural/              (ai invoice scanner + qbo integration)
 drwxr-xr-x  invent/               (zend → laravel migration)
@@ -355,6 +385,45 @@ github:    github.com/gurigacaferi
 linkedin:  linkedin.com/in/guri-gacaferi-54947a359`
 };
 
+/* `cat <slug>.md` in Terminal — short brief per project, incl. private-access note. */
+export const projectNotes = {
+  fatural: `fatural — ai invoice scanner + qbo integration
+microservices, async messaging, 2fa, ai/ocr → quickbooks ledger.
+source: private (client work) — email me for a walkthrough or access.`,
+
+  invent: `invent — zend → laravel migration
+security hardening, dark-mode rebuild from scratch, gdpr improvements, zero-downtime cutover.
+source: private (client work) — email me for a walkthrough or access.`,
+
+  "os-simulator": `os-simulator — educational os visualiser (processing/java)
+pcb management, fifo/round robin scheduling, memory partitioning, live stats.
+public: github.com/egrabanica/Operating-system`,
+
+  "misinformation-sim": `misinformation-sim — agent-based swarm evolution model
+boids flocking + genetic/game-theoretic/cultural co-evolution of belief.
+public: p5.js sketch (open from the Projects window)`,
+
+  internlink: `internlink — full-stack internship portal
+node · express · ejs · scss, docker/devcontainer, agile team build.
+public: github.com/aabazii/InternLink`,
+
+  "battlesnake-bot": `battlesnake-bot — competitive ai snake bot
+node/express service, jest tests, eslint, github actions ci/cd → railway.
+public: github.com/ggacaferi/software-development`,
+
+  "movie-data-analysis": `movie-data-analysis — jupyter + roi pipeline
+data cleaning, genre/decade splits, roi engineering, visualisation.
+public: github.com/ggacaferi/datascience`,
+
+  "railway-block-signaling": `railway-block-signaling — promela model, spin verification
+victorian three-box block system, ltl safety + liveness proofs.
+source: private — email me for a walkthrough or access.`,
+
+  "ccs2600-ait-portfolio": `ccs2600-ait-portfolio — ai techniques lab portfolio
+search, csps, knowledge representation, nlu/ml — 4-student team.
+public: view the google doc (open from the Projects window)`
+};
+
 export const dockApps = [
   {
     id: "about",
@@ -367,7 +436,8 @@ export const dockApps = [
     id: "projects",
     title: "Projects",
     subtitle: "My Work",
-    icon: "projects"
+    icon: "projects",
+    defaultOpen: true
   },
   {
     id: "terminal",

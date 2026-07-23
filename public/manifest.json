@@ -1,6 +1,6 @@
 {
-  "short_name": "playground-macos",
-  "name": "Umair Akbar's Portfolio",
+  "short_name": "Guri Gacaferi",
+  "name": "Guri Gacaferi — Software Engineer Portfolio",
   "icons": [
     {
       "src": "logo/favicon.svg",
@@ -11,6 +11,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0a0a1a",
+  "background_color": "#000000"
 }

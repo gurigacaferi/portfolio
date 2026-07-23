@@ -4,18 +4,18 @@ A single-page portfolio that mimics a **macOS-style desktop**: menu bar, dock, d
 
 ## Features
 
-- **Desktop shell** — Top bar (clock, Wi‑Fi-style status, quick links), **Spotlight**-style search (⌘K), and a **dock** with cursor magnification.
-- **Apps (windows)** — **Finder** (About Me from Markdown), **Projects** (filterable project cards + detail), **Terminal** (custom commands), **Notes** (resume: embedded PDF or built-in HTML), **Mail** (contact links).
+- **Desktop shell** — Top bar (clock, Wi‑Fi-style status, quick links), **Spotlight**-style search (⌘Space), and a **dock** with cursor magnification.
+- **Apps (windows)** — **Finder** (About Me), **Projects** (featured / all / coursework filters + detail), **Terminal** (custom commands, incl. `open <app>`, `hire`, `cat <project>.md`), **Notes** (resume: embedded PDF), **Mail** (contact + hire CTA).
 - **Content-driven** — Bio, projects, work history, skills, dock apps, and terminal copy live in one config file for easy edits.
 - **Responsive** — Layout adapts for smaller screens and touch; heavy pieces (e.g. PDF viewer) load lazily when a window opens.
+- **Guided first impression** — About and Projects auto-open on landing, so visitors see substance immediately instead of an empty desktop.
 
 ## Tech stack
 
 - [React](https://react.dev/) (Create React App + [Craco](https://craco.js.org/))
 - [Framer Motion](https://www.framer.com/motion/) — window chrome, dock, transitions
-- [react-rnd](https://github.com/bokuweb/react-rnd) — draggable / resizable windows
+- Custom pointer-capture window manager (drag / resize / maximize / minimize) — no external window library
 - [react-pdf](https://github.com/wojtekmaj/react-pdf) — resume PDF in Notes
-- [react-markdown](https://github.com/remarkjs/react-markdown) — About Me content
 
 ## Getting started
 
@@ -39,9 +39,8 @@ Opens the dev server (default [http://localhost:3000](http://localhost:3000)).
 
 ## Customizing content
 
-- **`src/configs/portfolio.js`** — Name, links, bio, `projects`, `workExperience`, `skills`, `dockApps`, `terminalCommands`, resume PDF path (`resumePdfUrl`), etc.
-- **`public/markdown/`** — Markdown for About Me and related copy.
-- **`public/resume/`** — Optional PDF for the Notes app (filename must match `resumePdfUrl`).
+- **`src/configs/portfolio.js`** — Name, links, bio, `lookingFor`, `projects` (incl. `outcome` / `category`), `workExperience`, `skills`, `dockApps`, `terminalCommands`, `projectNotes`, resume PDF path (`resumePdfUrl`), etc.
+- **`public/resume/`** — PDF for the Notes app (filename must match `resumePdfUrl`).
 
 ## License
 

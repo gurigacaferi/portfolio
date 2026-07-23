@@ -247,34 +247,16 @@ function BatteryStatus() {
   );
 }
 
-function ControlCenterIcon({ onClick }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{ background: "none", border: "none", cursor: "pointer", padding: "2px 0", display: "flex", alignItems: "center" }}
-    >
-      <svg width="18" height="14" viewBox="0 0 18 14" fill="white" opacity="0.85">
-        <circle cx="3" cy="4" r="2.5"/>
-        <circle cx="9" cy="4" r="2.5"/>
-        <circle cx="15" cy="4" r="2.5"/>
-        <circle cx="3" cy="10" r="2.5" opacity="0.6"/>
-        <circle cx="9" cy="10" r="2.5" opacity="0.6"/>
-        <circle cx="15" cy="10" r="2.5" opacity="0.6"/>
-      </svg>
-    </button>
-  );
-}
-
 function AppleMenu({ onClose }) {
   const { openApp } = useDesktop();
   const items = [
-    { label: "About Me", action: () => { openApp("about"); onClose(); } },
+    { label: "About This Portfolio", action: () => { openApp("about"); onClose(); } },
+    { label: "Resume", action: () => { openApp("resume"); onClose(); } },
+    { label: "Contact", action: () => { openApp("contact"); onClose(); } },
     null,
-    { label: "System Preferences…", action: onClose },
+    { label: "View Source on GitHub", action: () => { window.open("https://github.com/gurigacaferi/portfolio", "_blank", "noopener"); onClose(); } },
     null,
-    { label: "Sleep", action: onClose },
-    { label: "Restart…", action: onClose },
-    { label: "Shut Down…", action: onClose },
+    { label: "Lock Screen", action: () => { onClose(); window.location.reload(); } }
   ];
   return (
     <motion.div
@@ -319,7 +301,7 @@ function AppleMenu({ onClose }) {
 }
 
 const NAV_ITEMS = [
-  { label: "File", id: "about" },
+  { label: "About", id: "about" },
   { label: "Projects", id: "projects" },
   { label: "Terminal", id: "terminal" },
   { label: "Resume", id: "resume" },
@@ -380,9 +362,11 @@ export default function TopBar() {
           type="button"
           className="topbar-apple topbar-item"
           onClick={() => setShowAppleMenu(v => !v)}
-          style={{ background: "none", border: "none", color: "white", cursor: "pointer" }}
+          aria-label="Menu"
+          aria-expanded={showAppleMenu}
+          style={{ background: "none", border: "none", color: "white", cursor: "pointer", fontWeight: 600 }}
         >
-          
+          ⌘
         </button>
         <AnimatePresence>
           {showAppleMenu && <AppleMenu onClose={() => setShowAppleMenu(false)} />}
@@ -481,7 +465,6 @@ export default function TopBar() {
           </AnimatePresence>
         </div>
         {!isMobile && <BatteryStatus />}
-        <ControlCenterIcon onClick={() => {}} />
         <Clock />
       </div>
     </div>

@@ -17,7 +17,7 @@ const WELCOME = `Last login: ${new Date().toLocaleDateString("en-US", { weekday:
  ╚██████╔╝╚██████╔╝██║  ██║██║
   ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝
 
-Type 'help' for available commands. Try 'hire', 'deploy fatural', or 'open projects'.
+Type 'help' for available commands. Try 'deploy fatural', or 'open projects'.
 `;
 
 /* Animated "green checks" CI log for `deploy fatural` — each line lands with its own delay. */
@@ -41,7 +41,6 @@ function parseCommand(raw) {
   const cmd = raw.trim().toLowerCase();
   if (!cmd) return null;
   if (cmd === "clear") return "__clear__";
-  if (cmd === "status") return terminalCommands.hire;
   if (cmd === "kubectl get pods" || cmd === "kubectl get pods -n fatural") return terminalCommands.kubectl;
   if (cmd === "spin -run block.pml" || cmd === "spin -run block.pml -a") return terminalCommands.spin;
   if (terminalCommands[cmd]) return terminalCommands[cmd];

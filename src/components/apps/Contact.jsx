@@ -68,10 +68,6 @@ export default function Contact() {
       <div className="mac-content" style={{ maxWidth: 520, margin: "0 auto", paddingBottom: 36 }}>
 
         <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
-          <div className="mac-hire-badge">
-            <span className="status-dot" />
-            Hiring? I usually reply within a day.
-          </div>
           <h1 style={{ fontSize: 22, fontWeight: 700, color: "var(--mac-text)", letterSpacing: "-0.45px", marginBottom: 6 }}>
             Get in Touch
           </h1>
@@ -79,7 +75,7 @@ export default function Contact() {
             {user.name} · {user.title}
           </p>
           <p style={{ fontSize: 13, color: "var(--mac-text-2)", lineHeight: 1.65, marginBottom: 22 }}>
-            {user.lookingFor.availability} · {user.lookingFor.location}. Choose a channel below.
+            {user.location}. Choose a channel below.
           </p>
         </motion.div>
 

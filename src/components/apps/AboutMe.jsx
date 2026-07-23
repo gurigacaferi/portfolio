@@ -206,16 +206,6 @@ export default function AboutMe() {
                     ))}
                   </div>
 
-                  <Card style={{ marginBottom: 12, background: "linear-gradient(135deg, rgba(52,199,89,0.10), rgba(0,113,227,0.05))", border: "1px solid rgba(52,199,89,0.24)" }}>
-                    <p style={{ fontSize: 11, fontWeight: 700, color: "#1f9d47", textTransform: "uppercase", letterSpacing: 0.7, marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
-                      <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#30d158", boxShadow: "0 0 0 3px rgba(48,209,88,0.22)", display: "inline-block" }} />
-                      Open To
-                    </p>
-                    <p style={{ fontSize: 14, fontWeight: 600, color: "var(--mac-text)", marginBottom: 4 }}>{user.lookingFor.roles.join(" · ")}</p>
-                    <p style={{ fontSize: 12.5, color: "var(--mac-text-2)", marginBottom: 2 }}>{user.lookingFor.availability}</p>
-                    <p style={{ fontSize: 12, color: "var(--mac-text-3)" }}>{user.lookingFor.location}</p>
-                  </Card>
-
                   {visibleEducation[0] && (
                     <Card style={{ background: "linear-gradient(135deg, rgba(0,113,227,0.06), rgba(99,102,241,0.05))", border: "1px solid rgba(0,113,227,0.14)" }}>
                       <p style={{ fontSize: 11, fontWeight: 700, color: "var(--mac-accent)", textTransform: "uppercase", letterSpacing: 0.7, marginBottom: 6 }}>

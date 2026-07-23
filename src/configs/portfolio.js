@@ -6,7 +6,7 @@
 const base = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
 export const resumePdfUrl = `${base}/resume/${encodeURIComponent("Resume - Guri Gacaferi.pdf")}`;
 
-/** "Present day" for the Time Machine app — keep in sync with user.lookingFor / graduation year. */
+/** "Present day" for the Time Machine app — keep in sync with graduation year. */
 export const PRESENT_YEAR = 2026;
 
 export const user = {
@@ -19,13 +19,7 @@ export const user = {
   whatsapp: "+38345666796",
   avatar: null,
   bio: "I'm a software engineer who ships full-stack products end-to-end — microservice backends, third-party API integrations, and the UI people actually enjoy using. I've modernised legacy systems, built AI-assisted tooling, and automated real financial workflows for a live business. I care about systems that hold up in production, not just in a demo.",
-  location: "Prishtina, Kosovo",
-  lookingFor: {
-    roles: ["Full-Stack Engineer", "Backend Engineer", "Software Engineer (New Grad)"],
-    availability: "Open to full-time roles from Jun 2026 · open to internships now",
-    location: "Prishtina, Kosovo · open to remote & relocation",
-    pill: "Open to Software Engineer roles · available Jun 2026"
-  }
+  location: "Prishtina, Kosovo"
 };
 
 export const education = [
@@ -301,7 +295,7 @@ export const timeline = {
   2023: "Began my BSc in Artificial Intelligence & Data Science at the University of York Europe Campus.",
   2024: "Became a Teaching Assistant for Intro to OOP, and shipped the OS Simulator and Battlesnake Bot — first real CI/CD and systems work.",
   2025: "Interned as a Full-Stack Developer at Dynamic Spheres, then built Fatural and led Invent's migration — my most production-grade year yet.",
-  2026: "Graduating from the University of York — open to full-time Software Engineer roles."
+  2026: "Graduating from the University of York — wrapping up the BSc in AI & Data Science."
 };
 
 export const skills = {
@@ -319,12 +313,10 @@ export const languages = [
 export const terminalCommands = {
   whoami: `guri gacaferi
 role:     software engineer · full-stack & ai-assisted systems
-location: prishtina, kosovo
-status:   open to full-time roles from jun 2026 · open to internships now`,
+location: prishtina, kosovo`,
 
   help: `available commands:
   whoami          — who am i
-  hire / status   — availability, roles, best way to reach me
   ls              — list projects (finder-style)
   cat <name>.md   — read a short brief on any project (see ls)
   open <app>      — open about · projects · terminal · code · fatural · timemachine · resume · contact
@@ -339,13 +331,6 @@ status:   open to full-time roles from jun 2026 · open to internships now`,
   kubectl get pods — list fatural's microservices
   spin -run block.pml — model-check the railway block protocol
   clear           — clear terminal`,
-
-  hire: `available:     full-time from jun 2026 · internships now
-based in:      prishtina, kosovo — open to remote & relocation
-roles:         full-stack engineer · backend engineer · swe (new grad)
-best way in:   email or linkedin — i usually reply within a day
-  →  mailto:gurigacaferi@outlook.com
-  →  linkedin.com/in/guri-gacaferi-54947a359`,
 
   ls: `drwxr-xr-x  fatural/              (ai invoice scanner + qbo integration)
 drwxr-xr-x  invent/               (zend → laravel migration)

@@ -363,18 +363,6 @@ textarea {
   outline-offset: 2px;
 }
 
-/* ─── Hire badge (Contact) ───────────────────────────────────────────────── */
-.mac-hire-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 13px; border-radius: 999px;
-  background: rgba(52, 199, 89, 0.10);
-  border: 1px solid rgba(52, 199, 89, 0.28);
-  color: #1f7a37;
-  font-size: 12.5px; font-weight: 600;
-  margin-bottom: 14px;
-}
-.mac-hire-badge .status-dot { background: #30d158; }
-
 /* ─── Mac input ──────────────────────────────────────────────────────────── */
 .mac-input {
   width: 100%; padding: 8px 12px;

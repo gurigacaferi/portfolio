@@ -97,6 +97,13 @@ textarea {
       #9c5a20 100%
     );
 }
+.wallpaper-canvas {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  /* Soft blend so CSS gradient remains the base atmosphere */
+  opacity: 0.72;
+  mix-blend-mode: soft-light;
+}
 .wallpaper::before {
   content: ""; position: absolute; inset: 0;
   /* Subtle rolling hills silhouette */
@@ -797,3 +804,67 @@ body.desktop-shake {
   padding: 4px 10px; border-radius: 6px; cursor: pointer; white-space: nowrap;
 }
 .time-banner button:hover { background: rgba(245, 158, 11, 0.28); }
+
+/* ─── Railway block-signaling 3D vignette (Projects detail) ──────────────── */
+.railway-scene {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #1a1a1e;
+}
+.railway-scene-canvas {
+  height: 220px;
+  width: 100%;
+}
+.railway-scene-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.railway-scene-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.railway-scene-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.railway-scene-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+.railway-scene-status {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.35;
+}
+.railway-scene-caption {
+  margin: 0;
+  padding: 8px 12px 10px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.45;
+  background: rgba(0, 0, 0, 0.25);
+}
+.railway-scene-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--mac-text-3);
+  font-size: 12.5px;
+}
+.railway-scene-fallback p { margin: 0; }

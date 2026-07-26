@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, user, PRESENT_YEAR } from "../../configs/portfolio";
 import { useDesktop } from "../../context/DesktopContext";
+
+const RailwayScene = lazy(() => import("./RailwayScene"));
 
 function TimeBanner({ year, onReset }) {
   if (year === PRESENT_YEAR) return null;
@@ -210,6 +212,17 @@ function ProjectDetail({ project, onBack }) {
         <p style={{ fontSize: 13.5, color: "var(--mac-text-2)", lineHeight: 1.8, marginBottom: 22 }}>
           {project.description}
         </p>
+
+        {project.scene === "railway" && (
+          <div style={{ marginBottom: 22 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, color: "var(--mac-text-2)", textTransform: "uppercase", letterSpacing: 0.7, marginBottom: 10 }}>
+              Interactive model
+            </p>
+            <Suspense fallback={<div className="railway-scene-fallback"><p>Loading 3D scene…</p></div>}>
+              <RailwayScene />
+            </Suspense>
+          </div>
+        )}
 
         {project.highlights && (
           <div style={{ marginBottom: 22 }}>

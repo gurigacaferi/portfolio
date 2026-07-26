@@ -217,6 +217,7 @@ export const projects = [
     github: null,
     featured: false,
     category: "coursework",
+    scene: "railway",
     outcome: "Model-checked proof that the protocol can never allow two trains into the same block at once."
   },
   {

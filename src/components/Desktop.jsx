@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { useReducedMotion } from "framer-motion";
 import TopBar from "./TopBar";
 import Dock from "./Dock";
 import Spotlight from "./Spotlight";
@@ -17,7 +16,6 @@ const Fatural = lazy(() => import("./apps/Fatural"));
 const TimeMachine = lazy(() => import("./apps/TimeMachine"));
 const Resume = lazy(() => import("./apps/Resume"));
 const Contact = lazy(() => import("./apps/Contact"));
-const WallpaperCanvas = lazy(() => import("./WallpaperCanvas"));
 
 function WindowContentFallback() {
   return (
@@ -114,7 +112,6 @@ function DesktopHero() {
 export default function Desktop() {
   const { openApp, timeMachineYear } = useDesktop();
   const isMobile = useIsMobileLayout();
-  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const autoOpenIds = dockApps.filter(a => a.defaultOpen).map(a => a.id);
@@ -132,13 +129,8 @@ export default function Desktop() {
 
   return (
     <div className="desktop-root" style={{ position: "relative", overflow: "hidden" }}>
-      {/* CSS wallpaper stays as the base / fallback; Three.js layer sits on top when allowed */}
+      {/* Wallpaper */}
       <div className="wallpaper" style={{ filter: wallpaperFilter }} />
-      {!reduceMotion && (
-        <Suspense fallback={null}>
-          <WallpaperCanvas timeMachineYear={timeMachineYear} />
-        </Suspense>
-      )}
 
       <GlitchOverlay />
 

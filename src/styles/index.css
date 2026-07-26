@@ -97,13 +97,6 @@ textarea {
       #9c5a20 100%
     );
 }
-.wallpaper-canvas {
-  position: fixed; inset: 0; z-index: 0;
-  pointer-events: none;
-  /* Soft blend so CSS gradient remains the base atmosphere */
-  opacity: 0.72;
-  mix-blend-mode: soft-light;
-}
 .wallpaper::before {
   content: ""; position: absolute; inset: 0;
   /* Subtle rolling hills silhouette */

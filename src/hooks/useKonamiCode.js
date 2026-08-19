@@ -6,7 +6,7 @@ const SEQUENCE = [
   "b", "a"
 ];
 
-/** Classic Konami code listener — calls onComplete() once the full sequence is typed anywhere on the page. */
+/** Classic Konami code listener. Calls onComplete() once the full sequence is typed anywhere on the page. */
 export function useKonamiCode(onComplete) {
   const idxRef = useRef(0);
 

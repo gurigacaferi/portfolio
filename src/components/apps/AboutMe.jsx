@@ -7,7 +7,7 @@ function TimeBanner({ year, onReset }) {
   if (year === PRESENT_YEAR) return null;
   return (
     <div className="time-banner">
-      <span>🕒 Viewing this page as of {year} — some entries haven&rsquo;t happened yet.</span>
+      <span>🕒 Viewing this page as of {year}. Some entries haven&rsquo;t happened yet.</span>
       <button type="button" onClick={onReset}>Return to present →</button>
     </div>
   );
@@ -22,7 +22,7 @@ function IconBriefcase() { return <svg {...ic()} viewBox="0 0 18 18" fill="none"
 function IconGradCap()   { return <svg {...ic()} viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 2L1 6.5l8 4.5 8-4.5L9 2z"/><path d="M5 8.8v4.2c0 1.2 1.8 2 4 2s4-.8 4-2V8.8"/><line x1="1" y1="6.5" x2="1" y2="11"/></svg>; }
 function IconGlobe()     { return <svg {...ic()} viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="9" cy="9" r="7.5"/><ellipse cx="9" cy="9" rx="3" ry="7.5"/><line x1="1.5" y1="9" x2="16.5" y2="9"/><line x1="2.5" y1="5.5" x2="15.5" y2="5.5"/><line x1="2.5" y1="12.5" x2="15.5" y2="12.5"/></svg>; }
 
-/* Stat card icons — slightly larger */
+/* Stat card icons (slightly larger) */
 const ics = (color = "currentColor") => ({ width: 20, height: 20, display: "block", color });
 function StatIconFolder()   { return <svg {...ics()} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M2 5.5A1.5 1.5 0 013.5 4h3.38l1.5 2H16.5A1.5 1.5 0 0118 7.5v7A1.5 1.5 0 0116.5 16h-13A1.5 1.5 0 012 14.5V5.5z"/></svg>; }
 function StatIconCode()     { return <svg {...ics()} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="6,7 2,10 6,13"/><polyline points="14,7 18,10 14,13"/><line x1="11" y1="5" x2="9" y2="15"/></svg>; }
@@ -233,7 +233,7 @@ export default function AboutMe() {
                   <h2 style={{ fontSize: 17, fontWeight: 700, color: "var(--mac-text)", marginBottom: 18, letterSpacing: "-0.3px" }}>Work Experience</h2>
                   <TimeBanner year={timeMachineYear} onReset={() => setTimeMachineYear(PRESENT_YEAR)} />
                   {visibleExperience.length === 0 && (
-                    <Card><p style={{ fontSize: 12.5, color: "var(--mac-text-2)" }}>Nothing yet in {timeMachineYear} — still in high school. Slide forward to see it unfold.</p></Card>
+                    <Card><p style={{ fontSize: 12.5, color: "var(--mac-text-2)" }}>Nothing yet in {timeMachineYear}. Still in high school. Slide forward to see it unfold.</p></Card>
                   )}
                   {visibleExperience.map((exp, i) => (
                     <motion.div

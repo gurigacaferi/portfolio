@@ -11,7 +11,7 @@ const SQ = ({ children, size = 60 }) => (
   </svg>
 );
 
-/* macOS Finder — classic blue face */
+/* macOS Finder: classic blue face */
 export function FinderIcon() {
   return (
     <SQ>
@@ -53,7 +53,7 @@ export function FinderIcon() {
   );
 }
 
-/* macOS Terminal — black with green prompt */
+/* macOS Terminal: black with green prompt */
 export function TerminalIcon() {
   return (
     <SQ>
@@ -81,7 +81,7 @@ export function TerminalIcon() {
   );
 }
 
-/* macOS Notes — yellow notepad */
+/* macOS Notes: yellow notepad */
 export function NotesIcon() {
   return (
     <SQ>
@@ -113,7 +113,7 @@ export function NotesIcon() {
   );
 }
 
-/* macOS Mail — blue envelope */
+/* macOS Mail: blue envelope */
 export function MailIcon() {
   return (
     <SQ>
@@ -175,7 +175,7 @@ export function ProjectsIcon() {
   );
 }
 
-/* Pair-programming — code editor squircle with angle-bracket glyph */
+/* Pair-programming: code editor squircle with angle-bracket glyph */
 export function CodeIcon() {
   return (
     <SQ>
@@ -201,7 +201,7 @@ export function CodeIcon() {
   );
 }
 
-/* Fatural demo — receipt/scan glyph on the project's brand green */
+/* Fatural demo: receipt/scan glyph on the project's brand green */
 export function FaturalIcon() {
   return (
     <SQ>
@@ -224,7 +224,7 @@ export function FaturalIcon() {
   );
 }
 
-/* Time Machine — clock face with a swirling orbit trail */
+/* Time Machine: clock face with a swirling orbit trail */
 export function TimeMachineIcon() {
   return (
     <SQ>

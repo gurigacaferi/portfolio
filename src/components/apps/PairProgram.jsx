@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Editor from "@monaco-editor/react";
 
-const STARTER_CODE = `// battlesnake-bot — isSafeMove() from snakeLogic.js (simplified)
+const STARTER_CODE = `// battlesnake-bot: isSafeMove() from snakeLogic.js (simplified)
 // Bug report: the bot occasionally slithers off the edge of the board.
 // Find the off-by-one and fix it.
 
@@ -72,7 +72,7 @@ export default function PairProgram() {
         </div>
         <div style={{ flex: 1 }} />
         <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", padding: "0 10px" }}>
-          Fix the bug — tests run in the panel below
+          Fix the bug. Tests run in the panel below
         </span>
       </div>
 
@@ -169,13 +169,13 @@ export default function PairProgram() {
             <span>{r.pass ? "✓" : "✗"}</span>
             <span style={{ color: r.pass ? "#a6e3a1" : "#f38ba8" }}>
               {r.desc}
-              {r.error && <span style={{ color: "rgba(255,255,255,0.4)" }}> — {r.error}</span>}
+              {r.error && <span style={{ color: "rgba(255,255,255,0.4)" }}> ({r.error})</span>}
             </span>
           </div>
         ))}
         {allPass && (
           <p style={{ color: "#a6e3a1", fontWeight: 600, marginTop: 6, marginBottom: 0 }}>
-            All tests passing — nice work. This is basically how I ship: write it, test it, ship it.
+            All tests passing. Nice work. This is basically how I ship: write it, test it, ship it.
           </p>
         )}
       </div>

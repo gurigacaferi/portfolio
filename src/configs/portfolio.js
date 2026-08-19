@@ -6,7 +6,7 @@
 const base = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
 export const resumePdfUrl = `${base}/resume/${encodeURIComponent("Resume - Guri Gacaferi.pdf")}`;
 
-/** "Present day" for the Time Machine app — keep in sync with graduation year. */
+/** "Present day" for the Time Machine app. Keep in sync with graduation year. */
 export const PRESENT_YEAR = 2026;
 
 export const user = {
@@ -18,7 +18,7 @@ export const user = {
   linkedin: "https://www.linkedin.com/in/guri-gacaferi-54947a359/",
   whatsapp: "+38345666796",
   avatar: null,
-  bio: "I'm a software engineer who ships full-stack products end-to-end — microservice backends, third-party API integrations, and the UI people actually enjoy using. I've modernised legacy systems, built AI-assisted tooling, and automated real financial workflows for a live business. I care about systems that hold up in production, not just in a demo.",
+  bio: "I'm a software engineer who ships full-stack products end to end: microservice backends, third-party API integrations, and the UI people actually enjoy using. I've modernised legacy systems, built AI-assisted tooling, and automated real financial workflows for a live business. I care about systems that hold up in production, not just in a demo.",
   location: "Prishtina, Kosovo"
 };
 
@@ -44,10 +44,10 @@ export const projects = [
     id: 1,
     title: "Fatural",
     subtitle: "AI-Powered Invoice Scanner",
-    description: "A full-stack web app that uses AI to scan and extract data from bills and invoices, then routes them directly into QuickBooks Online upon approval. Built on a microservices architecture with async communication, 2FA, CSV export for third-party systems, and a companion phone app that connects via a 6-digit code — letting you photograph invoices on mobile and have them processed instantly in your linked Fatural account.",
+    description: "A full-stack web app that uses AI to scan and extract data from bills and invoices, then routes them directly into QuickBooks Online upon approval. Built on a microservices architecture with async communication, 2FA, CSV export for third-party systems, and a companion phone app that connects via a 6-digit code so you can photograph invoices on mobile and process them instantly in your linked Fatural account.",
     highlights: [
       "Microservices architecture with async inter-service communication via message queues",
-      "Deep QuickBooks Online API integration — invoices route directly into the client's ledger on approval",
+      "Deep QuickBooks Online API integration: invoices route directly into the client's ledger on approval",
       "Companion mobile app pairs to the web account via a 6-digit code, enabling on-the-go invoice capture",
       "Two-factor authentication and role-based access control across all services",
       "CSV export pipeline for compatibility with third-party accounting systems",
@@ -60,7 +60,7 @@ export const projects = [
     link: null,
     github: null,
     featured: true,
-    outcome: "Approved invoices land directly in the client's QuickBooks ledger — zero manual re-entry, in real time from a phone camera."
+    outcome: "Approved invoices land directly in the client's QuickBooks ledger with zero manual re-entry, in real time from a phone camera."
   },
   {
     id: 2,
@@ -68,7 +68,7 @@ export const projects = [
     subtitle: "Legacy System Modernisation",
     description: "Migrated an existing inventory management system from a legacy Zend Framework PHP codebase to a modern Laravel stack with updated PHP, significantly hardened security, a fully redesigned UI with dark mode, CSV import/export, and GDPR compliance improvements. The result was a faster, more maintainable, and far more pleasant product to use.",
     highlights: [
-      "Full migration from Zend Framework to Laravel — updated routing, ORM, and middleware layers",
+      "Full migration from Zend Framework to Laravel, including updated routing, ORM, and middleware layers",
       "Security hardening: CSRF protection, parameterised queries, session hardening, and dependency audits",
       "Fully redesigned UI built from scratch with dark mode as a first-class feature",
       "CSV import/export for bulk inventory operations and third-party integrations",
@@ -82,7 +82,7 @@ export const projects = [
     link: null,
     github: null,
     featured: true,
-    outcome: "A safer, faster inventory system the client's own team could maintain — migrated with zero data loss and zero downtime."
+    outcome: "A safer, faster inventory system the client's own team could maintain, migrated with zero data loss and zero downtime."
   },
   {
     id: 10,
@@ -95,7 +95,7 @@ export const projects = [
       "Claude Sonnet OCR with printed-field + MRZ cross-check; automatic local Tesseract MRZ fallback when the API is unavailable",
       "Dual Streamlit deployments (partner vs BNA office) with isolated forms, Sheets, sync locks, and BN-code naming for internal groups",
       "Shared Supabase-backed workspace for multi-staff use, plus Google OIDC login restricted to @bnadventure.com",
-      "Walk-in path for clients without a Google account — same OCR and document pipeline without the form"
+      "Walk-in path for clients without a Google account, using the same OCR and document pipeline without the form"
     ],
     tags: ["Python", "Streamlit", "Claude OCR", "Google APIs", "Supabase", "python-docx", "Automation"],
     color: "#0284c7",
@@ -104,13 +104,13 @@ export const projects = [
     link: null,
     github: null,
     featured: true,
-    outcome: "Staff go from a passport photo and form answers to correctly filled KS/AL/MNE permit .docx files — no hand-typing traveler rows for every hiking group."
+    outcome: "Staff go from a passport photo and form answers to correctly filled KS/AL/MNE permit .docx files, without hand-typing traveler rows for every hiking group."
   },
   {
     id: 3,
     title: "OS Simulator",
     subtitle: "Educational Operating System Visualiser",
-    description: "An educational operating-system simulator built in Processing (Java) that visually demonstrates core OS concepts — process scheduling, memory partitioning, and kernel/user request handling. Implements Process Control Block management, partition-based memory allocation, a simulated hardware layer (CPU, memory, timers), FIFO and Round Robin scheduling, request queuing, and live statistics tracking.",
+    description: "An educational operating-system simulator built in Processing (Java) that visually demonstrates core OS concepts: process scheduling, memory partitioning, and kernel/user request handling. Implements Process Control Block management, partition-based memory allocation, a simulated hardware layer (CPU, memory, timers), FIFO and Round Robin scheduling, request queuing, and live statistics tracking.",
     highlights: [
       "Live visual simulation of process scheduling using FIFO and Round Robin algorithms",
       "Process Control Block (PCB) management with process state transitions rendered in real time",
@@ -132,9 +132,9 @@ export const projects = [
     id: 4,
     title: "Misinformation Simulation",
     subtitle: "Agent-Based Swarm Evolution Model",
-    description: "A modular swarm-simulation exploring how genetic, strategic (game-theoretic), and cultural evolution unfold inside an agent-based boids system — separately or all at once. Honest, liar, and stubborn agents flock using Reynolds' boids rules, interact, accumulate fitness, shift beliefs, and reproduce. Supports pure genetic, pure game-theory, pure cultural, or full hybrid co-evolution across different timescales.",
+    description: "A modular swarm-simulation exploring how genetic, strategic (game-theoretic), and cultural evolution unfold inside an agent-based boids system, either separately or all at once. Honest, liar, and stubborn agents flock using Reynolds' boids rules, interact, accumulate fitness, shift beliefs, and reproduce. Supports pure genetic, pure game-theory, pure cultural, or full hybrid co-evolution across different timescales.",
     highlights: [
-      "Three agent archetypes — honest, liar, and stubborn — competing under evolutionary selection pressure",
+      "Three agent archetypes (honest, liar, and stubborn) competing under evolutionary selection pressure",
       "Reynolds' boids rules (separation, alignment, cohesion) drive spatial flocking and agent interaction",
       "Four evolution modes: pure genetic, pure game-theoretic, pure cultural, and full hybrid co-evolution",
       "Timescale separation between fast strategic adaptation and slow generational evolution",
@@ -177,14 +177,14 @@ export const projects = [
     id: 6,
     title: "Battlesnake Bot",
     subtitle: "Competitive AI Snake Bot with CI/CD",
-    description: "A competitive Battlesnake bot built as a Node.js/Express web service, deployed live on Railway. The snake's decision logic is isolated in a single file for fast iteration, backed by a full CI/CD pipeline via GitHub Actions that runs Jest tests, ESLint linting, and coverage checks on every pull request — auto-deploying to production on merge.",
+    description: "A competitive Battlesnake bot built as a Node.js/Express web service, deployed live on Railway. The snake's decision logic is isolated in a single file for fast iteration, backed by a full CI/CD pipeline via GitHub Actions that runs Jest tests, ESLint linting, and coverage checks on every pull request, then auto-deploys to production on merge.",
     highlights: [
       "Express web service responding to Battlesnake game API events in real time",
       "Snake strategy isolated in a single snakeLogic.js file for rapid, safe iteration",
       "Full Jest test suite covering core movement and collision-avoidance logic",
       "ESLint + Prettier enforced on every PR to maintain consistent code quality",
       "GitHub Actions pipeline runs lint, test, and coverage checks before any merge",
-      "Automatic deployment to Railway on merge to main — zero manual deploy steps"
+      "Automatic deployment to Railway on merge to main with zero manual deploy steps"
     ],
     tags: ["JavaScript", "Node.js", "Express", "Jest", "GitHub Actions", "Railway", "CI/CD"],
     color: "#ef4444",
@@ -193,13 +193,13 @@ export const projects = [
     link: null,
     github: "https://github.com/ggacaferi/software-development",
     featured: false,
-    outcome: "Fully automated pipeline — every merge to main tests, lints, and redeploys the bot with no manual steps."
+    outcome: "Fully automated pipeline: every merge to main tests, lints, and redeploys the bot with no manual steps."
   },
   {
     id: 7,
     title: "Movie Data Analysis",
     subtitle: "Jupyter Notebooks & ROI Pipeline",
-    description: "A Jupyter-centric workflow on a movie dataset (movies.csv) with a companion column reference (movies_variables.txt). The project cleans and prepares data, engineers a return-on-investment metric, splits subsets by genre and decade, and visualises how output and performance evolve across time — with corrected mean/median summaries for genre–decade cells.",
+    description: "A Jupyter-centric workflow on a movie dataset (movies.csv) with a companion column reference (movies_variables.txt). The project cleans and prepares data, engineers a return-on-investment metric, splits subsets by genre and decade, and visualises how output and performance evolve across time, with corrected mean/median summaries for genre-decade cells.",
     highlights: [
       "fix_missing_values.ipynb inspects the dataset and handles missing entries so later analyses stay consistent",
       "separate_by_genre_decade.ipynb partitions the data by genre and release decade into dedicated output folders",
@@ -222,11 +222,11 @@ export const projects = [
     id: 11,
     title: "Sales Intelligence Reporter",
     subtitle: "Gmail → Claude → Weekly Agent Scorecards",
-    description: "A Google Apps Script pipeline for Balkan Natural Adventure that turns a week of internal sales email into per-agent performance reports. It searches Gmail for staff↔client threads, attributes each conversation to the owning agent, batches threads through Claude Sonnet for lead/sale classification, and emails a ranked weekly scorecard — booked clients, pending/lost reasons, conversion rate, communication style, and action items — while keeping an all-time lead/sale thread database in Google Sheets.",
+    description: "A Google Apps Script pipeline for Balkan Natural Adventure that turns a week of internal sales email into per-agent performance reports. It searches Gmail for staff↔client threads, attributes each conversation to the owning agent, batches threads through Claude Sonnet for lead/sale classification, and emails a ranked weekly scorecard covering booked clients, pending/lost reasons, conversion rate, communication style, and action items, while keeping an all-time lead/sale thread database in Google Sheets.",
     highlights: [
       "Gmail search scoped to @bnadventure.com traffic for the previous full week, with shared inbox addresses filtered out of agent attribution",
       "Claude Sonnet classifies each thread as sale vs pending/lost using payment-signal rules (deposit paid, transfer confirmed, etc.) and returns structured JSON only",
-      "GAS-side math derives leads, sales, and conversion rate from thread ID sets — preventing AI double-counting across agents and batches",
+      "GAS-side math derives leads, sales, and conversion rate from thread ID sets, which prevents AI double-counting across agents and batches",
       "Checkpoint + auto-resume across Apps Script’s ~30-minute runtime limit so large weeks finish without manual restarts",
       "Batched Anthropic calls with rate-limit backoff; all-time lead/sale IDs persisted in a dedicated Google Sheet “database”",
       "Final MailApp report ranks agents by sales and includes booked/pending detail plus a link to the cumulative sheet"
@@ -238,7 +238,7 @@ export const projects = [
     link: null,
     github: null,
     featured: false,
-    outcome: "Management gets a weekly email scorecard of every agent’s leads, bookings, and conversion rate — pulled straight from real sales threads, not spreadsheets filled by hand."
+    outcome: "Management gets a weekly email scorecard of every agent's leads, bookings, and conversion rate, pulled straight from real sales threads instead of spreadsheets filled by hand."
   },
   {
     id: 8,
@@ -246,10 +246,10 @@ export const projects = [
     subtitle: "Promela Model · SPIN Verification",
     description: "A Promela (Process Meta-Language) model for verification with the SPIN model checker, simulating a Victorian-style three-box railway block system: track sections are protected so only one train occupies a given block at a time. The model was developed as a corrected solution for a university coursework assignment (CCS2420), focusing on communication protocols between physical signals and human-operated signal boxes.",
     highlights: [
-      "Three signal boxes (A, B, C): entry, intermediate hand-off, and exit — operators run the block protocol using bell signals and mechanical instruments",
+      "Three signal boxes (A, B, C) for entry, intermediate hand-off, and exit. Operators run the block protocol using bell signals and mechanical instruments",
       "Signal processes represent the physical track: they detect approaching trains, coordinate with the local box, and only then clear signal aspects for passage",
       "Bell lines use synchronous channels for codes such as CALL_ATTEN and IS_CLEAR; instrument dials track line state (e.g. LC, LR, TL)",
-      "LTL verification: safety — at most one train in block AB or BC at any time; liveness — a train entering AB eventually progresses to BC",
+      "LTL verification: safety means at most one train in block AB or BC at any time; liveness means a train entering AB eventually progresses to BC",
       "No global channels: every channel is passed as a process parameter, following good Promela modeling practice",
       "Protocol flow: approach detection → bell request to the next box → clearance and instrument updates → signal clear → train movement → reset for the next train"
     ],
@@ -267,15 +267,15 @@ export const projects = [
   {
     id: 9,
     title: "Portfolio for Artificial Intelligence Techniques",
-    subtitle: "Artificial Intelligence Techniques — Lab Portfolio",
-    description: "A compiled lab portfolio for CCS2600: Artificial Intelligence Techniques (Spring 2025), produced by a four-student team. The document spans five lab modules — from classical search and CSPs to knowledge representation and modern NLU/ML — plus appendices with code listings, peer evaluations, and self-reflections.",
+    subtitle: "Artificial Intelligence Techniques Lab Portfolio",
+    description: "A compiled lab portfolio for CCS2600: Artificial Intelligence Techniques (Spring 2025), produced by a four-student team. The document spans five lab modules, from classical search and CSPs to knowledge representation and modern NLU/ML, plus appendices with code listings, peer evaluations, and self-reflections.",
     highlights: [
-      "Lab 1 — Problem definition and uninformed search: Water Colouring, Water Jars, and Maze problems; DFS, BFS, and iterative deepening compared",
-      "Lab 2 — Informed (heuristic) search: N-Puzzle, hill-climbing, and A*; cross-language A* comparisons (Python, JavaScript, Prolog)",
-      "Lab 3 — Constraint satisfaction and game playing: cryptarithmetic, magic squares, and Minimax with alpha–beta pruning (e.g. checkers)",
-      "Lab 4 — Knowledge representation: semantic networks, frames, IF–THEN rules, fuzzy logic, and inductive vs deductive reasoning with AI tooling",
-      "Lab 5 — NLU, LLMs, and machine learning: syntax trees, LLM impact on NLP, and the ID3 algorithm for classification",
-      "Team: CSY23088, CSY23109, CSY23085, CSY23057 — appendices include code, peer reviews, and reflections"
+      "Lab 1. Problem definition and uninformed search: Water Colouring, Water Jars, and Maze problems; DFS, BFS, and iterative deepening compared",
+      "Lab 2. Informed (heuristic) search: N-Puzzle, hill-climbing, and A*; cross-language A* comparisons (Python, JavaScript, Prolog)",
+      "Lab 3. Constraint satisfaction and game playing: cryptarithmetic, magic squares, and Minimax with alpha–beta pruning (e.g. checkers)",
+      "Lab 4. Knowledge representation: semantic networks, frames, IF–THEN rules, fuzzy logic, and inductive vs deductive reasoning with AI tooling",
+      "Lab 5. NLU, LLMs, and machine learning: syntax trees, LLM impact on NLP, and the ID3 algorithm for classification",
+      "Team: CSY23088, CSY23109, CSY23085, CSY23057. Appendices include code, peer reviews, and reflections"
     ],
     tags: ["Python", "Prolog", "JavaScript", "AI", "Search", "Machine Learning"],
     color: "#a855f7",
@@ -321,7 +321,7 @@ export const workExperience = [
   },
   {
     company: "University of York Europe Campus",
-    role: "Teaching Assistant — Intro to Object-Oriented Programming",
+    role: "Teaching Assistant, Intro to Object-Oriented Programming",
     period: "Oct 2024 – Feb 2025",
     location: "Prishtina, Kosovo",
     bullets: [
@@ -334,13 +334,13 @@ export const workExperience = [
   }
 ];
 
-/** Year-by-year narrative for the Time Machine app — kept short and true to workExperience/education/projects. */
+/** Year-by-year narrative for the Time Machine app. Kept short and true to workExperience/education/projects. */
 export const timeline = {
-  2022: "Started at Balkan Natural Adventure, automating bookkeeping — my first taste of shipping real tools for real users.",
+  2022: "Started at Balkan Natural Adventure, automating bookkeeping. That was my first taste of shipping real tools for real users.",
   2023: "Began my BSc in Artificial Intelligence & Data Science at the University of York Europe Campus.",
-  2024: "Became a Teaching Assistant for Intro to OOP, and shipped the OS Simulator and Battlesnake Bot — first real CI/CD and systems work.",
-  2025: "Interned as a Full-Stack Developer at Dynamic Spheres, built Fatural and Invent, and shipped Sales Intelligence Reporter for BNA — my most production-grade year yet.",
-  2026: "Shipped Border Permit Application Automation for BNA, and graduating from the University of York — wrapping up the BSc in AI & Data Science."
+  2024: "Became a Teaching Assistant for Intro to OOP, and shipped the OS Simulator and Battlesnake Bot. First real CI/CD and systems work.",
+  2025: "Interned as a Full-Stack Developer at Dynamic Spheres, built Fatural and Invent, and shipped Sales Intelligence Reporter for BNA. My most production-grade year yet.",
+  2026: "Shipped Border Permit Application Automation for BNA, and graduating from the University of York while wrapping up the BSc in AI & Data Science."
 };
 
 export const skills = {
@@ -361,21 +361,21 @@ role:     software engineer · full-stack & ai-assisted systems
 location: prishtina, kosovo`,
 
   help: `available commands:
-  whoami          — who am i
-  ls              — list projects (finder-style)
-  cat <name>.md   — read a short brief on any project (see ls)
-  open <app>      — open about · projects · terminal · code · fatural · timemachine · resume · contact
-  open <link>     — open github · linkedin · whatsapp · email
-  repos           — github repos + other public project links
-  education       — academic background
-  work            — work experience
-  skills          — technical skills
-  contact         — how to reach me
-  languages       — spoken languages
-  deploy fatural  — run the fatural ci/cd pipeline
-  kubectl get pods — list fatural's microservices
-  spin -run block.pml — model-check the railway block protocol
-  clear           — clear terminal`,
+  whoami          - who am i
+  ls              - list projects (finder-style)
+  cat <name>.md   - read a short brief on any project (see ls)
+  open <app>      - open about · projects · terminal · code · fatural · timemachine · resume · contact
+  open <link>     - open github · linkedin · whatsapp · email
+  repos           - github repos + other public project links
+  education       - academic background
+  work            - work experience
+  skills          - technical skills
+  contact         - how to reach me
+  languages       - spoken languages
+  deploy fatural  - run the fatural ci/cd pipeline
+  kubectl get pods - list fatural's microservices
+  spin -run block.pml - model-check the railway block protocol
+  clear           - clear terminal`,
 
   ls: `drwxr-xr-x  fatural/              (ai invoice scanner + qbo integration)
 drwxr-xr-x  invent/               (zend → laravel migration)
@@ -411,15 +411,15 @@ high school diploma
   sep 2020 – jun 2023
   graduated with distinction`,
 
-  work: `finance automation technician — balkan natural adventure
+  work: `finance automation technician @ balkan natural adventure
   jun 2022 – feb 2026 · remote
   excel → qbo · automation · ai insights · training · handover
 
-full-stack developer intern — dynamic spheres
+full-stack developer intern @ dynamic spheres
   jul 2025 – oct 2025 · kosovo
   dsmis erp leasing · kosovar law · depreciation · laravel/php
 
-teaching assistant (intro to oop) — uye campus
+teaching assistant (intro to oop) @ uye campus
   oct 2024 – feb 2025 · prishtina
   labs · 1-on-1 tutoring · java`,
 
@@ -428,8 +428,8 @@ frontend:    react · ejs · scss/css · tailwind · processing (java)
 backend:     node.js · express · laravel · fastapi · rest · microservices
 tools:       docker · github actions · railway · quickbooks api · git · ci/cd`,
 
-  languages: `albanian  — native
-english   — fluent`,
+  languages: `albanian  - native
+english   - fluent`,
 
   contact: `email:     gurigacaferi@outlook.com
 whatsapp:  +383 45 666 796   →  wa.me/38345666796
@@ -444,7 +444,7 @@ fatural-qbo-sync-4e7f         1/1     Running   1          14d
 fatural-auth-service-1a8c     1/1     Running   0          21d
 fatural-mobile-pairing-6d2b   1/1     Running   0          9d
 
-6/6 pods healthy — microservices, async messaging, zero manual restarts today.`,
+6/6 pods healthy. Microservices, async messaging, zero manual restarts today.`,
 
   spin: `Spin Version 6.5.2 -- 1 January 2022
 Depth-limited search, depth reached 9412, errors found: 0
@@ -455,57 +455,57 @@ State-vector 148 byte, depth reached 9412
 2742615 transitions (= stored+matched)
 hash factor: 41.3 (best if >=100)
 
-ltl safety   : at most one train in block AB or BC — no counterexample found
-ltl liveness : train entering AB eventually reaches BC — no counterexample found
+ltl safety   : at most one train in block AB or BC. No counterexample found
+ltl liveness : train entering AB eventually reaches BC. No counterexample found
 
 pan: elapsed time 0.42 seconds
-No errors found — block-signaling protocol verified safe and live.`
+No errors found. Block-signaling protocol verified safe and live.`
 };
 
-/* `cat <slug>.md` in Terminal — short brief per project, incl. private-access note. */
+/* `cat <slug>.md` in Terminal: short brief per project, incl. private-access note. */
 export const projectNotes = {
-  fatural: `fatural — ai invoice scanner + qbo integration
+  fatural: `fatural: ai invoice scanner + qbo integration
 microservices, async messaging, 2fa, ai/ocr → quickbooks ledger.
-source: private (client work) — email me for a walkthrough or access.`,
+source: private (client work). Email me for a walkthrough or access.`,
 
-  invent: `invent — zend → laravel migration
+  invent: `invent: zend → laravel migration
 security hardening, dark-mode rebuild from scratch, gdpr improvements, zero-downtime cutover.
-source: private (client work) — email me for a walkthrough or access.`,
+source: private (client work). Email me for a walkthrough or access.`,
 
-  "border-permits": `border-permits — passport ocr → ks/al/mne permit docs
+  "border-permits": `border-permits: passport ocr → ks/al/mne permit docs
 google form sync, claude ocr (+ tesseract fallback), streamlit dashboard, supabase staff workspace.
-source: private (bna internal / pii) — email me for a walkthrough or access.`,
+source: private (bna internal / pii). Email me for a walkthrough or access.`,
 
-  "sales-intelligence": `sales-intelligence — gmail → claude → weekly agent scorecards
+  "sales-intelligence": `sales-intelligence: gmail → claude → weekly agent scorecards
 apps script batches sales threads, classifies leads/sales, emails ranked conversion reports + sheets db.
-source: private (bna internal) — email me for a walkthrough or access.`,
+source: private (bna internal). Email me for a walkthrough or access.`,
 
-  "os-simulator": `os-simulator — educational os visualiser (processing/java)
+  "os-simulator": `os-simulator: educational os visualiser (processing/java)
 pcb management, fifo/round robin scheduling, memory partitioning, live stats.
 public: github.com/egrabanica/Operating-system`,
 
-  "misinformation-sim": `misinformation-sim — agent-based swarm evolution model
+  "misinformation-sim": `misinformation-sim: agent-based swarm evolution model
 boids flocking + genetic/game-theoretic/cultural co-evolution of belief.
 public: p5.js sketch (open from the Projects window)`,
 
-  internlink: `internlink — full-stack internship portal
+  internlink: `internlink: full-stack internship portal
 node · express · ejs · scss, docker/devcontainer, agile team build.
 public: github.com/aabazii/InternLink`,
 
-  "battlesnake-bot": `battlesnake-bot — competitive ai snake bot
+  "battlesnake-bot": `battlesnake-bot: competitive ai snake bot
 node/express service, jest tests, eslint, github actions ci/cd → railway.
 public: github.com/ggacaferi/software-development`,
 
-  "movie-data-analysis": `movie-data-analysis — jupyter + roi pipeline
+  "movie-data-analysis": `movie-data-analysis: jupyter + roi pipeline
 data cleaning, genre/decade splits, roi engineering, visualisation.
 public: github.com/ggacaferi/datascience`,
 
-  "railway-block-signaling": `railway-block-signaling — promela model, spin verification
+  "railway-block-signaling": `railway-block-signaling: promela model, spin verification
 victorian three-box block system, ltl safety + liveness proofs.
-source: private — email me for a walkthrough or access.`,
+source: private. Email me for a walkthrough or access.`,
 
-  "ccs2600-ait-portfolio": `ccs2600-ait-portfolio — ai techniques lab portfolio
-search, csps, knowledge representation, nlu/ml — 4-student team.
+  "ccs2600-ait-portfolio": `ccs2600-ait-portfolio: ai techniques lab portfolio
+search, csps, knowledge representation, nlu/ml. 4-student team.
 public: view the google doc (open from the Projects window)`
 };
 

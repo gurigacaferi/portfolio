@@ -115,7 +115,7 @@ function WifiConnectMenu({ onClose, openApp, triggerRef }) {
         Want to connect?
       </p>
       <p style={{ fontSize: 12.5, lineHeight: 1.5, color: "rgba(255,255,255,0.65)", marginBottom: 14 }}>
-        Connect with Guri — say hello, ask about a project, or just drop a note.
+        Connect with Guri. Say hello, ask about a project, or just drop a note.
       </p>
 
       <button

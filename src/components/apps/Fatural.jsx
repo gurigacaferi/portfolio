@@ -8,9 +8,9 @@ const SAMPLES = [
     number: "INV-20487",
     date: "12 Jun 2026",
     items: [
-      { desc: "Compute — production cluster", qty: 1, amount: 812.4 },
+      { desc: "Compute (production cluster)", qty: 1, amount: 812.4 },
       { desc: "Object storage (2.1 TB)", qty: 1, amount: 96.5 },
-      { desc: "Support plan — Business", qty: 1, amount: 149.0 }
+      { desc: "Support plan (Business)", qty: 1, amount: 149.0 }
     ]
   },
   {
@@ -35,7 +35,7 @@ export default function Fatural() {
   const [sampleIdx, setSampleIdx] = useState(0);
   const [stage, setStage] = useState("idle"); // idle | scanning | review | synced
   const sample = SAMPLES[sampleIdx];
-  const accessMailto = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Fatural")}&body=${encodeURIComponent("Hi Guri,\n\nI just tried the Fatural demo — could you walk me through the real thing?\n\n")}`;
+  const accessMailto = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Fatural")}&body=${encodeURIComponent("Hi Guri,\n\nI just tried the Fatural demo. Could you walk me through the real thing?\n\n")}`;
 
   const scan = () => {
     setStage("scanning");
@@ -60,7 +60,7 @@ export default function Fatural() {
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
           <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981" }} />
           <h1 style={{ fontSize: 17, fontWeight: 700, color: "var(--mac-text)", letterSpacing: "-0.3px" }}>
-            Fatural — Live Demo
+            Fatural: Live Demo
           </h1>
         </div>
         <p style={{ fontSize: 12, color: "var(--mac-text-2)", lineHeight: 1.6 }}>
@@ -90,7 +90,7 @@ export default function Fatural() {
               Try a sample invoice
             </p>
             <p style={{ fontSize: 12, color: "var(--mac-text-2)" }}>
-              Click to simulate scanning &ldquo;{sample.vendor}&rdquo; — {sample.number}
+              Click to simulate scanning &ldquo;{sample.vendor}&rdquo; ({sample.number})
             </p>
           </motion.div>
         )}
@@ -188,7 +188,7 @@ export default function Fatural() {
               Synced to QuickBooks Online
             </p>
             <p style={{ fontSize: 12, color: "var(--mac-text-2)", marginBottom: 14 }}>
-              {sample.vendor} · {money(total(sample))} landed in the client&rsquo;s ledger — zero manual re-entry.
+              {sample.vendor} · {money(total(sample))} landed in the client&rsquo;s ledger with zero manual re-entry.
             </p>
             <button className="mac-btn secondary" style={{ fontSize: 12.5 }} onClick={tryAnother}>
               Try Another Sample
@@ -203,7 +203,7 @@ export default function Fatural() {
         display: "flex", flexDirection: "column", gap: 8
       }}>
         <p style={{ fontSize: 11.5, color: "var(--mac-text-2)", lineHeight: 1.6, margin: 0 }}>
-          This is a simplified simulation — the real Fatural is a microservices app with async messaging, 2FA, and a mobile companion app. Source is private (client work).
+          This is a simplified simulation. The real Fatural is a microservices app with async messaging, 2FA, and a mobile companion app. Source is private (client work).
         </p>
         <a href={accessMailto} className="mac-btn" style={{ alignSelf: "flex-start", fontSize: 12, textDecoration: "none", background: "#10b981" }}>
           Request Access →

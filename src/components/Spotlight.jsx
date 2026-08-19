@@ -8,20 +8,20 @@ const QUICK_ACTIONS = [
   {
     id: "action-hire",
     title: "Email Guri",
-    subtitle: "Hiring? Send a message — I reply fast",
+    subtitle: "Hiring? Send a message. I reply fast",
     icon: "mail",
     action: () => { window.location.href = `mailto:${user.email}`; }
   },
   {
     id: "action-access-fatural",
-    title: "Request access — Fatural",
+    title: "Request access: Fatural",
     subtitle: "Private repo, available on request",
     icon: "mail",
     action: () => { window.location.href = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Fatural")}`; }
   },
   {
     id: "action-access-invent",
-    title: "Request access — Invent",
+    title: "Request access: Invent",
     subtitle: "Private repo, available on request",
     icon: "mail",
     action: () => { window.location.href = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Invent")}`; }
@@ -31,7 +31,7 @@ const QUICK_ACTIONS = [
 const PROJECT_ENTRIES = projects.map(p => ({
   id: "projects",
   title: p.title,
-  subtitle: `Project — ${p.subtitle}`,
+  subtitle: `Project: ${p.subtitle}`,
   icon: "projects"
 }));
 

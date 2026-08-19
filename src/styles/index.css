@@ -44,7 +44,7 @@ html, body, #root {
   min-height: 100dvh;
   height: 100%;
   overflow: hidden;
-  /* Always dark base — prevents white flashes between React / AnimatePresence crossfades */
+  /* Always dark base: prevents white flashes between React / AnimatePresence crossfades */
   background-color: #000000;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
                "Helvetica Neue", Arial, sans-serif;
@@ -563,7 +563,7 @@ textarea {
 .mac-boot-progress-fill {
   height: 100%;
   border-radius: 2px;
-  /* Muted fill — avoids a bright white bar sweeping across dark (photosensitivity) */
+  /* Muted fill: avoids a bright white bar sweeping across dark (photosensitivity) */
   background: rgba(120, 125, 140, 0.75);
 }
 

@@ -28,7 +28,7 @@ function WindowContentFallback() {
 const APP_CONFIG = [
   {
     id: "about",
-    title: "About — Guri Gacaferi",
+    title: "About: Guri Gacaferi",
     Component: AboutMe,
     defaultSize: { width: 760, height: 520 },
     defaultPosition: { x: 40, y: 44 },
@@ -46,7 +46,7 @@ const APP_CONFIG = [
   },
   {
     id: "terminal",
-    title: "Terminal — zsh",
+    title: "Terminal: zsh",
     Component: Terminal,
     defaultSize: { width: 640, height: 400 },
     defaultPosition: { x: 220, y: 100 },
@@ -55,7 +55,7 @@ const APP_CONFIG = [
   },
   {
     id: "code",
-    title: "Code — Fix the Bug",
+    title: "Code: Fix the Bug",
     Component: PairProgram,
     defaultSize: { width: 760, height: 560 },
     defaultPosition: { x: 150, y: 56 },
@@ -64,7 +64,7 @@ const APP_CONFIG = [
   },
   {
     id: "fatural",
-    title: "Fatural — Live Demo",
+    title: "Fatural: Live Demo",
     Component: Fatural,
     defaultSize: { width: 640, height: 540 },
     defaultPosition: { x: 190, y: 84 },
@@ -82,7 +82,7 @@ const APP_CONFIG = [
   },
   {
     id: "resume",
-    title: "Resume — Guri Gacaferi",
+    title: "Resume: Guri Gacaferi",
     Component: Resume,
     defaultSize: { width: 700, height: 540 },
     defaultPosition: { x: 160, y: 84 },
@@ -91,7 +91,7 @@ const APP_CONFIG = [
   },
   {
     id: "contact",
-    title: "Mail — Contact Me",
+    title: "Mail: Contact Me",
     Component: Contact,
     defaultSize: { width: 560, height: 500 },
     defaultPosition: { x: 240, y: 80 },
@@ -104,7 +104,7 @@ function DesktopHero() {
   return (
     <div className="desktop-hero" aria-hidden="true">
       <span className="desktop-hero-name">{user.name}</span>
-      <span className="desktop-hero-role">{user.title} — {user.subtitle.split(" · ")[0]}</span>
+      <span className="desktop-hero-role">{user.title}: {user.subtitle.split(" · ")[0]}</span>
     </div>
   );
 }
@@ -139,7 +139,7 @@ export default function Desktop() {
       {/* Top bar */}
       <TopBar />
 
-      {/* App windows — lazy chunks so react-pdf etc. never load until a window opens (fixes Safari / iOS) */}
+      {/* App windows: lazy chunks so react-pdf etc. never load until a window opens (fixes Safari / iOS) */}
       {APP_CONFIG.map((app) => {
         const C = app.Component;
         return (

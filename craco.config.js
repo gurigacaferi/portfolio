@@ -7,7 +7,7 @@ module.exports = {
       ]
     }
   },
-  // Do not add babel.presets here — react-scripts already uses babel-preset-react-app.
+  // Do not add babel.presets here; react-scripts already uses babel-preset-react-app.
   // Extra preset-env + preset-react merge on top and can make dev compiles extremely slow.
   webpack: {
     configure: (webpackConfig) => {

@@ -4,7 +4,7 @@ import { useDesktop } from "../context/DesktopContext";
 import { useKonamiCode } from "../hooks/useKonamiCode";
 
 /**
- * "Break the desktop" easter egg — triggered by the Konami code (anywhere) or
+ * "Break the desktop" easter egg. Triggered by the Konami code (anywhere) or
  * `sudo rm -rf /` in Terminal (which dispatches a `guri:glitch` window event).
  * Sequence: shake the desktop -> BSOD parody -> restore + open Resume + toast.
  */
@@ -90,7 +90,7 @@ export default function GlitchOverlay() {
             transition={{ duration: reduceMotion ? 0.05 : 0.3 }}
           >
             <span aria-hidden="true">🙂</span>
-            Nice try — here&rsquo;s my resume.
+            Nice try. Here&rsquo;s my resume.
           </motion.div>
         )}
       </AnimatePresence>

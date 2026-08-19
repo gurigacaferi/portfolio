@@ -270,7 +270,7 @@ export default function Resume() {
         <motion.div {...fade(0.04)} style={{ marginBottom: 24 }}>
           <Rule title="Summary" />
           <p style={{ fontSize: 13, color: "var(--mac-text-2)", lineHeight: 1.78 }}>
-            {user.bio} I thrive at the intersection of engineering and problem-solving — whether
+            {user.bio} I thrive at the intersection of engineering and problem-solving, whether
             modernising legacy systems, building AI-integrated tooling, or helping peers grasp
             programming fundamentals.
           </p>

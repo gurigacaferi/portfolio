@@ -25,7 +25,7 @@ export default function TimeMachine() {
           Time Machine
         </h1>
         <p style={{ fontSize: 12.5, color: "var(--mac-text-2)", lineHeight: 1.6 }}>
-          Drag the slider to travel through my journey — About and Projects change to match.
+          Drag the slider to travel through my journey. About and Projects change to match.
         </p>
       </div>
 

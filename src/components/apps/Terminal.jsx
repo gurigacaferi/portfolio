@@ -20,7 +20,7 @@ const WELCOME = `Last login: ${new Date().toLocaleDateString("en-US", { weekday:
 Type 'help' for available commands. Try 'deploy fatural', or 'open projects'.
 `;
 
-/* Animated "green checks" CI log for `deploy fatural` — each line lands with its own delay. */
+/* Animated "green checks" CI log for `deploy fatural`. Each line lands with its own delay. */
 const CI_SEQUENCE = [
   { text: "Running CI pipeline for fatural…", delay: 150 },
   { text: "  ✓ lint             (1.2s)", delay: 380 },
@@ -32,7 +32,7 @@ const CI_SEQUENCE = [
   { text: "  ✓ ocr-worker        → healthy", delay: 220 },
   { text: "  ✓ invoice-service   → healthy", delay: 220 },
   { text: "  ✓ qbo-sync          → healthy", delay: 260 },
-  { text: "✓ Deployed fatural to production — 0 downtime, 6/6 services healthy.", delay: 320 }
+  { text: "✓ Deployed fatural to production. 0 downtime, 6/6 services healthy.", delay: 320 }
 ];
 
 const RM_RF_PATTERN = /^(sudo\s+)?rm\s+-rf\s+\/\s*$/;

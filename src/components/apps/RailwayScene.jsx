@@ -4,7 +4,7 @@ import { useReducedMotion } from "framer-motion";
 
 /**
  * Interactive vignette of the Victorian three-box block system:
- * Blocks AB and BC — at most one train per block (LTL safety).
+ * Blocks AB and BC: at most one train per block (LTL safety).
  * Visitor can dispatch a train; signals turn green only for a clear next block.
  */
 
@@ -225,7 +225,7 @@ function RailwayWorld({ runningRef, progressRef, aspectRef, onPhase, reduceMotio
 }
 
 const PHASE_COPY = {
-  idle: "Idle — block AB and BC clear",
+  idle: "Idle: block AB and BC clear",
   ab: "Occupying AB · BC reserved clear · at most one train",
   bc: "Hand-off complete · occupying BC · AB released",
   done: "Train exited C · protocol reset · no counterexample",

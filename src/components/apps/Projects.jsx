@@ -9,7 +9,7 @@ function TimeBanner({ year, onReset }) {
   if (year === PRESENT_YEAR) return null;
   return (
     <div className="time-banner" style={{ margin: "12px 18px 0" }}>
-      <span>🕒 Viewing {year} — only what shipped by then is shown.</span>
+      <span>🕒 Viewing {year}. Only what shipped by then is shown.</span>
       <button type="button" onClick={onReset}>Return to present →</button>
     </div>
   );
@@ -322,7 +322,7 @@ function ProjectDetail({ project, onBack }) {
             <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
               <LockIcon color={project.color} />
               <p style={{ fontSize: 12.5, color: "var(--mac-text-2)", lineHeight: 1.65, margin: 0 }}>
-                Private codebase — built for a client / production use. I&apos;m glad to walk through the architecture or grant read access.
+                Private codebase, built for a client / production use. I&apos;m glad to walk through the architecture or grant read access.
               </p>
             </div>
             <a
@@ -390,7 +390,7 @@ export default function Projects() {
               {filtered.length === 0 ? (
                 <div style={{ padding: "16px 18px" }}>
                   <p style={{ fontSize: 13, color: "var(--mac-text-2)", lineHeight: 1.7 }}>
-                    Nothing shipped yet in {timeMachineYear} — that&rsquo;s next. Slide the Time Machine forward to watch it happen.
+                    Nothing shipped yet in {timeMachineYear}. That&rsquo;s next. Slide the Time Machine forward to watch it happen.
                   </p>
                 </div>
               ) : (

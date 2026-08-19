@@ -85,6 +85,28 @@ export const projects = [
     outcome: "A safer, faster inventory system the client's own team could maintain — migrated with zero data loss and zero downtime."
   },
   {
+    id: 10,
+    title: "Border Permit Application Automation",
+    subtitle: "Passport OCR · Multi-Country Permit Pipeline",
+    description: "An internal Streamlit tool for Balkan Natural Adventure that automates Kosovo, Albania, and Montenegro cross-border permit requests for hiking groups. Clients register via a Google Form (passport photo + selected border crossings); staff sync responses into a dashboard, OCR passport details with Claude (Tesseract MRZ fallback), review the group, and generate ready-to-download country-specific .docx permits. Twin deployments cover partner groups and internal BN booking codes, with shared Supabase storage and Google OIDC staff login.",
+    highlights: [
+      "End-to-end intake: Google Form → Sheets/Drive sync → passport OCR → staff review → filled KS/AL/MNE Word permits",
+      "Crossing planner maps fixed border gates (Doberdol/Milishevc, Kuqishte/Babino Polje, Theth/Vusanje) to the exact permits and entry/exit fields each template needs",
+      "Claude Sonnet OCR with printed-field + MRZ cross-check; automatic local Tesseract MRZ fallback when the API is unavailable",
+      "Dual Streamlit deployments (partner vs BNA office) with isolated forms, Sheets, sync locks, and BN-code naming for internal groups",
+      "Shared Supabase-backed workspace for multi-staff use, plus Google OIDC login restricted to @bnadventure.com",
+      "Walk-in path for clients without a Google account — same OCR and document pipeline without the form"
+    ],
+    tags: ["Python", "Streamlit", "Claude OCR", "Google APIs", "Supabase", "python-docx", "Automation"],
+    color: "#0284c7",
+    year: "2026",
+    solo: true,
+    link: null,
+    github: null,
+    featured: true,
+    outcome: "Staff go from a passport photo and form answers to correctly filled KS/AL/MNE permit .docx files — no hand-typing traveler rows for every hiking group."
+  },
+  {
     id: 3,
     title: "OS Simulator",
     subtitle: "Educational Operating System Visualiser",
@@ -103,7 +125,7 @@ export const projects = [
     solo: false,
     link: null,
     github: "https://github.com/egrabanica/Operating-system",
-    featured: true,
+    featured: false,
     outcome: "Adopted as a visual teaching aid for explaining CPU scheduling and memory allocation step by step."
   },
   {
@@ -195,6 +217,28 @@ export const projects = [
     featured: false,
     category: "coursework",
     outcome: "A cleaned, ROI-labelled dataset ready for genre and decade profitability analysis."
+  },
+  {
+    id: 11,
+    title: "Sales Intelligence Reporter",
+    subtitle: "Gmail → Claude → Weekly Agent Scorecards",
+    description: "A Google Apps Script pipeline for Balkan Natural Adventure that turns a week of internal sales email into per-agent performance reports. It searches Gmail for staff↔client threads, attributes each conversation to the owning agent, batches threads through Claude Sonnet for lead/sale classification, and emails a ranked weekly scorecard — booked clients, pending/lost reasons, conversion rate, communication style, and action items — while keeping an all-time lead/sale thread database in Google Sheets.",
+    highlights: [
+      "Gmail search scoped to @bnadventure.com traffic for the previous full week, with shared inbox addresses filtered out of agent attribution",
+      "Claude Sonnet classifies each thread as sale vs pending/lost using payment-signal rules (deposit paid, transfer confirmed, etc.) and returns structured JSON only",
+      "GAS-side math derives leads, sales, and conversion rate from thread ID sets — preventing AI double-counting across agents and batches",
+      "Checkpoint + auto-resume across Apps Script’s ~30-minute runtime limit so large weeks finish without manual restarts",
+      "Batched Anthropic calls with rate-limit backoff; all-time lead/sale IDs persisted in a dedicated Google Sheet “database”",
+      "Final MailApp report ranks agents by sales and includes booked/pending detail plus a link to the cumulative sheet"
+    ],
+    tags: ["Google Apps Script", "Gmail API", "Claude", "Sales Analytics", "Google Sheets", "Automation"],
+    color: "#d97706",
+    year: "2025",
+    solo: true,
+    link: null,
+    github: null,
+    featured: false,
+    outcome: "Management gets a weekly email scorecard of every agent’s leads, bookings, and conversion rate — pulled straight from real sales threads, not spreadsheets filled by hand."
   },
   {
     id: 8,
@@ -295,8 +339,8 @@ export const timeline = {
   2022: "Started at Balkan Natural Adventure, automating bookkeeping — my first taste of shipping real tools for real users.",
   2023: "Began my BSc in Artificial Intelligence & Data Science at the University of York Europe Campus.",
   2024: "Became a Teaching Assistant for Intro to OOP, and shipped the OS Simulator and Battlesnake Bot — first real CI/CD and systems work.",
-  2025: "Interned as a Full-Stack Developer at Dynamic Spheres, then built Fatural and led Invent's migration — my most production-grade year yet.",
-  2026: "Graduating from the University of York — wrapping up the BSc in AI & Data Science."
+  2025: "Interned as a Full-Stack Developer at Dynamic Spheres, built Fatural and Invent, and shipped Sales Intelligence Reporter for BNA — my most production-grade year yet.",
+  2026: "Shipped Border Permit Application Automation for BNA, and graduating from the University of York — wrapping up the BSc in AI & Data Science."
 };
 
 export const skills = {
@@ -335,6 +379,8 @@ location: prishtina, kosovo`,
 
   ls: `drwxr-xr-x  fatural/              (ai invoice scanner + qbo integration)
 drwxr-xr-x  invent/               (zend → laravel migration)
+drwxr-xr-x  border-permits/       (passport ocr → ks/al/mne permit docs)
+drwxr-xr-x  sales-intelligence/  (gmail → claude → weekly agent scorecards)
 drwxr-xr-x  os-simulator/         (educational os visualiser, processing/java)
 drwxr-xr-x  misinformation-sim/   (agent-based swarm evolution model)
 drwxr-xr-x  internlink/           (node · express · ejs internship portal)
@@ -353,7 +399,7 @@ drwxr-xr-x  ccs2600-ait-portfolio/   (ai techniques · labs · spring 2025)`,
   misinformation-sim  p5.js web editor sketch
   ccs2600-ait/        google doc lab portfolio
 
-  private / local only: fatural, invent, railway-block-signaling`,
+  private / local only: fatural, invent, border-permits, sales-intelligence, railway-block-signaling`,
 
   education: `bsc artificial intelligence & data science
   university of york europe campus
@@ -425,6 +471,14 @@ source: private (client work) — email me for a walkthrough or access.`,
   invent: `invent — zend → laravel migration
 security hardening, dark-mode rebuild from scratch, gdpr improvements, zero-downtime cutover.
 source: private (client work) — email me for a walkthrough or access.`,
+
+  "border-permits": `border-permits — passport ocr → ks/al/mne permit docs
+google form sync, claude ocr (+ tesseract fallback), streamlit dashboard, supabase staff workspace.
+source: private (bna internal / pii) — email me for a walkthrough or access.`,
+
+  "sales-intelligence": `sales-intelligence — gmail → claude → weekly agent scorecards
+apps script batches sales threads, classifies leads/sales, emails ranked conversion reports + sheets db.
+source: private (bna internal) — email me for a walkthrough or access.`,
 
   "os-simulator": `os-simulator — educational os visualiser (processing/java)
 pcb management, fifo/round robin scheduling, memory partitioning, live stats.

@@ -193,7 +193,7 @@ export default function AboutMe() {
 
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 18 }}>
                     {[
-                      { label: "Projects Shipped", value: "9",  Icon: StatIconFolder   },
+                      { label: "Projects Shipped", value: "11", Icon: StatIconFolder   },
                       { label: "Years Coding",      value: "3+", Icon: StatIconCode     },
                       { label: "Real-World Roles",  value: String(visibleExperience.length), Icon: StatIconBuilding },
                       { label: "Graduating",        value: String(PRESENT_YEAR), Icon: StatIconCalendar }

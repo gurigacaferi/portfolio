@@ -64,6 +64,29 @@ export const projects = [
   },
   {
     id: 2,
+    title: "Hermes Pharma CRM",
+    subtitle: "Multi-Tenant B2B Sales Platform",
+    description: "A desktop-first B2B pharma sales CRM built solo, end to end, against a real prospective client's brief: omnichannel lead inbox, brand-partitioned rep workspaces, an 8-stage gated Kanban pipeline, a 45/90-day lead-redistribution engine with day-35/75 AI warnings, a strict 72-hour retroactive-meeting lock, presentation logging with manager + AI scoring, scheduled Gmail SMTP reporting, and an immutable, DB-enforced audit trail.",
+    highlights: [
+      "Next.js 15 (App Router, React 19) frontend with design tokens ported 1:1 from an exported design system; Express 5 + TypeScript API split into ~20 modular services (auth, leads, inbox, brands, presentations, scheduling, redistribution, analytics, integrations, audit, rules, reports…)",
+      "PostgreSQL via Prisma with strict foreign keys and transactions, plus a database-level trigger that makes the audit log genuinely immutable (rejects UPDATE/DELETE, not just app-level convention)",
+      "JWT access + rotating refresh tokens, httpOnly cookies, bcrypt, and RBAC + brand-scope middleware enforcing per-workspace multi-tenancy at the query layer, not just the UI",
+      "node-cron lifecycle engine drives server-authoritative stage gates, the 45/90-day redistribution rules with day-35/75 AI warnings, and a 72-hour anti-backdating lock on logged meetings",
+      "Real external integrations: Meta webhooks for WhatsApp/Instagram/Messenger, two-way Google Calendar OAuth2 sync, an HMAC-signed inbound sales-order webhook, and Gmail SMTP reporting with an offline .eml fallback",
+      "Multi-provider AI worker (Gemini via Vertex AI → Claude → deterministic local heuristics) for lead scoring, coaching tips, and re-engagement drafts — always advisory, never auto-applied without manager approval",
+      "30/30 automated verification suite covering RBAC boundaries, workspace isolation, stage gates, the 72-hour lock, and audit immutability"
+    ],
+    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Prisma", "OAuth2", "Multi-Tenant", "AI"],
+    color: "#6366f1",
+    year: "2026",
+    solo: true,
+    link: null,
+    github: null,
+    featured: true,
+    outcome: "A production-grade multi-tenant CRM with real Meta/Google integrations and a 30/30 passing verification suite, built solo end-to-end for a live prospective client."
+  },
+  {
+    id: 12,
     title: "Invent",
     subtitle: "Legacy System Modernisation",
     description: "Migrated an existing inventory management system from a legacy Zend Framework PHP codebase to a modern Laravel stack with updated PHP, significantly hardened security, a fully redesigned UI with dark mode, CSV import/export, and GDPR compliance improvements. The result was a faster, more maintainable, and far more pleasant product to use.",
@@ -76,12 +99,12 @@ export const projects = [
       "Zero-downtime migration strategy preserving all existing inventory and user data"
     ],
     tags: ["Laravel", "PHP", "MySQL", "GDPR", "UI/UX", "Dark Mode"],
-    color: "#6366f1",
+    color: "#8b5cf6",
     year: "2025",
     solo: false,
     link: null,
     github: null,
-    featured: true,
+    featured: false,
     outcome: "A safer, faster inventory system the client's own team could maintain, migrated with zero data loss and zero downtime."
   },
   {
@@ -340,7 +363,7 @@ export const timeline = {
   2023: "Began my BSc in Artificial Intelligence & Data Science at the University of York Europe Campus.",
   2024: "Became a Teaching Assistant for Intro to OOP, and shipped the OS Simulator and Battlesnake Bot. First real CI/CD and systems work.",
   2025: "Interned as a Full-Stack Developer at Dynamic Spheres, built Fatural and Invent, and shipped Sales Intelligence Reporter for BNA. My most production-grade year yet.",
-  2026: "Shipped Border Permit Application Automation for BNA, and graduating from the University of York while wrapping up the BSc in AI & Data Science."
+  2026: "Shipped Border Permit Application Automation for BNA, built the Hermes Pharma CRM solo end-to-end, and am graduating from the University of York while wrapping up the BSc in AI & Data Science."
 };
 
 export const skills = {
@@ -378,6 +401,7 @@ location: prishtina, kosovo`,
   clear           - clear terminal`,
 
   ls: `drwxr-xr-x  fatural/              (ai invoice scanner + qbo integration)
+drwxr-xr-x  hermes-crm/           (solo-built multi-tenant b2b pharma crm)
 drwxr-xr-x  invent/               (zend → laravel migration)
 drwxr-xr-x  border-permits/       (passport ocr → ks/al/mne permit docs)
 drwxr-xr-x  sales-intelligence/  (gmail → claude → weekly agent scorecards)
@@ -399,7 +423,7 @@ drwxr-xr-x  ccs2600-ait-portfolio/   (ai techniques · labs · spring 2025)`,
   misinformation-sim  p5.js web editor sketch
   ccs2600-ait/        google doc lab portfolio
 
-  private / local only: fatural, invent, border-permits, sales-intelligence, railway-block-signaling`,
+  private / local only: fatural, hermes-crm, invent, border-permits, sales-intelligence, railway-block-signaling`,
 
   education: `bsc artificial intelligence & data science
   university of york europe campus
@@ -466,6 +490,11 @@ No errors found. Block-signaling protocol verified safe and live.`
 export const projectNotes = {
   fatural: `fatural: ai invoice scanner + qbo integration
 microservices, async messaging, 2fa, ai/ocr → quickbooks ledger.
+source: private (client work). Email me for a walkthrough or access.`,
+
+  "hermes-crm": `hermes-crm: solo-built multi-tenant b2b pharma crm
+next.js 15 + express 5/ts, ~20 backend services, postgres/prisma, immutable audit trail.
+real meta/google integrations, ai worker (gemini → claude → heuristics), 30/30 tests passing.
 source: private (client work). Email me for a walkthrough or access.`,
 
   invent: `invent: zend → laravel migration

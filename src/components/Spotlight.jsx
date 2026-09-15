@@ -20,6 +20,13 @@ const QUICK_ACTIONS = [
     action: () => { window.location.href = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Fatural")}`; }
   },
   {
+    id: "action-access-hermes-crm",
+    title: "Request access: Hermes Pharma CRM",
+    subtitle: "Private repo, available on request",
+    icon: "mail",
+    action: () => { window.location.href = `mailto:${user.email}?subject=${encodeURIComponent("Access request: Hermes Pharma CRM")}`; }
+  },
+  {
     id: "action-access-invent",
     title: "Request access: Invent",
     subtitle: "Private repo, available on request",

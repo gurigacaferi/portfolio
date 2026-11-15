@@ -134,7 +134,7 @@ export const projects = [
     highlights: [
       "Live visual simulation of process scheduling using FIFO and Round Robin algorithms",
       "Process Control Block (PCB) management with process state transitions rendered in real time",
-      "Partition-based memory allocation with fragmentation visualisation",
+      "Partition-based memory allocation with external fragmentation and compaction visualisation",
       "Simulated hardware abstraction layer covering CPU, memory buses, and hardware timers",
       "Kernel/user mode separation with a request queue for system calls",
       "Live statistics panel tracking throughput, wait times, and memory utilisation"
@@ -146,6 +146,7 @@ export const projects = [
     link: null,
     github: "https://github.com/egrabanica/Operating-system",
     featured: false,
+    scene: "compaction",
     outcome: "Adopted as a visual teaching aid for explaining CPU scheduling and memory allocation step by step."
   },
   {

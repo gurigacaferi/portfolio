@@ -12,22 +12,22 @@ export const PRESENT_YEAR = 2026;
 export const user = {
   name: "Guri Gacaferi",
   title: "Software Engineer",
-  subtitle: "Full-stack & AI-assisted systems · BSc AI & Data Science, University of York (2026)",
-  email: "gurigacaferi@outlook.com",
+  subtitle: "Implementation Engineer at Quipu · First-Class BSc in AI & Data Science",
+  email: "gacaferiguri@gmail.com",
   github: "https://github.com/gurigacaferi",
-  linkedin: "https://www.linkedin.com/in/guri-gacaferi-54947a359/",
+  linkedin: "https://www.linkedin.com/in/guri-gacaferi/",
   whatsapp: "+38345666796",
   avatar: null,
-  bio: "I'm a software engineer who ships full-stack products end to end: microservice backends, third-party API integrations, and the UI people actually enjoy using. I've modernised legacy systems, built AI-assisted tooling, and automated real financial workflows for a live business. I care about systems that hold up in production, not just in a demo.",
+  bio: "I'm a software engineer with a First-Class BSc in AI & Data Science. I build and ship full-stack products with AI coding agents (Claude Code) every day: running parallel sub-agents, writing the specs, tests, and CI checks that verify their work, and catching their mistakes. I'm an Implementation Engineer on card authorization and authentication, with production systems built around secure auth, tenant isolation, audit trails, and CI/CD.",
   location: "Prishtina, Kosovo"
 };
 
 export const education = [
   {
     institution: "University of York Europe Campus",
-    degree: "BSc in Artificial Intelligence & Data Science",
+    degree: "BSc in AI & Data Science, First-Class Honours",
     period: "Oct 2023 – Jun 2026",
-    note: "Coursework spans machine learning, data systems, operating systems theory, and software engineering.",
+    note: "Thessaloniki, Greece. Coursework spans machine learning, data systems, operating systems theory, and software engineering.",
     startYear: 2023
   },
   {
@@ -65,25 +65,22 @@ export const projects = [
   {
     id: 2,
     title: "Hermes Pharma CRM",
-    subtitle: "Multi-Tenant B2B Sales Platform",
-    description: "A desktop-first B2B pharma sales CRM built solo, end to end, against a real prospective client's brief: omnichannel lead inbox, brand-partitioned rep workspaces, an 8-stage gated Kanban pipeline, a 45/90-day lead-redistribution engine with day-35/75 AI warnings, a strict 72-hour retroactive-meeting lock, presentation logging with manager + AI scoring, scheduled Gmail SMTP reporting, and an immutable, DB-enforced audit trail.",
+    subtitle: "Multi-role sales CRM, in production",
+    description: "A multi-role sales CRM I built and deployed to production on Cloud Run. It uses JWT auth with rotating refresh tokens, role and brand-scoped access, workspace-level tenant isolation, and an immutable database audit trail. CI/CD runs tests, migrations, and deploys, with ops workflows for status, logs, and rollback.",
     highlights: [
-      "Next.js 15 (App Router, React 19) frontend with design tokens ported 1:1 from an exported design system; Express 5 + TypeScript API split into ~20 modular services (auth, leads, inbox, brands, presentations, scheduling, redistribution, analytics, integrations, audit, rules, reports…)",
-      "PostgreSQL via Prisma with strict foreign keys and transactions, plus a database-level trigger that makes the audit log genuinely immutable (rejects UPDATE/DELETE, not just app-level convention)",
-      "JWT access + rotating refresh tokens, httpOnly cookies, bcrypt, and RBAC + brand-scope middleware enforcing per-workspace multi-tenancy at the query layer, not just the UI",
-      "node-cron lifecycle engine drives server-authoritative stage gates, the 45/90-day redistribution rules with day-35/75 AI warnings, and a 72-hour anti-backdating lock on logged meetings",
-      "Real external integrations: Meta webhooks for WhatsApp/Instagram/Messenger, two-way Google Calendar OAuth2 sync, an HMAC-signed inbound sales-order webhook, and Gmail SMTP reporting with an offline .eml fallback",
-      "Multi-provider AI worker (Gemini via Vertex AI → Claude → deterministic local heuristics) for lead scoring, coaching tips, and re-engagement drafts — always advisory, never auto-applied without manager approval",
-      "30/30 automated verification suite covering RBAC boundaries, workspace isolation, stage gates, the 72-hour lock, and audit immutability"
+      "Built and deployed a multi-role sales CRM to production: JWT auth with rotating refresh tokens, role and brand-scoped access, workspace-level tenant isolation, and an immutable database audit trail",
+      "CI/CD on GitHub Actions for tests, migrations, and deploy, plus ops workflows for status, logs, and rollback",
+      "Diagnosed real production incidents from logs (migration drift, connection pool exhaustion, slow polled endpoints) and wrote the lessons into the repo docs",
+      "Claude API worker for lead insights with a deterministic fallback, plus HMAC-signed webhooks and Google OAuth integrations"
     ],
-    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Prisma", "OAuth2", "Multi-Tenant", "AI"],
+    tags: ["Next.js", "Express", "TypeScript", "PostgreSQL", "Prisma", "Cloud Run", "GitHub Actions"],
     color: "#6366f1",
     year: "2026",
     solo: true,
     link: null,
     github: null,
     featured: true,
-    outcome: "A production-grade multi-tenant CRM with real Meta/Google integrations and a 30/30 passing verification suite, built solo end-to-end for a live prospective client."
+    outcome: "A multi-role sales CRM running in production, with tenant isolation, an immutable audit trail, and a CI/CD path that can roll a bad deploy back."
   },
   {
     id: 12,
@@ -315,45 +312,39 @@ export const projects = [
 
 export const workExperience = [
   {
-    company: "Balkan Natural Adventure",
-    role: "Finance automation technician",
-    period: "Jun 2022 – Feb 2026",
-    location: "Remote, Flexible",
+    company: "Quipu GmbH",
+    role: "Implementation Engineer",
+    period: "Oct 2026 – Present",
+    location: "Prishtina, Kosovo (Hybrid)",
     bullets: [
-      "Led the company's transition from Excel-based bookkeeping to QuickBooks Online, designing clear, scalable workflows for future bookkeepers.",
-      "Managed bills, invoices, and bank integrations end-to-end.",
-      "Built custom scripts and tools to automate repetitive financial processes, reducing manual workload and improving operational efficiency.",
-      "Leveraged AI to analyse staff performance data, delivering actionable insights to support management decision-making.",
-      "Trained staff in January 2026 on QuickBooks usage and completed a full handover by end of February 2026."
+      "Implement and maintain card lifecycle management for client integrations, covering issuing, activation, blocking, replacement, and expiry.",
+      "Work on card authorization and authentication flows, where security, correctness, and clear audit trails are required on every change."
     ],
-    tags: ["QuickBooks Online", "Automation", "Finance", "AI"],
+    tags: ["Card issuing", "Authorization", "Authentication", "Audit trails"],
+    startYear: 2026
+  },
+  {
+    company: "Balkan Natural Adventure",
+    role: "Finance Automation Technician",
+    period: "Jun 2022 – Feb 2026",
+    location: "Remote",
+    bullets: [
+      "Built and ran a Python tool (Streamlit, OCR and LLM extraction, Google Sheets and Drive APIs) that auto-generates cross-border permit documents for hiking groups, replacing manual form filling.",
+      "Led the move from Excel bookkeeping to QuickBooks Online with automation scripts and bank integrations, then trained staff and handed the process over by Feb 2026."
+    ],
+    tags: ["Python", "Streamlit", "QuickBooks Online", "OCR", "Automation"],
     startYear: 2022
   },
   {
     company: "Dynamic Spheres",
-    role: "Full-Stack Developer Intern",
+    role: "Full-stack Developer Intern",
     period: "Jul 2025 – Oct 2025",
-    location: "Kosovo",
-    bullets: [
-      "Worked on the DsMIS ERP module focused on leasing operations, determining lease definitions under Kosovar law and implementing depreciation calculations per accounting standards.",
-      "Contributed to an enterprise-grade PHP/Laravel codebase following structured development workflows.",
-      "Conducted independent research into legal and financial requirements to inform software design decisions."
-    ],
-    tags: ["Laravel", "PHP", "ERP", "Full-Stack"],
-    startYear: 2025
-  },
-  {
-    company: "University of York Europe Campus",
-    role: "Teaching Assistant, Intro to Object-Oriented Programming",
-    period: "Oct 2024 – Feb 2025",
     location: "Prishtina, Kosovo",
     bullets: [
-      "Assisted students with core OOP concepts during weekly in-class labs, providing hints and guiding problem-solving rather than giving away answers.",
-      "Delivered one-on-one tutoring sessions to students who needed dedicated support, adapting explanations to different learning styles.",
-      "Helped bridge the gap between lecture theory and practical coding exercises."
+      "Developed leasing and depreciation modules for the DsMIS ERP system in compliance with local law, working in an enterprise codebase."
     ],
-    tags: ["Java", "OOP", "Teaching", "Mentoring"],
-    startYear: 2024
+    tags: ["Laravel", "PHP", "ERP", "Full-stack"],
+    startYear: 2025
   }
 ];
 
@@ -361,16 +352,17 @@ export const workExperience = [
 export const timeline = {
   2022: "Started at Balkan Natural Adventure, automating bookkeeping. That was my first taste of shipping real tools for real users.",
   2023: "Began my BSc in Artificial Intelligence & Data Science at the University of York Europe Campus.",
-  2024: "Became a Teaching Assistant for Intro to OOP, and shipped the OS Simulator and Battlesnake Bot. First real CI/CD and systems work.",
-  2025: "Interned as a Full-Stack Developer at Dynamic Spheres, built Fatural and Invent, and shipped Sales Intelligence Reporter for BNA. My most production-grade year yet.",
-  2026: "Shipped Border Permit Application Automation for BNA, built the Hermes Pharma CRM solo end-to-end, and am graduating from the University of York while wrapping up the BSc in AI & Data Science."
+  2024: "Shipped the OS Simulator and Battlesnake Bot. First real CI/CD and systems work.",
+  2025: "Interned as a Full-stack Developer at Dynamic Spheres, built Fatural and Invent, and shipped Sales Intelligence Reporter for BNA. My most production-grade year yet.",
+  2026: "Joined Quipu GmbH as an Implementation Engineer on card authorization and authentication. Deployed the Hermes Pharma CRM to production, shipped Border Permit Application Automation for BNA, and graduated from the University of York with a First-Class BSc in AI & Data Science."
 };
 
 export const skills = {
-  languages: ["JavaScript", "TypeScript", "Python", "Java", "PHP", "SQL"],
-  frontend: ["React", "EJS", "SCSS / CSS", "Processing (Java)", "Tailwind CSS"],
-  backend: ["Node.js", "Express", "Laravel", "FastAPI", "REST APIs", "Microservices"],
-  tools: ["Docker", "GitHub Actions", "Railway", "QuickBooks API", "Git", "CI/CD"]
+  aiAgents: ["Claude Code", "Sub-agents", "CLAUDE.md / AGENTS.md", "Prompt & workflow design", "Claude API", "Verification & review gates"],
+  languages: ["Python", "TypeScript", "JavaScript", "SQL", "Java", "C#", "PHP"],
+  backend: ["FastAPI", "Node.js", "Express", "Laravel", "PostgreSQL", "Prisma", "REST APIs", "Docker", "Git"],
+  cloud: ["Google Cloud", "Cloud Run", "Container deployments", "Logging & rollbacks", "GitHub Actions", "CI/CD"],
+  security: ["JWT & 2FA", "Role-based access control", "Tenant isolation", "Audit trails", "GDPR"]
 };
 
 export const languages = [
@@ -380,8 +372,9 @@ export const languages = [
 
 export const terminalCommands = {
   whoami: `guri gacaferi
-role:     software engineer · full-stack & ai-assisted systems
-location: prishtina, kosovo`,
+role:     implementation engineer · card authorization & authentication
+location: prishtina, kosovo
+degree:   bsc ai & data science, first-class honours (york, 2026)`,
 
   help: `available commands:
   whoami          - who am i
@@ -401,7 +394,7 @@ location: prishtina, kosovo`,
   clear           - clear terminal`,
 
   ls: `drwxr-xr-x  fatural/              (ai invoice scanner + qbo integration)
-drwxr-xr-x  hermes-crm/           (solo-built multi-tenant b2b pharma crm)
+drwxr-xr-x  hermes-crm/           (production multi-role pharma crm · cloud run)
 drwxr-xr-x  invent/               (zend → laravel migration)
 drwxr-xr-x  border-permits/       (passport ocr → ks/al/mne permit docs)
 drwxr-xr-x  sales-intelligence/  (gmail → claude → weekly agent scorecards)
@@ -425,8 +418,8 @@ drwxr-xr-x  ccs2600-ait-portfolio/   (ai techniques · labs · spring 2025)`,
 
   private / local only: fatural, hermes-crm, invent, border-permits, sales-intelligence, railway-block-signaling`,
 
-  education: `bsc artificial intelligence & data science
-  university of york europe campus
+  education: `bsc ai & data science, first-class honours
+  university of york europe campus · thessaloniki
   oct 2023 – jun 2026
   ml · data systems · os theory · software engineering
 
@@ -435,30 +428,31 @@ high school diploma
   sep 2020 – jun 2023
   graduated with distinction`,
 
-  work: `finance automation technician @ balkan natural adventure
+  work: `implementation engineer @ quipu gmbh
+  oct 2026 – present · prishtina (hybrid)
+  card lifecycle · authorization & authentication · audit trails
+
+finance automation technician @ balkan natural adventure
   jun 2022 – feb 2026 · remote
-  excel → qbo · automation · ai insights · training · handover
+  streamlit permit tool · excel → qbo · training · handover
 
 full-stack developer intern @ dynamic spheres
-  jul 2025 – oct 2025 · kosovo
-  dsmis erp leasing · kosovar law · depreciation · laravel/php
+  jul 2025 – oct 2025 · prishtina
+  dsmis erp leasing & depreciation · laravel/php`,
 
-teaching assistant (intro to oop) @ uye campus
-  oct 2024 – feb 2025 · prishtina
-  labs · 1-on-1 tutoring · java`,
-
-  skills: `languages:   javascript · typescript · python · java · php · sql
-frontend:    react · ejs · scss/css · tailwind · processing (java)
-backend:     node.js · express · laravel · fastapi · rest · microservices
-tools:       docker · github actions · railway · quickbooks api · git · ci/cd`,
+  skills: `ai agents:  claude code · sub-agents · claude api · review gates
+languages:   python · typescript · javascript · sql · java · c# · php
+backend:     fastapi · node.js · express · laravel · postgres · prisma · docker
+cloud:       cloud run · github actions · logging · rollbacks · ci/cd
+security:    jwt & 2fa · rbac · tenant isolation · audit trails · gdpr`,
 
   languages: `albanian  - native
 english   - fluent`,
 
-  contact: `email:     gurigacaferi@outlook.com
+  contact: `email:     gacaferiguri@gmail.com
 whatsapp:  +383 45 666 796   →  wa.me/38345666796
 github:    github.com/gurigacaferi
-linkedin:  linkedin.com/in/guri-gacaferi-54947a359`,
+linkedin:  linkedin.com/in/guri-gacaferi`,
 
   kubectl: `NAME                          READY   STATUS    RESTARTS   AGE
 fatural-api-gateway-7f9d      1/1     Running   0          21d
@@ -492,9 +486,9 @@ export const projectNotes = {
 microservices, async messaging, 2fa, ai/ocr → quickbooks ledger.
 source: private (client work). Email me for a walkthrough or access.`,
 
-  "hermes-crm": `hermes-crm: solo-built multi-tenant b2b pharma crm
-next.js 15 + express 5/ts, ~20 backend services, postgres/prisma, immutable audit trail.
-real meta/google integrations, ai worker (gemini → claude → heuristics), 30/30 tests passing.
+  "hermes-crm": `hermes-crm: multi-role sales crm, deployed to cloud run
+next.js, express, typescript, postgres/prisma. jwt + rotating refresh tokens, brand-scoped access, tenant isolation, immutable audit trail.
+github actions ci/cd (tests, migrations, deploy) with status, logs, and rollback. claude api lead insights, hmac webhooks, google oauth.
 source: private (client work). Email me for a walkthrough or access.`,
 
   invent: `invent: zend → laravel migration

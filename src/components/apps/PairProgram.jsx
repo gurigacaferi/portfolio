@@ -14,11 +14,11 @@ function isSafeMove(x, y, boardSize) {
 const TESTS = [
   { desc: "rejects x at the right edge (out of bounds)", run: (fn) => fn(10, 5, 10) === false },
   { desc: "rejects y at the top edge (out of bounds)",   run: (fn) => fn(5, 10, 10) === false },
-  { desc: "rejects a negative coordinate",                run: (fn) => fn(-1, 3, 10) === false },
-  { desc: "accepts a move in the centre of the board",    run: (fn) => fn(5, 5, 10) === true }
+  { desc: "rejects a negative coordinate",               run: (fn) => fn(-1, 3, 10) === false },
+  { desc: "accepts a move in the centre of the board",   run: (fn) => fn(5, 5, 10) === true }
 ];
 
-const HINT = "A board of size N has valid coordinates 0 .. N-1. Somewhere a `<=` should be a `<`.";
+const HINT = "A board of size N has valid coordinates 0 .. N-1. Replace `<=` with `<` on the upper bounds.";
 
 function extractFn(code) {
   // eslint-disable-next-line no-new-func
@@ -49,30 +49,39 @@ export default function PairProgram() {
         setResults([{ desc: "Syntax / runtime error", pass: false, error: err.message }]);
       }
       setRunning(false);
-    }, 260);
+    }, 220);
   }, [code]);
 
   const allPass = results && results.every(r => r.pass);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", background: "#1e1e2e" }}>
-      {/* Fake VS Code tab bar */}
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", background: "#141519" }}>
+      {/* Editor tab bar */}
       <div style={{
-        display: "flex", alignItems: "center", gap: 0,
-        background: "#181825", borderBottom: "1px solid rgba(255,255,255,0.06)",
-        padding: "0 4px", flexShrink: 0
+        display: "flex",
+        alignItems: "center",
+        background: "#0f1014",
+        borderBottom: "1px solid rgba(255,255,255,0.07)",
+        padding: "0 6px",
+        flexShrink: 0
       }}>
         <div style={{
-          display: "flex", alignItems: "center", gap: 6,
-          padding: "8px 14px", fontSize: 12.5, color: "#cdd6f4",
-          background: "#1e1e2e", borderTop: "2px solid #7c3aed"
+          display: "flex",
+          alignItems: "center",
+          gap: 7,
+          padding: "8px 14px",
+          fontSize: 12,
+          fontFamily: "'JetBrains Mono', 'SF Mono', Menlo, monospace",
+          color: "#e4e4e7",
+          background: "#141519",
+          borderTop: "1.5px solid #e4e4e7"
         }}>
-          <span style={{ color: "#f9e2af" }}>●</span>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#a1a1aa" }} />
           snakeLogic.js
         </div>
         <div style={{ flex: 1 }} />
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", padding: "0 10px" }}>
-          Fix the bug. Tests run in the panel below
+        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", padding: "0 10px" }}>
+          Fix the off-by-one · Run the test suite below
         </span>
       </div>
 
@@ -85,8 +94,8 @@ export default function PairProgram() {
           onChange={(v) => { setCode(v ?? ""); setResults(null); }}
           theme="vs-dark"
           options={{
-            fontSize: 13,
-            fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace",
+            fontSize: 12.5,
+            fontFamily: "'JetBrains Mono', 'SF Mono', Menlo, monospace",
             minimap: { enabled: false },
             scrollBeyondLastLine: false,
             padding: { top: 14 },
@@ -98,30 +107,47 @@ export default function PairProgram() {
 
       {/* Action bar */}
       <div style={{
-        display: "flex", alignItems: "center", gap: 8,
-        padding: "10px 14px", background: "#181825",
-        borderTop: "1px solid rgba(255,255,255,0.06)", flexShrink: 0
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "10px 14px",
+        background: "#0f1014",
+        borderTop: "1px solid rgba(255,255,255,0.07)",
+        flexShrink: 0
       }}>
         <button
           type="button"
           onClick={runTests}
           disabled={running}
           style={{
-            appearance: "none", border: "none", borderRadius: 7,
-            padding: "7px 16px", fontSize: 12.5, fontWeight: 600, cursor: running ? "default" : "pointer",
-            color: "white",
-            background: running ? "rgba(124,58,237,0.5)" : "linear-gradient(180deg,#8b5cf6,#7c3aed)"
+            appearance: "none",
+            border: "none",
+            borderRadius: 6,
+            padding: "6px 14px",
+            fontSize: 12,
+            fontWeight: 600,
+            fontFamily: "inherit",
+            cursor: running ? "default" : "pointer",
+            color: "#09090b",
+            background: running ? "rgba(244,244,245,0.65)" : "#f4f4f5"
           }}
         >
-          {running ? "Running…" : "▶ Run Tests"}
+          {running ? "Running…" : "Run Tests"}
         </button>
         <button
           type="button"
           onClick={() => { setCode(STARTER_CODE); setResults(null); }}
           style={{
-            appearance: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 7,
-            padding: "7px 14px", fontSize: 12.5, fontWeight: 500, cursor: "pointer",
-            color: "rgba(255,255,255,0.75)", background: "transparent"
+            appearance: "none",
+            border: "1px solid rgba(255,255,255,0.14)",
+            borderRadius: 6,
+            padding: "6px 12px",
+            fontSize: 12,
+            fontWeight: 500,
+            fontFamily: "inherit",
+            cursor: "pointer",
+            color: "#d4d4d8",
+            background: "transparent"
           }}
         >
           Reset
@@ -130,12 +156,19 @@ export default function PairProgram() {
           type="button"
           onClick={() => setShowHint(h => !h)}
           style={{
-            appearance: "none", border: "none", borderRadius: 7,
-            padding: "7px 10px", fontSize: 12, fontWeight: 500, cursor: "pointer",
-            color: "rgba(255,255,255,0.5)", background: "transparent"
+            appearance: "none",
+            border: "none",
+            borderRadius: 6,
+            padding: "6px 10px",
+            fontSize: 12,
+            fontWeight: 500,
+            fontFamily: "inherit",
+            cursor: "pointer",
+            color: "#a1a1aa",
+            background: "transparent"
           }}
         >
-          {showHint ? "Hide hint" : "Need a hint?"}
+          {showHint ? "Hide hint" : "Hint"}
         </button>
       </div>
 
@@ -147,8 +180,8 @@ export default function PairProgram() {
             exit={{ opacity: 0, height: 0 }}
             style={{ overflow: "hidden", flexShrink: 0 }}
           >
-            <p style={{ margin: 0, padding: "8px 14px", fontSize: 12, color: "#f9e2af", background: "#181825" }}>
-              💡 {HINT}
+            <p style={{ margin: 0, padding: "8px 14px", fontSize: 12, color: "#d4d4d8", background: "#141519", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              Hint: {HINT}
             </p>
           </motion.div>
         )}
@@ -156,26 +189,30 @@ export default function PairProgram() {
 
       {/* Test panel */}
       <div style={{
-        maxHeight: 150, overflowY: "auto",
-        background: "#11111b", borderTop: "1px solid rgba(255,255,255,0.06)",
-        padding: "10px 14px", fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace",
-        fontSize: 12, flexShrink: 0
+        maxHeight: 150,
+        overflowY: "auto",
+        background: "#0b0c0f",
+        borderTop: "1px solid rgba(255,255,255,0.07)",
+        padding: "10px 14px",
+        fontFamily: "'JetBrains Mono', 'SF Mono', Menlo, monospace",
+        fontSize: 12,
+        flexShrink: 0
       }}>
         {!results && (
-          <p style={{ color: "rgba(255,255,255,0.35)", margin: 0 }}>Run the tests to see results here.</p>
+          <p style={{ color: "#71717a", margin: 0 }}>Test output will appear here.</p>
         )}
         {results && results.map((r, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 4, color: r.pass ? "#a6e3a1" : "#f38ba8" }}>
+          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 4, color: r.pass ? "#4ade80" : "#f87171" }}>
             <span>{r.pass ? "✓" : "✗"}</span>
-            <span style={{ color: r.pass ? "#a6e3a1" : "#f38ba8" }}>
+            <span>
               {r.desc}
-              {r.error && <span style={{ color: "rgba(255,255,255,0.4)" }}> ({r.error})</span>}
+              {r.error && <span style={{ color: "#71717a" }}> ({r.error})</span>}
             </span>
           </div>
         ))}
         {allPass && (
-          <p style={{ color: "#a6e3a1", fontWeight: 600, marginTop: 6, marginBottom: 0 }}>
-            All tests passing. Nice work. This is basically how I ship: write it, test it, ship it.
+          <p style={{ color: "#e4e4e7", fontWeight: 500, marginTop: 6, marginBottom: 0 }}>
+            4/4 passing.
           </p>
         )}
       </div>

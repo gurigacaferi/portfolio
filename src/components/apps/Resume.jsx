@@ -14,18 +14,8 @@ function Rule({ title }) {
   );
 }
 
-function Tag({ label, color }) {
-  return (
-    <span style={{
-      display: "inline-block", padding: "2px 8px", borderRadius: 4, margin: "2px 2px 2px 0",
-      fontSize: 10, fontWeight: 500,
-      background: color ? `${color}10` : "rgba(0,113,227,0.07)",
-      color: color || "var(--mac-accent)",
-      border: `1px solid ${color ? color + "26" : "rgba(0,113,227,0.15)"}`
-    }}>
-      {label}
-    </span>
-  );
+function Tag({ label }) {
+  return <span className="mac-tag">{label}</span>;
 }
 
 function fade(delay) {
@@ -136,17 +126,17 @@ function ResumePdfViewer() {
               alignItems: "center",
               gap: 6,
               fontSize: 12,
-              fontWeight: 600,
-              color: "var(--mac-accent)",
-              background: "rgba(0,113,227,0.08)",
-              border: "none",
+              fontWeight: 500,
+              color: "var(--mac-text)",
+              background: "var(--mac-surface-subtle)",
+              border: "1px solid var(--mac-border)",
               cursor: "pointer",
               fontFamily: "inherit",
-              padding: "6px 10px",
+              padding: "5px 10px",
               borderRadius: 6
             }}
           >
-            {isFullscreen ? <FiMinimize2 size={14} aria-hidden /> : <FiMaximize2 size={14} aria-hidden />}
+            {isFullscreen ? <FiMinimize2 size={13} aria-hidden /> : <FiMaximize2 size={13} aria-hidden />}
             {isFullscreen ? "Exit" : "Full screen"}
           </button>
           <a
@@ -154,15 +144,11 @@ function ResumePdfViewer() {
             download
             target="_blank"
             rel="noreferrer"
+            className="mac-btn"
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
               fontSize: 12,
-              fontWeight: 600,
-              color: "var(--mac-accent)",
               textDecoration: "none",
-              padding: "6px 10px",
+              padding: "5px 11px",
               borderRadius: 6
             }}
           >
@@ -322,7 +308,7 @@ export default function Resume() {
           <Rule title="Selected Projects" />
           {projects.slice(0, 4).map((p) => (
             <div key={p.id} style={{ marginBottom: 12, paddingLeft: 12, position: "relative" }}>
-              <div style={{ position: "absolute", left: 0, top: 6, width: 5, height: 5, borderRadius: "50%", background: p.color }} />
+              <div style={{ position: "absolute", left: 0, top: 6, width: 4, height: 4, borderRadius: "50%", background: "var(--mac-text-3)" }} />
               <div style={{ display: "flex", gap: 8, alignItems: "baseline", marginBottom: 2 }}>
                 <span style={{ fontSize: 13, fontWeight: 600, color: "var(--mac-text)" }}>{p.title}</span>
                 <span style={{ fontSize: 11, color: "var(--mac-text-3)" }}>{p.year}</span>

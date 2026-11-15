@@ -104,7 +104,7 @@ function DesktopHero() {
   return (
     <div className="desktop-hero" aria-hidden="true">
       <span className="desktop-hero-name">{user.name}</span>
-      <span className="desktop-hero-role">{user.title}: {user.subtitle.split(" · ")[0]}</span>
+      <span className="desktop-hero-role">{user.subtitle}</span>
     </div>
   );
 }
@@ -121,10 +121,10 @@ export default function Desktop() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Time Machine: the further back you travel, the more the wallpaper fades toward sepia.
+  // Time Machine: subtle dim when scrubbing earlier years.
   const pastFactor = Math.min(1, Math.max(0, (PRESENT_YEAR - timeMachineYear) / (PRESENT_YEAR - 2022)));
   const wallpaperFilter = pastFactor > 0
-    ? `sepia(${(pastFactor * 0.55).toFixed(2)}) saturate(${(1 - pastFactor * 0.3).toFixed(2)}) brightness(${(1 - pastFactor * 0.08).toFixed(2)})`
+    ? `brightness(${(1 - pastFactor * 0.12).toFixed(2)})`
     : "none";
 
   return (

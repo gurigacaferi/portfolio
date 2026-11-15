@@ -1,284 +1,150 @@
 import React from "react";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   All icons use the macOS squircle shape (rounded-rect with ~26% corner radius)
-   and layered gradients/shadows to match Big Sur / Sonoma visual language.
+   Graphite Studio icon suite — cohesive monochrome/slate squircles with
+   precision geometric vector glyphs. Uses percentage sizing so icons scale
+   cleanly across both the Dock and Spotlight without SVG ID collisions.
 ───────────────────────────────────────────────────────────────────────────── */
 
-const SQ = ({ children, size = 60 }) => (
-  <svg width={size} height={size} viewBox="0 0 60 60" style={{ display: "block" }}>
-    {children}
-  </svg>
-);
+function Shell({ children, light = false }) {
+  const fill = light ? "#f4f4f5" : "#1c1e24";
+  const border = light ? "rgba(9,9,11,0.12)" : "rgba(255,255,255,0.12)";
+  const topHighlight = light ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.06)";
 
-/* macOS Finder: classic blue face */
+  return (
+    <svg width="100%" height="100%" viewBox="0 0 60 60" fill="none" style={{ display: "block" }}>
+      <rect x="0.5" y="0.5" width="59" height="59" rx="13.5" fill={fill} stroke={border} strokeWidth="1" />
+      <path d="M14 1.2H46" stroke={topHighlight} strokeWidth="1" strokeLinecap="round" />
+      {children}
+    </svg>
+  );
+}
+
+/* About / Finder: clean split-pane workspace glyph */
 export function FinderIcon() {
   return (
-    <SQ>
-      <defs>
-        <linearGradient id="fi-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#63b4f6" />
-          <stop offset="100%" stopColor="#1b6fd8" />
-        </linearGradient>
-        <linearGradient id="fi-face-l" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#85cafd" />
-          <stop offset="100%" stopColor="#4facf5" />
-        </linearGradient>
-        <linearGradient id="fi-face-r" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#1b6fd8" />
-          <stop offset="100%" stopColor="#1456b0" />
-        </linearGradient>
-      </defs>
-      {/* Background squircle */}
-      <rect width="60" height="60" rx="13" fill="url(#fi-bg)" />
-      {/* Light sheen */}
-      <rect width="60" height="30" rx="13" fill="rgba(255,255,255,0.12)" />
-      <rect x="0" y="15" width="60" height="15" fill="rgba(255,255,255,0.06)" />
-      {/* Left face half */}
-      <ellipse cx="23" cy="31" rx="14" ry="17" fill="url(#fi-face-l)" />
-      {/* Right face half */}
-      <ellipse cx="37" cy="31" rx="14" ry="17" fill="url(#fi-face-r)" />
-      {/* Eyes */}
-      <ellipse cx="21" cy="26" rx="3" ry="3.5" fill="white" />
-      <ellipse cx="39" cy="26" rx="3" ry="3.5" fill="white" />
-      <circle cx="22" cy="27" r="1.6" fill="#1a3f80" />
-      <circle cx="40" cy="27" r="1.6" fill="#1a3f80" />
-      <circle cx="22.5" cy="26.3" r="0.7" fill="white" />
-      <circle cx="40.5" cy="26.3" r="0.7" fill="white" />
-      {/* Smile */}
-      <path d="M22 36 Q30 42 38 36" stroke="white" strokeWidth="2.2" fill="none" strokeLinecap="round" />
-      {/* Nose hint */}
-      <ellipse cx="30" cy="32" rx="1.5" ry="1" fill="rgba(0,0,0,0.15)" />
-    </SQ>
+    <Shell light>
+      <rect x="13" y="15" width="34" height="30" rx="5" fill="#ffffff" stroke="#18181b" strokeWidth="1.8" />
+      <line x1="24" y1="15" x2="24" y2="45" stroke="#18181b" strokeWidth="1.6" />
+      <line x1="16.5" y1="21" x2="20.5" y2="21" stroke="#71717a" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="16.5" y1="26" x2="20.5" y2="26" stroke="#71717a" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="16.5" y1="31" x2="20.5" y2="31" stroke="#a1a1aa" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="33.5" cy="25.5" r="3.5" stroke="#18181b" strokeWidth="1.7" />
+      <path d="M28.5 36.5c1-2.6 2.8-4 5-4s4 1.4 5 4" stroke="#18181b" strokeWidth="1.7" strokeLinecap="round" />
+    </Shell>
   );
 }
 
-/* macOS Terminal: black with green prompt */
-export function TerminalIcon() {
-  return (
-    <SQ>
-      <defs>
-        <linearGradient id="ti-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#3d3d3d" />
-          <stop offset="100%" stopColor="#1a1a1a" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#ti-bg)" />
-      {/* Screen inset */}
-      <rect x="5" y="5" width="50" height="50" rx="9" fill="#0d0d0d" opacity="0.7" />
-      {/* Prompt line */}
-      <text x="11" y="30" fontFamily="'SF Mono', 'Fira Code', monospace" fontSize="10" fill="#28c840" fontWeight="600">
-        ➜ ~ %
-      </text>
-      {/* Cursor blink block */}
-      <rect x="11" y="35" width="6" height="9" rx="1" fill="#28c840" opacity="0.9" />
-      {/* Code lines */}
-      <rect x="11" y="16" width="22" height="2" rx="1" fill="#28c840" opacity="0.5" />
-      <rect x="11" y="21" width="34" height="2" rx="1" fill="#28c840" opacity="0.3" />
-      {/* Bottom sheen */}
-      <rect x="0" y="50" width="60" height="10" rx="13" fill="rgba(255,255,255,0.03)" />
-    </SQ>
-  );
-}
-
-/* macOS Notes: yellow notepad */
-export function NotesIcon() {
-  return (
-    <SQ>
-      <defs>
-        <linearGradient id="ni-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#ffd426" />
-          <stop offset="100%" stopColor="#f5a800" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#ni-bg)" />
-      <rect width="60" height="28" rx="13" fill="rgba(255,255,255,0.14)" />
-      <rect x="0" y="13" width="60" height="15" fill="rgba(255,255,255,0.06)" />
-      {/* Paper */}
-      <rect x="9" y="10" width="42" height="42" rx="4" fill="#fffde8" />
-      {/* Ruled lines */}
-      <line x1="13" y1="20" x2="47" y2="20" stroke="#e8dfa0" strokeWidth="1.5" />
-      <line x1="13" y1="26" x2="47" y2="26" stroke="#e8dfa0" strokeWidth="1.5" />
-      <line x1="13" y1="32" x2="47" y2="32" stroke="#e8dfa0" strokeWidth="1.5" />
-      <line x1="13" y1="38" x2="47" y2="38" stroke="#e8dfa0" strokeWidth="1.5" />
-      <line x1="13" y1="44" x2="40" y2="44" stroke="#e8dfa0" strokeWidth="1.5" />
-      {/* Text simulation */}
-      <rect x="13" y="16" width="24" height="2.5" rx="1.2" fill="#c0a800" opacity="0.8" />
-      <rect x="13" y="22.5" width="32" height="2" rx="1" fill="#c0a800" opacity="0.4" />
-      <rect x="13" y="28.5" width="28" height="2" rx="1" fill="#c0a800" opacity="0.4" />
-      <rect x="13" y="34.5" width="30" height="2" rx="1" fill="#c0a800" opacity="0.4" />
-      {/* Left margin rule */}
-      <line x1="16" y1="10" x2="16" y2="52" stroke="#f0c840" strokeWidth="1.2" opacity="0.5" />
-    </SQ>
-  );
-}
-
-/* macOS Mail: blue envelope */
-export function MailIcon() {
-  return (
-    <SQ>
-      <defs>
-        <linearGradient id="mi-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4db3f8" />
-          <stop offset="100%" stopColor="#0071e3" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#mi-bg)" />
-      <rect width="60" height="30" rx="13" fill="rgba(255,255,255,0.1)" />
-      {/* Envelope body */}
-      <rect x="8" y="17" width="44" height="30" rx="4" fill="white" opacity="0.96" />
-      {/* Envelope flap fold */}
-      <path d="M8 17 L30 33 L52 17 Z" fill="#e8f4ff" />
-      {/* Envelope V crease */}
-      <path d="M8 17 L30 33 L52 17" stroke="#b8d8f8" strokeWidth="1" fill="none" />
-      {/* Bottom fold lines */}
-      <line x1="8" y1="47" x2="21" y2="35" stroke="#c0d8f0" strokeWidth="1" />
-      <line x1="52" y1="47" x2="39" y2="35" stroke="#c0d8f0" strokeWidth="1" />
-    </SQ>
-  );
-}
-
-/* Launchpad-style Projects icon */
+/* Projects: architectural 2x2 bento grid */
 export function ProjectsIcon() {
   return (
-    <SQ>
-      <defs>
-        <linearGradient id="pi-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#7e7e93" />
-          <stop offset="100%" stopColor="#3a3a4a" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#pi-bg)" />
-      {/* Grid of mini colorful icons */}
-      {[
-        { x: 9,  y: 9,  c1: "#ff6b6b", c2: "#ee5a24" },
-        { x: 24, y: 9,  c1: "#ffd32a", c2: "#f8a50a" },
-        { x: 39, y: 9,  c1: "#0be881", c2: "#05c46b" },
-        { x: 9,  y: 24, c1: "#0fbcf9", c2: "#0071e3" },
-        { x: 24, y: 24, c1: "#d980fa", c2: "#9980fa" },
-        { x: 39, y: 24, c1: "#ff5e57", c2: "#d63031" },
-        { x: 9,  y: 39, c1: "#f9ca24", c2: "#f0932b" },
-        { x: 24, y: 39, c1: "#6ab04c", c2: "#1e3799" },
-        { x: 39, y: 39, c1: "#c7ecee", c2: "#74b9ff" },
-      ].map((d, i) => (
-        <React.Fragment key={i}>
-          <defs>
-            <linearGradient id={`pg${i}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={d.c1} />
-              <stop offset="100%" stopColor={d.c2} />
-            </linearGradient>
-          </defs>
-          <rect x={d.x} y={d.y} width="12" height="12" rx="3" fill={`url(#pg${i})`} />
-        </React.Fragment>
-      ))}
-    </SQ>
+    <Shell>
+      <rect x="14" y="14" width="14" height="14" rx="3.2" fill="#f4f4f5" />
+      <rect x="32" y="14" width="14" height="14" rx="3.2" stroke="#a1a1aa" strokeWidth="1.8" />
+      <rect x="14" y="32" width="14" height="14" rx="3.2" stroke="#a1a1aa" strokeWidth="1.8" />
+      <rect x="32" y="32" width="14" height="14" rx="3.2" fill="#52525b" />
+    </Shell>
   );
 }
 
-/* Pair-programming: code editor squircle with angle-bracket glyph */
+/* Terminal: crisp prompt chevron + underscore */
+export function TerminalIcon() {
+  return (
+    <Shell>
+      <rect x="10" y="12" width="40" height="36" rx="6" fill="#111216" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+      <path d="M18 24L24.5 30L18 36" stroke="#f4f4f5" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="28.5" y1="36" x2="38.5" y2="36" stroke="#71717a" strokeWidth="2.2" strokeLinecap="round" />
+    </Shell>
+  );
+}
+
+/* Code: clean angle brackets + slash */
 export function CodeIcon() {
   return (
-    <SQ>
-      <defs>
-        <linearGradient id="ci-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#3b6fe0" />
-          <stop offset="100%" stopColor="#1a2f6b" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#ci-bg)" />
-      <rect width="60" height="28" rx="13" fill="rgba(255,255,255,0.1)" />
-      {/* editor pane */}
-      <rect x="8" y="12" width="44" height="36" rx="5" fill="rgba(10,14,30,0.55)" />
-      {/* sidebar */}
-      <rect x="8" y="12" width="10" height="36" rx="5" fill="rgba(255,255,255,0.08)" />
-      <rect x="22" y="19" width="20" height="2.4" rx="1.2" fill="#8ab4ff" opacity="0.9" />
-      <rect x="22" y="25" width="26" height="2.4" rx="1.2" fill="#ffffff" opacity="0.55" />
-      <rect x="22" y="31" width="15" height="2.4" rx="1.2" fill="#7ee787" opacity="0.85" />
-      {/* angle brackets glyph */}
-      <path d="M25 39 L20 43.5 L25 48" stroke="white" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M35 39 L40 43.5 L35 48" stroke="white" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </SQ>
+    <Shell>
+      <path d="M23 22L15 30L23 38" stroke="#f4f4f5" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M37 22L45 30L37 38" stroke="#f4f4f5" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="32.5" y1="20" x2="27.5" y2="40" stroke="#71717a" strokeWidth="2" strokeLinecap="round" />
+    </Shell>
   );
 }
 
-/* Fatural demo: receipt/scan glyph on the project's brand green */
+/* Fatural: document + scan brackets */
 export function FaturalIcon() {
   return (
-    <SQ>
-      <defs>
-        <linearGradient id="fa-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#34d399" />
-          <stop offset="100%" stopColor="#0d9268" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#fa-bg)" />
-      <rect width="60" height="28" rx="13" fill="rgba(255,255,255,0.12)" />
-      {/* receipt */}
-      <path d="M17 8 h26 v40 l-4-3 -4 3 -4-3 -4 3 -4-3 -4 3 -4-3 -4 3 Z" fill="#fdfdfb" opacity="0.96" />
-      <line x1="22" y1="18" x2="39" y2="18" stroke="#bfe8cf" strokeWidth="1.6" />
-      <line x1="22" y1="24" x2="39" y2="24" stroke="#bfe8cf" strokeWidth="1.6" />
-      <line x1="22" y1="30" x2="34" y2="30" stroke="#bfe8cf" strokeWidth="1.6" />
-      {/* scan line */}
-      <rect x="15" y="34" width="30" height="3" rx="1.5" fill="#0d9268" opacity="0.85" />
-    </SQ>
+    <Shell light>
+      <rect x="18" y="14" width="24" height="32" rx="3.5" fill="#ffffff" stroke="#18181b" strokeWidth="1.7" />
+      <line x1="23" y1="22" x2="37" y2="22" stroke="#18181b" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="23" y1="27.5" x2="34" y2="27.5" stroke="#71717a" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="23" y1="38" x2="31" y2="38" stroke="#a1a1aa" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="13" y1="32.5" x2="47" y2="32.5" stroke="#18181b" strokeWidth="2" strokeLinecap="round" />
+    </Shell>
   );
 }
 
-/* Time Machine: clock face with a swirling orbit trail */
+/* Time Machine: minimal history dial */
 export function TimeMachineIcon() {
   return (
-    <SQ>
-      <defs>
-        <linearGradient id="tm-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#a78bfa" />
-          <stop offset="100%" stopColor="#5b21b6" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#tm-bg)" />
-      <rect width="60" height="28" rx="13" fill="rgba(255,255,255,0.12)" />
-      {/* orbit trail */}
-      <path d="M12 38 A18 18 0 1 1 42 45" stroke="rgba(255,255,255,0.5)" strokeWidth="2" fill="none" strokeLinecap="round" strokeDasharray="3 4" />
-      <path d="M42 45 L37 44 L41 40" stroke="rgba(255,255,255,0.7)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      {/* clock face */}
-      <circle cx="30" cy="32" r="15" fill="#fdfdff" opacity="0.96" />
-      <circle cx="30" cy="32" r="15" fill="none" stroke="#5b21b6" strokeWidth="1.4" opacity="0.4" />
-      <line x1="30" y1="32" x2="30" y2="22" stroke="#5b21b6" strokeWidth="2.2" strokeLinecap="round" />
-      <line x1="30" y1="32" x2="37" y2="35" stroke="#5b21b6" strokeWidth="2.2" strokeLinecap="round" />
-      <circle cx="30" cy="32" r="1.6" fill="#5b21b6" />
-    </SQ>
+    <Shell>
+      <path d="M16.5 26A14.5 14.5 0 1 1 18.2 37.5" stroke="#e4e4e7" strokeWidth="2" strokeLinecap="round" />
+      <path d="M15.5 20.5V26.5H21.5" stroke="#e4e4e7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M30 22.5V30.5L35.5 33.5" stroke="#a1a1aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </Shell>
   );
 }
 
-/* GitHub icon */
+/* Resume / CV: crisp document page */
+export function NotesIcon() {
+  return (
+    <Shell light>
+      <path
+        d="M19 13H35L42 20V45C42 46.1 41.1 47 40 47H19C17.9 47 17 46.1 17 45V15C17 13.9 17.9 13 19 13Z"
+        fill="#ffffff"
+        stroke="#18181b"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path d="M35 13V20H42" stroke="#18181b" strokeWidth="1.6" strokeLinejoin="round" />
+      <line x1="22" y1="26" x2="36" y2="26" stroke="#18181b" strokeWidth="1.7" strokeLinecap="round" />
+      <line x1="22" y1="31.5" x2="37" y2="31.5" stroke="#71717a" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="22" y1="36.5" x2="37" y2="36.5" stroke="#71717a" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="22" y1="41.5" x2="31" y2="41.5" stroke="#a1a1aa" strokeWidth="1.5" strokeLinecap="round" />
+    </Shell>
+  );
+}
+
+/* Contact / Mail: geometric envelope */
+export function MailIcon() {
+  return (
+    <Shell>
+      <rect x="13" y="18" width="34" height="24" rx="4" stroke="#f4f4f5" strokeWidth="1.9" />
+      <path d="M14.5 20L30 31.5L45.5 20" stroke="#a1a1aa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </Shell>
+  );
+}
+
+/* GitHub: official mark on matching graphite squircle */
 export function GitHubIcon() {
   return (
-    <SQ>
-      <defs>
-        <linearGradient id="gi-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#3a3a3f" />
-          <stop offset="100%" stopColor="#1c1c1e" />
-        </linearGradient>
-      </defs>
-      <rect width="60" height="60" rx="13" fill="url(#gi-bg)" />
-      <rect width="60" height="30" rx="13" fill="rgba(255,255,255,0.04)" />
+    <Shell>
       <path
-        transform="translate(12, 10) scale(0.6)"
+        transform="translate(13.5, 13) scale(0.55)"
         d="M30 2C15.1 2 3 14.1 3 29c0 11.9 7.7 22 18.4 25.6 1.3.2 1.8-.6 1.8-1.3v-4.5c-7.5 1.6-9.1-3.6-9.1-3.6-1.2-3.1-3-4-3-4-2.4-1.7.2-1.6.2-1.6 2.7.2 4.1 2.8 4.1 2.8 2.4 4.1 6.3 2.9 7.8 2.2.2-1.7.9-2.9 1.7-3.6-6-0.7-12.3-3-12.3-13.3 0-2.9 1-5.3 2.8-7.2-.3-.7-1.2-3.4.3-7.1 0 0 2.3-.7 7.5 2.8 2.2-.6 4.5-.9 6.8-.9s4.6.3 6.8.9c5.2-3.5 7.5-2.8 7.5-2.8 1.5 3.7.6 6.4.3 7.1 1.7 1.9 2.8 4.3 2.8 7.2 0 10.3-6.3 12.6-12.3 13.3.9.8 1.7 2.4 1.7 4.8v7.1c0 .7.5 1.5 1.8 1.3C49.3 51 57 40.9 57 29 57 14.1 44.9 2 30 2z"
-        fill="white"
+        fill="#f4f4f5"
         fillRule="evenodd"
       />
-    </SQ>
+    </Shell>
   );
 }
 
-export function AppIconById({ id, size = 52 }) {
+export function AppIconById({ id, size = 46 }) {
   const map = {
     finder: FinderIcon,
-    about:  FinderIcon,
+    about: FinderIcon,
     projects: ProjectsIcon,
     terminal: TerminalIcon,
     resume: NotesIcon,
-    mail:   MailIcon,
+    mail: MailIcon,
     contact: MailIcon,
     github: GitHubIcon,
     code: CodeIcon,
@@ -287,7 +153,7 @@ export function AppIconById({ id, size = 52 }) {
   };
   const Icon = map[id] || FinderIcon;
   return (
-    <div style={{ width: size, height: size, filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.35))" }}>
+    <div style={{ width: size, height: size, filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.28))" }}>
       <Icon />
     </div>
   );

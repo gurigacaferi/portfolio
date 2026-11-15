@@ -8,7 +8,7 @@ const QUICK_ACTIONS = [
   {
     id: "action-hire",
     title: "Email Guri",
-    subtitle: "Hiring? Send a message. I reply fast",
+    subtitle: "Send a direct email",
     icon: "mail",
     action: () => { window.location.href = `mailto:${user.email}`; }
   },
@@ -125,15 +125,15 @@ export default function Spotlight() {
                       onMouseEnter={() => setActiveIdx(i)}
                       onPointerDown={() => setActiveIdx(i)}
                     >
-                      <div style={{ width: 32, height: 32, borderRadius: 7, overflow: "hidden", flexShrink: 0, filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.2))" }}>
-                        <AppIconById id={app.icon || app.id} size={32} />
+                      <div style={{ width: 28, height: 28, borderRadius: 6, overflow: "hidden", flexShrink: 0 }}>
+                        <AppIconById id={app.icon || app.id} size={28} />
                       </div>
-                      <div style={{ flex: 1 }}>
+                      <div style={{ flex: 1, minWidth: 0 }}>
                         <p className="spotlight-result-label">{app.title}</p>
                         <p className="spotlight-result-sub">{app.subtitle}</p>
                       </div>
                       {i === activeIdx && (
-                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", marginLeft: "auto" }}>↩ open</span>
+                        <span style={{ fontSize: 11, color: "var(--mac-text-3)", marginLeft: "auto", flexShrink: 0 }}>↵ Open</span>
                       )}
                     </div>
                   ))}

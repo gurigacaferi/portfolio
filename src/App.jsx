@@ -17,23 +17,23 @@ class ErrorBoundary extends Component {
       return (
         <div
           style={{
-            position: "fixed", inset: 0, background: "#0a0a1a",
-            color: "#e8e8ed", fontFamily: "monospace",
+            position: "fixed", inset: 0, background: "#0b0d11",
+            color: "#e4e4e7", fontFamily: "monospace",
             display: "flex", flexDirection: "column",
             alignItems: "center", justifyContent: "center",
             padding: 32, gap: 16, textAlign: "center"
           }}
         >
-          <span style={{ fontSize: 40 }}>⚠</span>
-          <p style={{ fontSize: 16, fontWeight: 600 }}>Something went wrong</p>
+          <span style={{ fontSize: 32 }}>⚠</span>
+          <p style={{ fontSize: 15, fontWeight: 600 }}>Something went wrong</p>
           <pre style={{ fontSize: 11, opacity: 0.5, maxWidth: 520, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
             {this.state.error?.message}
           </pre>
           <button
             onClick={() => window.location.reload()}
             style={{
-              marginTop: 8, padding: "8px 20px", borderRadius: 8, border: "none",
-              background: "#0071e3", color: "#fff", fontSize: 14, cursor: "pointer"
+              marginTop: 8, padding: "8px 18px", borderRadius: 7, border: "none",
+              background: "#f4f4f5", color: "#09090b", fontSize: 13, fontWeight: 600, cursor: "pointer"
             }}
           >
             Reload

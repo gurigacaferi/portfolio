@@ -8,16 +8,8 @@ const PROMPT = `${PROMPT_HOST} % `;
 
 const APP_IDS = ["about", "projects", "terminal", "code", "fatural", "timemachine", "resume", "contact"];
 
-const WELCOME = `Last login: ${new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })} on ttys000
-
-  ██████╗ ██╗   ██╗██████╗ ██╗
- ██╔════╝ ██║   ██║██╔══██╗██║
- ██║  ███╗██║   ██║██████╔╝██║
- ██║   ██║██║   ██║██╔══██╗██║
- ╚██████╔╝╚██████╔╝██║  ██║██║
-  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝
-
-Type 'help' for available commands. Try 'deploy fatural', or 'open projects'.
+const WELCOME = `guri@portfolio — zsh
+Type 'help' for commands, 'ls' for projects, or 'cat hermes-crm.md'.
 `;
 
 /* Animated "green checks" CI log for `deploy fatural`. Each line lands with its own delay. */
@@ -162,7 +154,7 @@ export default function Terminal() {
       {history.map((entry, i) => (
         <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.08 }}>
           {entry.type === "welcome" && (
-            <pre style={{ color: "#6c91c2", fontSize: 11, lineHeight: 1.3, marginBottom: 6, fontFamily: "inherit" }}>
+            <pre style={{ color: "#71717a", fontSize: 12, lineHeight: 1.55, marginBottom: 10, fontFamily: "inherit" }}>
               {entry.text}
             </pre>
           )}
@@ -191,7 +183,7 @@ export default function Terminal() {
           spellCheck={false}
           style={{
             flex: 1, background: "transparent", border: "none", outline: "none",
-            color: "#cdd6f4", fontFamily: "inherit", fontSize: "inherit", caretColor: "#a6e3a1"
+            color: "#f4f4f5", fontFamily: "inherit", fontSize: "inherit", caretColor: "#f4f4f5"
           }}
         />
       </form>

@@ -67,15 +67,15 @@ function WifiConnectMenu({ onClose, openApp, triggerRef }) {
         position: "absolute",
         top: "calc(100% + 8px)",
         right: 0,
-        width: 280,
-        background: "rgba(40, 40, 48, 0.94)",
-        backdropFilter: "blur(40px) saturate(180%)",
-        WebkitBackdropFilter: "blur(40px) saturate(180%)",
-        borderRadius: 12,
-        boxShadow: "0 18px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.09)",
+        width: 272,
+        background: "rgba(18, 20, 26, 0.96)",
+        backdropFilter: "blur(28px)",
+        WebkitBackdropFilter: "blur(28px)",
+        borderRadius: 10,
+        boxShadow: "0 18px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.1)",
         padding: "14px 14px 12px",
         zIndex: 9999,
-        color: "rgba(255,255,255,0.92)"
+        color: "#f4f4f5"
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
@@ -124,15 +124,14 @@ function WifiConnectMenu({ onClose, openApp, triggerRef }) {
         style={{
           width: "100%",
           border: "none",
-          borderRadius: 8,
-          padding: "10px 14px",
-          fontSize: 13,
+          borderRadius: 7,
+          padding: "9px 14px",
+          fontSize: 12.5,
           fontWeight: 600,
           fontFamily: "inherit",
           cursor: "pointer",
-          color: "white",
-          background: "linear-gradient(180deg, #0a84ff 0%, #0070e0 100%)",
-          boxShadow: "0 1px 0 rgba(255,255,255,0.22) inset, 0 4px 12px rgba(0,112,224,0.35)",
+          color: "#09090b",
+          background: "#f4f4f5",
           marginBottom: 8
         }}
       >
@@ -268,29 +267,29 @@ function AppleMenu({ onClose }) {
         position: "absolute",
         top: "calc(100% + 6px)",
         left: 0,
-        width: 200,
-        background: "rgba(28, 28, 40, 0.92)",
-        backdropFilter: "blur(30px)",
-        borderRadius: 10,
-        boxShadow: "0 16px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1)",
-        padding: "6px 0",
+        width: 204,
+        background: "rgba(18, 20, 26, 0.96)",
+        backdropFilter: "blur(24px)",
+        borderRadius: 9,
+        boxShadow: "0 16px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.1)",
+        padding: "5px",
         zIndex: 9999
       }}
     >
       {items.map((item, i) =>
         item === null ? (
-          <div key={i} style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "4px 0" }} />
+          <div key={i} style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "4px 4px" }} />
         ) : (
           <button
             key={item.label}
             onClick={item.action}
             style={{
               width: "100%", textAlign: "left", background: "none", border: "none",
-              color: "white", fontSize: 13, padding: "7px 14px", cursor: "pointer",
-              borderRadius: 6
+              color: "#f4f4f5", fontSize: 12.5, fontFamily: "inherit", padding: "7px 10px", cursor: "pointer",
+              borderRadius: 5
             }}
-            onMouseEnter={e => e.currentTarget.style.background = "rgba(99,102,241,0.5)"}
-            onMouseLeave={e => e.currentTarget.style.background = "none"}
+            onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.09)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "none"; }}
           >
             {item.label}
           </button>

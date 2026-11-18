@@ -4,6 +4,7 @@ import Dock from "./Dock";
 import Spotlight from "./Spotlight";
 import Window from "./Window";
 import GlitchOverlay from "./GlitchOverlay";
+import AgentLoomWallpaper from "./AgentLoomWallpaper";
 import { useDesktop } from "../context/DesktopContext";
 import { dockApps, user, PRESENT_YEAR } from "../configs/portfolio";
 import { useIsMobileLayout } from "../hooks/useMediaQuery";
@@ -129,8 +130,11 @@ export default function Desktop() {
 
   return (
     <div className="desktop-root" style={{ position: "relative", overflow: "hidden" }}>
-      {/* Wallpaper */}
-      <div className="wallpaper" style={{ filter: wallpaperFilter }} />
+      {/* Wallpaper: Parallel Agents & Verification Loom */}
+      <AgentLoomWallpaper
+        timeMachineYear={timeMachineYear}
+        style={{ filter: wallpaperFilter }}
+      />
 
       <GlitchOverlay />
 
